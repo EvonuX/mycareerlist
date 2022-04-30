@@ -24,7 +24,7 @@ export default async function handler(
       return res.status(401).json({ message: 'Unauthorized' })
     }
 
-    const newJob = await createJob(req.body)
+    const newJob = await createJob(req.body, session.userId)
 
     return res.status(201).json(newJob)
   }
@@ -54,33 +54,39 @@ export default async function handler(
       }
     }
 
-    await prisma.job.update({
-      where: {
-        slug: req.body.slug
-      },
-      data: {
-        savedBy
-      },
-      select: {
-        savedBy: {
-          select: {
-            email: true,
-            id: true
+    try {
+      await prisma.job.update({
+        where: {
+          slug: req.body.slug
+        },
+        data: {
+          savedBy
+        },
+        select: {
+          savedBy: {
+            select: {
+              email: true,
+              id: true
+            }
           }
         }
-      }
-    })
+      })
 
-    return res.status(200).json({ success: true })
+      return res.status(200).json({ success: true })
+    } catch (err) {
+      console.error(err)
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
   }
 
   res.status(400).json({ message: 'Bad request' })
 }
 
-const createJob = async (body: Job) => {
+const createJob = async (body: Job, userId: string) => {
   const newJob = await prisma.job.create({
     data: {
-      ...body
+      ...body,
+      userId
     },
     select: {
       title: true,

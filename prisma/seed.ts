@@ -73,6 +73,8 @@ async function seed() {
           location: 'remote',
           city: job.location,
           applyLink: job.apply,
+          userId: userId,
+          draft: false,
           company: {
             connect: {
               name: job.cName

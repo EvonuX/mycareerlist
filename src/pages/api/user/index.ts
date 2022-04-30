@@ -9,7 +9,7 @@ export default async function handler(
   const session = await getSession({ req })
 
   if (!session) {
-    return res.status(401).json({ success: false })
+    return res.status(401).json({ message: 'Unauthorized' })
   }
 
   if (session.userRole === 'USER') {
@@ -71,7 +71,6 @@ export default async function handler(
               reviews: true
             }
           },
-
           jobs: {
             select: {
               title: true,

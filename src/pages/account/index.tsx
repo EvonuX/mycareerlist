@@ -11,8 +11,6 @@ import {
   Text,
   Title
 } from '@mantine/core'
-import type { Company, Job } from '~/types/types'
-import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,6 +19,8 @@ import { useQuery } from 'react-query'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 import UserAccountPage from '~/components/UserAccountPage'
+import type { Company, Job } from '~/types/types'
+import { fetcher } from '~/utils/helpers'
 
 interface QueryProps {
   savedJobs: Job[]
@@ -37,12 +37,8 @@ const AccountPage = () => {
     }
   })
 
-  const { data, isLoading } = useQuery<QueryProps, Error>(
-    'accountPage',
-    async () => {
-      const res = await axios.get('/api/user')
-      return res.data
-    }
+  const { data, isLoading } = useQuery<QueryProps, Error>('accountPage', () =>
+    fetcher('/api/user')
   )
 
   if (!user) {

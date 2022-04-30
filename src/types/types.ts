@@ -36,6 +36,7 @@ export interface Job {
   companyId: string
   savedBy: User[]
   company: Company
+  analytics: Analytics[]
   createdAt: Date
   updatedAt: Date
 }
@@ -52,4 +53,13 @@ export interface Review {
   companyId: string
   createdAt: Date
   updatedAt: Date
+}
+
+export interface Analytics {
+  id: string
+  date: Date
+  visitorCount: number
+  referrer: string | null
+  userAgent: string | null
+  jobId: string
 }

@@ -74,10 +74,7 @@ export default function App(props: AppProps) {
               />
 
               <NotificationsProvider>
-                <PlausibleProvider
-                  domain="mycareerlist.vercel.app"
-                  enabled={process.env.NODE_ENV === 'production'}
-                >
+                <PlausibleProvider domain="mycareerlist.vercel.app">
                   <Component {...pageProps} />
                 </PlausibleProvider>
               </NotificationsProvider>
