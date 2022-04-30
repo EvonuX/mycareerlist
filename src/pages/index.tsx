@@ -1,5 +1,4 @@
 import { Button, SimpleGrid, Stack, Title } from '@mantine/core'
-import type { Company, Job, Review } from '@prisma/client'
 import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -7,6 +6,7 @@ import CompanyCard from '~/components/CompanyCard'
 import JobCard from '~/components/JobCard'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
+import { Company, Job, Review } from '~/types/types'
 import prisma from '~/utils/prisma'
 import Layout from '../components/Layout'
 
@@ -53,7 +53,6 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         ]}
       >
         {jobs.map(job => (
-          // @ts-ignore
           <JobCard key={job.id} job={job} />
         ))}
       </SimpleGrid>
@@ -91,7 +90,6 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         ]}
       >
         {companies.map(company => (
-          // @ts-ignore
           <CompanyCard key={company.id} company={company} />
         ))}
       </SimpleGrid>

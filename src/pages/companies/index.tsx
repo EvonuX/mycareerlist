@@ -1,9 +1,9 @@
 import { SimpleGrid } from '@mantine/core'
-import type { Company } from '@prisma/client'
 import type { NextPage } from 'next'
 import CompanyCard from '~/components/CompanyCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
+import type { Company } from '~/types/types'
 import prisma from '~/utils/prisma'
 
 interface IProps {
@@ -17,7 +17,6 @@ const CompanyListing: NextPage<IProps> = ({ companies }) => {
 
       <SimpleGrid cols={4}>
         {companies.map(company => (
-          // @ts-ignore
           <CompanyCard key={company.id} company={company} />
         ))}
       </SimpleGrid>

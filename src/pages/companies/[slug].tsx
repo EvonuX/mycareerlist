@@ -13,7 +13,6 @@ import {
   Title,
   TypographyStylesProvider
 } from '@mantine/core'
-import type { Company, Job, Review } from '@prisma/client'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -24,6 +23,7 @@ import Layout from '~/components/Layout'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
 import { locations } from '~/constants/general'
+import type { Company, Review } from '~/types/types'
 import { fetcher } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
@@ -32,7 +32,7 @@ const ReviewForm = dynamic(() => import('~/components/ReviewForm'), {
 })
 
 interface IProps {
-  company: Company & { jobs: Job[] } & { reviews: Review[] }
+  company: Company
   reviewStats: {
     average: number
     count: number
@@ -125,7 +125,6 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
 
       <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]}>
         {company.jobs.map(job => (
-          // @ts-ignore
           <JobCard key={job.id} job={job} />
         ))}
       </SimpleGrid>

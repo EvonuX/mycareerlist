@@ -10,7 +10,6 @@ import {
   Text
 } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
-import type { Job } from '@prisma/client'
 import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -20,6 +19,7 @@ import { useInfiniteQuery } from 'react-query'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
+import type { Job } from '~/types/types'
 import { fetcher } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
@@ -100,7 +100,6 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
             {data?.pages.map(page =>
               page.jobs
                 ? page.jobs.map((job: Job) => (
-                    // @ts-ignore
                     <JobCard key={job.id} job={job} />
                   ))
                 : null

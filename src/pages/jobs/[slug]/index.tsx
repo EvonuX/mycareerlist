@@ -11,7 +11,6 @@ import {
   TypographyStylesProvider
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
-import type { Company, Job } from '@prisma/client'
 import axios from 'axios'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
@@ -23,6 +22,7 @@ import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 import { categories, locations, types } from '~/constants/general'
+import type { Job } from '~/types/types'
 import prisma from '~/utils/prisma'
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
@@ -30,9 +30,7 @@ const Newsletter = dynamic(() => import('~/components/Newsletter'), {
 })
 
 interface IProps {
-  job: Job & {
-    company: Company & { _count: { jobs: number; reviews: number } }
-  }
+  job: Job
   relatedJobs: Job[]
 }
 
@@ -46,7 +44,6 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
     ? `${location?.label}, ${job.city}`
     : location?.label
 
-  // @ts-ignore
   const isSaved = !!!job.savedBy.find(
     (s: { id: string }) => s.id === user?.userId
   )
@@ -210,7 +207,6 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
 
       <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]}>
         {relatedJobs.map(job => (
-          // @ts-ignore
           <JobCard key={job.id} job={job} />
         ))}
       </SimpleGrid>

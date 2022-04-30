@@ -1,6 +1,6 @@
 import { SimpleGrid, Text, Title } from '@mantine/core'
-import type { Job } from '@prisma/client'
 import type { FC } from 'react'
+import type { Job } from '~/types/types'
 import JobCard from './JobCard'
 import Layout from './Layout'
 import SEO from './SEO'
@@ -22,10 +22,7 @@ const UserAccountPage: FC<IProps> = ({ data }) => {
 
       <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]}>
         {!!data ? (
-          data.savedJobs.map(job => (
-            // @ts-ignore
-            <JobCard key={job.id} job={job} />
-          ))
+          data.savedJobs.map(job => <JobCard key={job.id} job={job} />)
         ) : (
           <Text>You don&lsquo;t have any jobs saved yet.</Text>
         )}

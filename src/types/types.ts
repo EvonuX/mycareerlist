@@ -1,3 +1,5 @@
+import { User } from '@prisma/client'
+
 export interface Company {
   id: string
   name: string
@@ -32,6 +34,8 @@ export interface Job {
   featured: boolean
   expired: boolean
   companyId: string
+  savedBy: User[]
+  company: Company
   createdAt: Date
   updatedAt: Date
 }
