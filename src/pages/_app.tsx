@@ -10,6 +10,7 @@ import type { AppProps } from 'next/app'
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { NotificationsProvider } from '@mantine/notifications'
+import PlausibleProvider from 'next-plausible'
 
 export default function App(props: AppProps) {
   const {
@@ -73,7 +74,12 @@ export default function App(props: AppProps) {
               />
 
               <NotificationsProvider>
-                <Component {...pageProps} />
+                <PlausibleProvider
+                  domain="mycareerlist.vercel.app"
+                  enabled={process.env.NODE_ENV === 'production'}
+                >
+                  <Component {...pageProps} />
+                </PlausibleProvider>
               </NotificationsProvider>
             </MantineProvider>
           </ColorSchemeProvider>
