@@ -193,9 +193,11 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                 Apply for job
               </Button>
 
-              <Button variant="outline" onClick={handleSave}>
-                {jobSaved ? 'Save job' : 'Unsave job'}
-              </Button>
+              {user?.userRole === 'USER' && (
+                <Button variant="outline" onClick={handleSave}>
+                  {jobSaved ? 'Save job' : 'Unsave job'}
+                </Button>
+              )}
             </Group>
           </Box>
         </Grid.Col>

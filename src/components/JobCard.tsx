@@ -1,12 +1,12 @@
 import { Badge, Box, Group, Paper, Text } from '@mantine/core'
-import type { Company, Job } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 import { categories, locations, types } from '~/constants/general'
+import type { Job } from '~/types/types'
 
 interface IProps {
-  job: Job & { company: Company }
+  job: Job
 }
 
 const JobCard: FC<IProps> = ({ job }) => {

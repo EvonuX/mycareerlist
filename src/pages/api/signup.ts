@@ -9,6 +9,7 @@ export default async function handler(
     const { data } = await axios.put(
       'https://api.sendgrid.com/v3/marketing/contacts',
       {
+        list_ids: ['e309e54a-438c-480f-98f7-a91975103626'],
         contacts: [
           {
             email: req.body.email

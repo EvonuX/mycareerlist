@@ -14,6 +14,7 @@ import {
   TypographyStylesProvider
 } from '@mantine/core'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -40,6 +41,10 @@ interface IProps {
 }
 
 const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
+  const { data: user } = useSession()
+
+  const isUser = user?.userRole === 'USER'
+
   const location = locations.find(l => l.value === company.region)
   const position = company.city
     ? `${location?.label}, ${company.city}`
@@ -129,35 +134,37 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
         ))}
       </SimpleGrid>
 
-      <Grid justify="space-between" align="center" mb={15} mt={25}>
+      <Grid justify="space-between" align="center" mb="md" mt="lg">
         <Grid.Col md={6}>
-          <Title order={2} mb="sm">
-            Company reviews ({reviewStats.count})
-          </Title>
+          <Title order={2}>Company reviews ({reviewStats.count})</Title>
 
           {reviewStats.count > 0 && (
             <Text>Average rating: {reviewStats.average}</Text>
           )}
         </Grid.Col>
 
-        <Grid.Col
-          md={6}
-          sx={{
-            textAlign: 'right',
+        {isUser && (
+          <Grid.Col
+            md={6}
+            sx={{
+              textAlign: 'right',
 
-            '@media (max-width: 768px)': {
-              textAlign: 'left'
-            }
-          }}
-        >
-          <Button onClick={() => setOpened(true)}>Write a review</Button>
-        </Grid.Col>
+              '@media (max-width: 768px)': {
+                textAlign: 'left'
+              }
+            }}
+          >
+            <Button onClick={() => setOpened(true)}>Write a review</Button>
+          </Grid.Col>
+        )}
       </Grid>
 
       <Divider mb="xl" mt={-5} />
 
-      {/* @ts-ignore */}
-      <ReviewForm open={opened} setOpen={setOpened} companyId={company.id} />
+      {isUser && (
+        // @ts-ignore
+        <ReviewForm open={opened} setOpen={setOpened} companyId={company.id} />
+      )}
 
       {data && (
         <Stack>
