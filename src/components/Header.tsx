@@ -75,7 +75,7 @@ const Header: FC = () => {
                     onClick={() =>
                       signOut({
                         callbackUrl: '/',
-                        redirect: true
+                        redirect: false
                       })
                     }
                   >

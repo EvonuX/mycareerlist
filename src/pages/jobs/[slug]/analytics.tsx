@@ -50,7 +50,7 @@ const AnalyticsPage: NextPage = () => {
     return (
       <tr key={analytic.id}>
         <td>{formatDate(analytic.date)}</td>
-        <td>{analytic.visitorCount}</td>
+        <td>{analytic.views.length}</td>
       </tr>
     )
   })
@@ -60,7 +60,7 @@ const AnalyticsPage: NextPage = () => {
       label: 'Visitors',
       data: job.analytics.map(analytic => ({
         date: formatDate(analytic.date),
-        visitorCount: analytic.visitorCount
+        visitorCount: analytic.views.length
       }))
     }
   ]

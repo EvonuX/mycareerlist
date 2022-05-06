@@ -9,13 +9,13 @@ import {
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
-import type { Job } from '@prisma/client'
 import axios from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
+import type { Job } from '~/types/types'
 import prisma from '~/utils/prisma'
 
 interface IProps {

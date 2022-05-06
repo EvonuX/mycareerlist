@@ -1,16 +1,11 @@
 import { Badge, Box, Group, Paper, Title } from '@mantine/core'
-import type { Company } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
+import type { Company } from '~/types/types'
 
 interface IProps {
-  company: Company & {
-    _count: {
-      jobs: number
-      reviews: number
-    }
-  }
+  company: Company
 }
 
 const CompanyCard: FC<IProps> = ({ company }) => {

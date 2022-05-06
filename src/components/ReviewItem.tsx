@@ -1,7 +1,7 @@
-import { Box, Divider, Paper, Text } from '@mantine/core'
-import type { Review } from '@prisma/client'
+import { Box, Paper, Text } from '@mantine/core'
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
+import type { Review } from '~/types/types'
 
 const StarPicker = dynamic(() => import('react-star-picker'), {
   ssr: false

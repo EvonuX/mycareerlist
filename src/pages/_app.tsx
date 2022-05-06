@@ -10,7 +10,6 @@ import type { AppProps } from 'next/app'
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { NotificationsProvider } from '@mantine/notifications'
-import PlausibleProvider from 'next-plausible'
 
 export default function App(props: AppProps) {
   const {
@@ -61,6 +60,7 @@ export default function App(props: AppProps) {
               <Global
                 styles={theme => ({
                   body: {
+                    overflowY: 'scroll',
                     backgroundColor:
                       theme.colorScheme === 'dark'
                         ? theme.colors.dark[8]
@@ -74,9 +74,7 @@ export default function App(props: AppProps) {
               />
 
               <NotificationsProvider>
-                <PlausibleProvider domain="mycareerlist.vercel.app">
-                  <Component {...pageProps} />
-                </PlausibleProvider>
+                <Component {...pageProps} />
               </NotificationsProvider>
             </MantineProvider>
           </ColorSchemeProvider>

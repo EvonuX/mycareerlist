@@ -98,6 +98,7 @@ const AccountPage = () => {
                       alt={company.name}
                       width={40}
                       height={40}
+                      objectFit="cover"
                     />
                   </Box>
 
@@ -152,6 +153,7 @@ const AccountPage = () => {
                                 Expired
                               </Badge>
                             )}
+
                             {job.draft && (
                               <Badge
                                 size="sm"
@@ -162,6 +164,7 @@ const AccountPage = () => {
                                 Draft
                               </Badge>
                             )}
+
                             {job.featured && (
                               <Badge
                                 size="sm"
@@ -172,6 +175,12 @@ const AccountPage = () => {
                                 Featured
                               </Badge>
                             )}
+
+                            <Link href={`/jobs/${job.slug}/analytics`} passHref>
+                              <Button size="xs" variant="subtle">
+                                Insights
+                              </Button>
+                            </Link>
                           </Group>
                         </Box>
                       </Stack>

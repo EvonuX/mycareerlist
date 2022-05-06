@@ -37,7 +37,8 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
 
     try {
       await signIn('email', {
-        email: formData.email
+        email: formData.email,
+        redirect: false
       })
     } catch (err) {
       console.error(err)

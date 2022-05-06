@@ -17,7 +17,8 @@ import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useState } from 'react'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
@@ -48,7 +49,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
     (s: { id: string }) => s.id === user?.userId
   )
 
-  const [jobSaved, setJobSaved] = useState(isSaved)
+  const [jobSaved, setJobSaved] = useState(isSaved || false)
 
   const handleSave = async () => {
     try {
@@ -87,6 +88,21 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
       console.error(err)
     }
   }
+
+  const handleAnalytics = useCallback(async () => {
+    try {
+      await axios.post(`/api/job/${job.slug}/analytics`, {
+        referrer: document.referrer,
+        userAgent: navigator.userAgent
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }, [job.slug])
+
+  useEffect(() => {
+    handleAnalytics()
+  }, [handleAnalytics, job.slug])
 
   return (
     <Layout>
@@ -133,7 +149,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                   width: 100,
                   height: 100,
                   overflow: 'hidden',
-                  borderRadius: '50%'
+                  borderRadius: 5
                 }}
                 mx="auto"
                 mb="md"
@@ -144,6 +160,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                   layout="fixed"
                   width={100}
                   height={100}
+                  objectFit="cover"
                 />
               </Box>
 

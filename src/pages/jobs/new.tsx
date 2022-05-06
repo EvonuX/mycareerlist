@@ -10,7 +10,6 @@ import {
   Title
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import type { Company } from '@prisma/client'
 import axios from 'axios'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
@@ -22,6 +21,7 @@ import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 import { categories, locations, types } from '~/constants/general'
 import regex from '~/constants/regex'
+import type { Company } from '~/types/types'
 import prisma from '~/utils/prisma'
 
 const RichTextEditor = dynamic(() => import('@mantine/rte'), {
@@ -68,6 +68,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
 
     try {
       const { data } = await axios.post('/api/job', formData)
+      console.log(data)
       router.push(`/jobs/${data.slug}/payment`)
     } catch (err) {
       console.error(err)

@@ -46,6 +46,7 @@ const JobCard: FC<IProps> = ({ job }) => {
               layout="fixed"
               width={75}
               height={75}
+              objectFit="cover"
             />
           </Box>
 
