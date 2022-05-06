@@ -37,17 +37,22 @@ const AccountPage = () => {
     }
   })
 
-  const { data, isLoading } = useQuery<QueryProps, Error>('accountPage', () =>
-    fetcher('/api/user')
+  const { data, isLoading, isFetching } = useQuery<QueryProps, Error>(
+    'accountPage',
+    () => fetcher('/api/user')
   )
 
   if (!user) {
-    return <Title>No user, please try logging in again</Title>
+    return (
+      <Center>
+        <Title>No user, please try logging in again</Title>
+      </Center>
+    )
   }
 
   if (user.userRole === 'USER') {
     // @ts-ignore
-    return <UserAccountPage data={data} />
+    return <UserAccountPage data={data} loading={isFetching} />
   }
 
   return (

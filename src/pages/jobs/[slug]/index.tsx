@@ -17,7 +17,6 @@ import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
@@ -50,8 +49,11 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   )
 
   const [jobSaved, setJobSaved] = useState(isSaved || false)
+  const [loading, setLoading] = useState(false)
 
   const handleSave = async () => {
+    setLoading(true)
+
     try {
       await axios.put('/api/job', {
         slug: job.slug,
@@ -64,7 +66,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
       showNotification({
         title,
         message,
-        color: 'green',
+        color: jobSaved ? 'green' : 'blue',
         icon: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +88,8 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
       setJobSaved(!jobSaved)
     } catch (err) {
       console.error(err)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -211,7 +215,11 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
               </Button>
 
               {user?.userRole === 'USER' && (
-                <Button variant="outline" onClick={handleSave}>
+                <Button
+                  variant="outline"
+                  loading={loading}
+                  onClick={handleSave}
+                >
                   {jobSaved ? 'Save job' : 'Unsave job'}
                 </Button>
               )}

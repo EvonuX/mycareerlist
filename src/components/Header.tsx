@@ -74,8 +74,7 @@ const Header: FC = () => {
                   <Menu.Item
                     onClick={() =>
                       signOut({
-                        callbackUrl: '/',
-                        redirect: false
+                        callbackUrl: '/'
                       })
                     }
                   >

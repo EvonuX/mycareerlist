@@ -102,7 +102,6 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               </svg>
             }
             title="No companies found"
-            color="red"
           >
             <Text mb="md">
               To create a job posting you first need to create a company to
@@ -111,9 +110,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
             </Text>
 
             <Link href="/companies/new" passHref>
-              <Button variant="outline" size="xs">
-                Create a company
-              </Button>
+              <Button size="xs">Create a company</Button>
             </Link>
           </Alert>
         ) : (
@@ -213,6 +210,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     return {
       redirect: {
         destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  if (session.userRole !== 'EMPLOYER') {
+    return {
+      redirect: {
+        destination: '/account?noPermissions=true',
         permanent: false
       }
     }

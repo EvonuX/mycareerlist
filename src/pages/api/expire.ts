@@ -13,10 +13,10 @@ export default async function handler(
 
   const expiredJobs = await prisma.job.updateMany({
     where: {
-      createdAt: {
+      expired: false,
+      updatedAt: {
         lte: expDate
-      },
-      expired: false
+      }
     },
     data: {
       expired: true
