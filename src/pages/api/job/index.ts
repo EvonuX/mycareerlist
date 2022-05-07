@@ -89,6 +89,7 @@ const createJob = async (body: Job, userId: string) => {
       userId
     },
     select: {
+      id: true,
       title: true,
       slug: true,
       company: {
@@ -99,20 +100,36 @@ const createJob = async (body: Job, userId: string) => {
     }
   })
 
-  prisma.$use(async (params, next) => {
-    if (params.model == 'Job' && params.action == 'create') {
-      const slug = slugify(`${newJob.title}-at-${newJob.company.name}`, {
-        lower: true,
-        strict: true,
-        trim: true,
-        replacement: '-'
-      })
+  const slug = slugify(`${newJob.title}-at-${newJob.company.name}`, {
+    lower: true,
+    strict: true,
+    trim: true,
+    replacement: '-'
+  })
 
-      params.args.data.slug = slug
+  prisma.$use(async (params, next) => {
+    if (params.model === 'Job') {
+      if (params.action === 'create') {
+        params.action = 'update'
+        params.args['data'] = { slug }
+      }
     }
 
     return await next(params)
   })
+
+  if (!newJob.slug) {
+    const updatedNewJob = await prisma.job.update({
+      where: {
+        id: newJob.id
+      },
+      data: {
+        slug
+      }
+    })
+
+    return updatedNewJob
+  }
 
   return newJob
 }

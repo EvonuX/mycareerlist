@@ -10,8 +10,9 @@ import {
   Title
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
+import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
-import { GetServerSideProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -68,10 +69,16 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
 
     try {
       const { data } = await axios.post('/api/job', formData)
-      console.log(data)
+
       router.push(`/jobs/${data.slug}/payment`)
     } catch (err) {
-      console.error(err)
+      showNotification({
+        title: 'An error occured',
+        message: 'Please check the form again or try again later',
+        color: 'red'
+      })
+
+      throw new Error('Failed to create new job')
     } finally {
       setLoading(false)
     }
@@ -206,16 +213,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req })
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  if (session.userRole !== 'EMPLOYER') {
+  if (!session || session.userRole !== 'EMPLOYER') {
     return {
       redirect: {
         destination: '/?noPermissions=true',
