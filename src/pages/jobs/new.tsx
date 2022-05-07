@@ -218,7 +218,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (session.userRole !== 'EMPLOYER') {
     return {
       redirect: {
-        destination: '/account?noPermissions=true',
+        destination: '/?noPermissions=true',
         permanent: false
       }
     }

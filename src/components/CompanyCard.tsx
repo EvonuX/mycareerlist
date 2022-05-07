@@ -15,6 +15,7 @@ const CompanyCard: FC<IProps> = ({ company }) => {
         <a style={{ textDecoration: 'none', color: 'inherit' }}>
           <Box
             sx={{
+              backgroundColor: '#fff',
               width: 80,
               height: 80,
               borderRadius: 5,
@@ -29,6 +30,7 @@ const CompanyCard: FC<IProps> = ({ company }) => {
               layout="fixed"
               width={80}
               height={80}
+              objectFit="cover"
             />
           </Box>
 

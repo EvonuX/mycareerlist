@@ -8,14 +8,17 @@ import {
   Title
 } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
+import { showNotification } from '@mantine/notifications'
 import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import CompanyCard from '~/components/CompanyCard'
 import JobCard from '~/components/JobCard'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
-import { Company, Job, Review } from '~/types/types'
+import type { Company, Job, Review } from '~/types/types'
 import prisma from '~/utils/prisma'
 import Layout from '../components/Layout'
 
@@ -31,6 +34,25 @@ interface IProps {
 
 const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
   const matches = useMediaQuery('(max-width: 768px)')
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.query.noPermissions) {
+      showNotification({
+        title: "You don't have access to this page",
+        message: 'Only employers can post new jobs. Log in to begin.',
+        color: 'yellow'
+      })
+    }
+
+    if (router.query.notFound) {
+      showNotification({
+        title: 'This page was not found',
+        message: 'Make sure to check your URL',
+        color: 'yellow'
+      })
+    }
+  }, [router.query])
 
   return (
     <Layout>
@@ -56,13 +78,14 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
             easy steps.
           </Text>
 
-          <Group grow={matches ? true : false}>
-            <Link href="/jobs/new">
-              <Button>Post a job for $100</Button>
-            </Link>
-            <Link href="/jobs">
-              <Button variant="light">View job listing</Button>
-            </Link>
+          <Group grow={matches}>
+            <Button onClick={() => router.push('/jobs/new')}>
+              Post a job for $100
+            </Button>
+
+            <Button variant="light" onClick={() => router.push('/jobs')}>
+              View all jobs
+            </Button>
           </Group>
         </Box>
 

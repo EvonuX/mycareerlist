@@ -37,7 +37,7 @@ const JobCard: FC<IProps> = ({ job }) => {
               position: 'relative',
               borderRadius: 5,
               overflow: 'hidden',
-              backgroundColor: 'white'
+              backgroundColor: '#fff'
             }}
           >
             <Image

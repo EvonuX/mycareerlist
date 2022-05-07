@@ -49,6 +49,10 @@ const Header: FC = () => {
                 View all jobs
               </Menu.Item>
 
+              <Menu.Item onClick={() => router.push('/companies')}>
+                View all companies
+              </Menu.Item>
+
               <Divider />
 
               {data ? (

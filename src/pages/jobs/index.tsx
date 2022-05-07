@@ -7,7 +7,8 @@ import {
   Paper,
   Skeleton,
   Stack,
-  Text
+  Text,
+  Title
 } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
 import type { GetServerSideProps, NextPage } from 'next'
@@ -73,6 +74,10 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
   return (
     <Layout>
       <SEO title="All jobs" />
+
+      <Title order={1} mb="md">
+        All jobs
+      </Title>
 
       <Grid>
         <Grid.Col

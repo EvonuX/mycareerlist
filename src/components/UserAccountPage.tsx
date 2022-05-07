@@ -27,7 +27,8 @@ const UserAccountPage: FC<IProps> = ({ data, loading }) => {
     if (router.query.noPermissions) {
       showNotification({
         title: "You don't have access to this page",
-        message: 'Only employers can post new jobs. Learn more',
+        message:
+          'Only employers can post new jobs. Create an account to start posting jobs.',
         color: 'yellow'
       })
     }
