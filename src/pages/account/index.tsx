@@ -95,7 +95,7 @@ const AccountPage = () => {
                       position: 'relative',
                       borderRadius: 5,
                       overflow: 'hidden',
-                      backgroundColor: 'white'
+                      backgroundColor: '#fff'
                     }}
                   >
                     <Image

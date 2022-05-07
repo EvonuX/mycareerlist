@@ -1,5 +1,5 @@
 import { formidable } from 'formidable'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import os from 'os'
 import cloudinary from '~/utils/cloudinary'
 import prisma from '~/utils/prisma'

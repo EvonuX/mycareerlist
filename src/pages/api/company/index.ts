@@ -54,23 +54,46 @@ export default async function handler(
       data: {
         userId: session.userId,
         ...req.body
+      },
+      select: {
+        id: true,
+        name: true,
+        slug: true
       }
+    })
+
+    const slug = slugify(newCompany.name, {
+      lower: true,
+      strict: true,
+      trim: true,
+      replacement: '-'
     })
 
     prisma.$use(async (params, next) => {
       if (params.model == 'Company' && params.action == 'create') {
-        const slug = slugify(newCompany.name, {
-          lower: true,
-          strict: true,
-          trim: true,
-          replacement: '-'
-        })
-
         params.args.data.slug = slug
       }
 
       return await next(params)
     })
+
+    if (!newCompany.slug) {
+      const updatedNewCompany = await prisma.company.update({
+        where: {
+          id: newCompany.id
+        },
+        data: {
+          slug
+        },
+        select: {
+          id: true,
+          slug: true,
+          name: true
+        }
+      })
+
+      return res.status(201).json(updatedNewCompany)
+    }
 
     return res.status(201).json(newCompany)
   }

@@ -125,6 +125,16 @@ const createJob = async (body: Job, userId: string) => {
       },
       data: {
         slug
+      },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        company: {
+          select: {
+            name: true
+          }
+        }
       }
     })
 

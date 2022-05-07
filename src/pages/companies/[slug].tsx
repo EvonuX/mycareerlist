@@ -71,6 +71,7 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
         <Box mr={10}>
           <Box
             sx={{
+              backgroundColor: '#fff',
               position: 'relative',
               overflow: 'hidden',
               borderRadius: 5,
