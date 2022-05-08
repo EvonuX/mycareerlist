@@ -1,6 +1,6 @@
+import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
-import { formatDate } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
 export default async function handler(
@@ -20,18 +20,7 @@ export default async function handler(
       select: {
         title: true,
         userId: true,
-        analytics: {
-          select: {
-            id: true,
-            date: true,
-            views: {
-              select: {
-                referrer: true,
-                userAgent: true
-              }
-            }
-          }
-        }
+        updatedAt: true
       }
     })
 
@@ -43,47 +32,19 @@ export default async function handler(
       return res.status(403).json({ message: 'Forbidden' })
     }
 
-    return res.status(200).json(job)
-  }
+    const jobDate = job.updatedAt.toISOString().split('T')[0]
+    const currentDate = new Date().toISOString().split('T')[0]
 
-  if (req.method === 'POST') {
-    try {
-      await prisma.job.update({
-        where: {
-          slug
-        },
-        data: {
-          analytics: {
-            upsert: {
-              where: {
-                jobSlug: slug
-              },
-              create: {
-                date: formatDate(new Date()),
-                jobSlug: slug,
-                views: {
-                  create: {
-                    referrer: req.body.referrer || '',
-                    userAgent: req.body.userAgent || ''
-                  }
-                }
-              },
-              update: {
-                views: {
-                  create: {
-                    referrer: req.body.referrer || '',
-                    userAgent: req.body.userAgent || ''
-                  }
-                }
-              }
-            }
-          }
-        }
-      })
-
-      return res.status(200).json({ success: true })
-    } catch (error) {
-      return res.status(500).json({ success: false, error })
+    const config = {
+      method: 'GET',
+      url: `https://plausible.io/api/v1/stats/timeseries?site_id=mycareerlist.vercel.app&period=custom&date=${jobDate},${currentDate}&interval=date&filters=event:page==/jobs/${slug}`,
+      headers: {
+        Authorization: `Bearer ${process.env.PLAUSIBLE_API_KEY}`
+      }
     }
+
+    const { data } = await axios(config)
+
+    return res.status(200).json({ ...job, analytics: data.results })
   }
 }

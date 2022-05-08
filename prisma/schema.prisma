@@ -106,9 +106,8 @@ model Job {
 
   userId    String
   companyId String
-  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
   savedBy   User[]
-  analytics JobView[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,33 +133,6 @@ model Review {
   updatedAt DateTime @updatedAt
 
   @@map("reviews")
-}
-
-model JobView {
-  id      String         @id @default(cuid())
-  jobSlug String         @unique
-  date    String
-  views   JobViewEntry[]
-
-  jobId String
-  job   Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-
-  @@map("job_view")
-}
-
-model JobViewEntry {
-  id        String @id @default(cuid())
-  referrer  String
-  userAgent String
-
-  jobView   JobView @relation(fields: [jobViewId], references: [id])
-  jobViewId String
-
-  createdAt DateTime @default(now())
-
-  @@map("job_view_entry")
 }
 
 model Payment {

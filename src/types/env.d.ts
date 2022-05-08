@@ -21,5 +21,7 @@ declare namespace NodeJS {
     NEXT_PUBLIC_PAYPAL_CLIENT_ID: string
     PAYPAL_CLIENT_ID: string
     PAYPAL_APP_SECRET: string
+
+    PLAUSIBLE_API_KEY: string
   }
 }

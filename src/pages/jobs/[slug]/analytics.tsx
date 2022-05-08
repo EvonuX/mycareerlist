@@ -1,6 +1,10 @@
-// @ts-nocheck
-
-import { Table, Title, useMantineColorScheme } from '@mantine/core'
+import {
+  Center,
+  Loader,
+  Table,
+  Title,
+  useMantineColorScheme
+} from '@mantine/core'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
@@ -11,19 +15,33 @@ import SEO from '~/components/SEO'
 import type { Job } from '~/types/types'
 import { fetcher, formatDate } from '~/utils/helpers'
 
+interface QueryProps {
+  job: Job
+  title: string
+  updatedAt: string
+  analytics: {
+    date: string
+    visitors: number
+  }[]
+}
+
 const AnalyticsPage: NextPage = () => {
   const router = useRouter()
   const slug = router.query.slug
 
   const { colorScheme } = useMantineColorScheme()
 
-  const { data: job, error } = useQuery<Job, Error>(['analytics', slug], () =>
-    fetcher(`/api/job/${slug}/analytics`)
+  const { data: job, error } = useQuery<QueryProps, Error>(
+    ['analytics', slug],
+    () => fetcher(`/api/job/${slug}/analytics`),
+    {
+      enabled: slug !== undefined
+    }
   )
 
   const primaryAxis = useMemo(
     () => ({
-      getValue: datum => datum.date
+      getValue: (datum: { date: string }) => datum.date
     }),
     []
   )
@@ -31,7 +49,7 @@ const AnalyticsPage: NextPage = () => {
   const secondaryAxes = useMemo(
     () => [
       {
-        getValue: datum => datum.visitorCount,
+        getValue: (datum: { visitors: number }) => datum.visitors,
         elementType: 'line'
       }
     ],
@@ -43,14 +61,20 @@ const AnalyticsPage: NextPage = () => {
   }
 
   if (!job) {
-    return null
+    return (
+      <Layout>
+        <Center>
+          <Loader />
+        </Center>
+      </Layout>
+    )
   }
 
   const analytics = job.analytics.map(analytic => {
     return (
-      <tr key={analytic.id}>
+      <tr key={analytic.date}>
         <td>{formatDate(analytic.date)}</td>
-        <td>{analytic.views.length}</td>
+        <td>{analytic.visitors}</td>
       </tr>
     )
   })
@@ -60,7 +84,7 @@ const AnalyticsPage: NextPage = () => {
       label: 'Visitors',
       data: job.analytics.map(analytic => ({
         date: formatDate(analytic.date),
-        visitorCount: analytic.views.length
+        visitors: analytic.visitors
       }))
     }
   ]
@@ -88,6 +112,7 @@ const AnalyticsPage: NextPage = () => {
         options={{
           data,
           primaryAxis,
+          // @ts-ignore
           secondaryAxes,
           dark: colorScheme === 'dark'
         }}
