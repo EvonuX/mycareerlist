@@ -17,12 +17,12 @@ import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
-import { categories, locations, types } from '~/constants/general'
 import type { Job } from '~/types/types'
+import { getCategory, getLocation, getType } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
@@ -36,13 +36,6 @@ interface IProps {
 
 const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   const { data: user } = useSession()
-
-  const category = categories.find(c => c.value === job.category)
-  const type = types.find(t => t.value === job.type)
-  const location = locations.find(l => l.value === job.location)
-  const position = job.city
-    ? `${location?.label}, ${job.city}`
-    : location?.label
 
   const isSaved = !!!job.savedBy.find(
     (s: { id: string }) => s.id === user?.userId
@@ -93,21 +86,6 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
     }
   }
 
-  const handleAnalytics = useCallback(async () => {
-    try {
-      await axios.post(`/api/job/${job.slug}/analytics`, {
-        referrer: document.referrer,
-        userAgent: navigator.userAgent
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  }, [job.slug])
-
-  useEffect(() => {
-    handleAnalytics()
-  }, [handleAnalytics, job.slug])
-
   return (
     <Layout>
       <SEO
@@ -122,9 +100,9 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
           <Title order={1}>{job.title}</Title>
 
           <Group my="lg">
-            <Badge radius="xs">{position}</Badge>
-            <Badge radius="xs">{type?.label}</Badge>
-            <Badge radius="xs">{category?.label}</Badge>
+            <Badge radius="xs">{getLocation(job.city, job.location)}</Badge>
+            <Badge radius="xs">{getType(job.type)}</Badge>
+            <Badge radius="xs">{getCategory(job.category)}</Badge>
           </Group>
 
           <TypographyStylesProvider>

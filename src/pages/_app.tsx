@@ -30,7 +30,7 @@ export default function App(props: AppProps) {
   )
 
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'mantine-color-scheme',
+    key: 'mcl-color-scheme',
     defaultValue: 'light',
     getInitialValueInEffect: true
   })
@@ -75,7 +75,11 @@ export default function App(props: AppProps) {
               />
 
               <NotificationsProvider>
-                <PlausibleProvider domain="mycareerlist.vercel.app">
+                <PlausibleProvider
+                  domain="mycareerlist.vercel.app"
+                  enabled={process.env.NODE_ENV === 'production'}
+                  trackLocalhost={false}
+                >
                   <Component {...pageProps} />
                 </PlausibleProvider>
               </NotificationsProvider>

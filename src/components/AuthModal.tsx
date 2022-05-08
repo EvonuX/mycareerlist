@@ -38,7 +38,8 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
     try {
       await signIn('email', {
         email: formData.email,
-        redirect: false
+        redirect: false,
+        callbackUrl: '/account'
       })
     } catch (err) {
       console.error(err)
@@ -73,11 +74,17 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
 
         <Box>
           <Group grow mb="sm">
-            <Button loading={loading} onClick={() => signIn('google')}>
+            <Button
+              loading={loading}
+              onClick={() => signIn('google', { callbackUrl: '/account' })}
+            >
               Google
             </Button>
 
-            <Button loading={loading} onClick={() => signIn('facebook')}>
+            <Button
+              loading={loading}
+              onClick={() => signIn('facebook', { callbackUrl: '/account' })}
+            >
               Facebook
             </Button>
           </Group>

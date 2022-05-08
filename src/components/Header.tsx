@@ -8,9 +8,11 @@ import {
 } from '@mantine/core'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { signOut, useSession } from 'next-auth/react'
+import { showNotification } from '@mantine/notifications'
+import { NextLink } from '@mantine/next'
 
 const AuthModal = dynamic(() => import('./AuthModal'), {
   ssr: false
@@ -21,6 +23,25 @@ const Header: FC = () => {
   const [opened, setOpened] = useState(false)
 
   const { data } = useSession()
+
+  useEffect(() => {
+    if (router.query.noPermissions) {
+      showNotification({
+        title: "You don't have access to this page",
+        message:
+          'Only employers can post new jobs. Create an account to start posting jobs.',
+        color: 'yellow'
+      })
+    }
+
+    if (router.query.notFound) {
+      showNotification({
+        title: 'This page was not found',
+        message: 'Make sure to check your URL',
+        color: 'yellow'
+      })
+    }
+  }, [router.query])
 
   return (
     <MantineHeader
@@ -45,11 +66,11 @@ const Header: FC = () => {
               placement="end"
               control={<Button variant="default">Menu</Button>}
             >
-              <Menu.Item onClick={() => router.push('/jobs')}>
+              <Menu.Item component={NextLink} href="/jobs">
                 View all jobs
               </Menu.Item>
 
-              <Menu.Item onClick={() => router.push('/companies')}>
+              <Menu.Item component={NextLink} href="/companies">
                 View all companies
               </Menu.Item>
 
@@ -57,17 +78,17 @@ const Header: FC = () => {
 
               {data ? (
                 <>
-                  <Menu.Item onClick={() => router.push('/account')}>
+                  <Menu.Item component={NextLink} href="/account">
                     Your account
                   </Menu.Item>
 
                   {data.userRole === 'EMPLOYER' && (
                     <>
-                      <Menu.Item onClick={() => router.push('/jobs/new')}>
+                      <Menu.Item component={NextLink} href="/jobs/new">
                         Create new job post
                       </Menu.Item>
 
-                      <Menu.Item onClick={() => router.push('/companies/new')}>
+                      <Menu.Item component={NextLink} href="/companies/new">
                         Create new company
                       </Menu.Item>
                     </>

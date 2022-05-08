@@ -23,9 +23,8 @@ import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
-import { locations } from '~/constants/general'
 import type { Company, Review } from '~/types/types'
-import { fetcher } from '~/utils/helpers'
+import { fetcher, getLocation } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
 const ReviewForm = dynamic(() => import('~/components/ReviewForm'), {
@@ -42,15 +41,9 @@ interface IProps {
 
 const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
   const { data: user } = useSession()
+  const [opened, setOpened] = useState(false)
 
   const isUser = user?.userRole === 'USER'
-
-  const location = locations.find(l => l.value === company.region)
-  const position = company.city
-    ? `${location?.label}, ${company.city}`
-    : location?.label
-
-  const [opened, setOpened] = useState(false)
 
   const fetchReviews = () => fetcher(`/api/review?companyId=${company.id}`)
 
@@ -101,7 +94,9 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
           </Title>
 
           <Group>
-            <Badge radius="xs">{position}</Badge>
+            <Badge radius="xs">
+              {getLocation(company.region, company.city || '')}
+            </Badge>
 
             {company.website && (
               <Badge radius="xs">

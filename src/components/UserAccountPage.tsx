@@ -1,46 +1,100 @@
-import { Alert, Center, Loader, SimpleGrid, Text, Title } from '@mantine/core'
+import {
+  Alert,
+  Button,
+  Center,
+  Loader,
+  SimpleGrid,
+  Text,
+  Title
+} from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { showNotification } from '@mantine/notifications'
-import { useRouter } from 'next/router'
-import { FC, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import { FC, useState } from 'react'
+import { useQuery } from 'react-query'
 import type { Job } from '~/types/types'
-import JobCard from './JobCard'
+import { fetcher } from '~/utils/helpers'
 import Layout from './Layout'
 import SEO from './SEO'
+import qs from 'query-string'
+import axios from 'axios'
 
-interface IProps {
-  loading?: boolean
-  data: {
-    savedJobs: Job[]
-  }
+const JobCard = dynamic(() => import('./JobCard'), {
+  ssr: false
+})
+
+const JobFeedForm = dynamic(() => import('./JobFeedForm'), {
+  ssr: false
+})
+
+interface UserQuery {
+  savedJobs: Job[]
+  preferences: string
 }
 
-const UserAccountPage: FC<IProps> = ({ data, loading }) => {
-  const router = useRouter()
+const UserAccountPage: FC = () => {
+  const [preferences, setPreferences] = useState('')
+  const [opened, setOpened] = useState(false)
+
+  const { data, isLoading } = useQuery<UserQuery>(
+    'accountPage',
+    () => fetcher('/api/user'),
+    {
+      onSuccess: data => {
+        setPreferences(data.preferences)
+      }
+    }
+  )
+
+  const parsePreferences = (preferences: string) =>
+    qs.parse(preferences, {
+      arrayFormat: 'comma',
+      arrayFormatSeparator: ','
+    })
+
+  const { data: jobFeed } = useQuery<Job[]>(
+    ['jobFeed', preferences],
+    () => fetcher(`/api/user/feed?${preferences}`),
+    {
+      enabled: preferences !== ''
+    }
+  )
 
   const [notification, setNotification] = useLocalStorage({
-    key: 'show-employer-notifiction',
+    key: 'mcl-show-employer-notifiction',
     defaultValue: true
   })
 
-  useEffect(() => {
-    if (router.query.noPermissions) {
-      showNotification({
-        title: "You don't have access to this page",
-        message:
-          'Only employers can post new jobs. Create an account to start posting jobs.',
-        color: 'yellow'
+  const handleJobCustomization = async (values: any) => {
+    try {
+      const parsedPreferences = qs.stringify(values, {
+        skipNull: true,
+        skipEmptyString: true,
+        arrayFormat: 'comma',
+        arrayFormatSeparator: ','
       })
-    }
 
-    if (router.query.notFound) {
+      await axios.post('/api/user/feed', { parsedPreferences })
+
+      setPreferences(parsedPreferences)
+
+      setOpened(false)
+
       showNotification({
-        title: 'This page was not found',
-        message: 'Make sure to check your URL',
-        color: 'yellow'
+        title: 'Preferences updated',
+        message: "You'll now receive tailored jobs on your account page",
+        color: 'green'
+      })
+    } catch (err) {
+      console.error(err)
+
+      showNotification({
+        title: 'An error occured',
+        message: 'Please try refreshing the page or try again alter',
+        color: 'red'
       })
     }
-  }, [router.query])
+  }
 
   return (
     <Layout>
@@ -61,23 +115,70 @@ const UserAccountPage: FC<IProps> = ({ data, loading }) => {
         </Alert>
       )}
 
-      <Title order={1} mb="md">
+      <Title order={2} mb="md">
         Your saved jobs
       </Title>
 
-      {loading ? (
-        <Center mt="xl">
+      {isLoading ? (
+        <Center>
           <Loader variant="bars" />
         </Center>
-      ) : (
-        <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]}>
-          {!!data ? (
-            data.savedJobs.map(job => <JobCard key={job.id} job={job} />)
-          ) : (
-            <Text>You don&lsquo;t have any jobs saved yet.</Text>
-          )}
+      ) : data?.savedJobs.length ? (
+        <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]} mb="xl">
+          {data.savedJobs.map(job => (
+            <JobCard key={job.id} job={job} />
+          ))}
         </SimpleGrid>
+      ) : (
+        <Text mb="xl">
+          You don&lsquo;t have any jobs saved yet. Start by visiting a job page
+          and clicking the &quot;Save job&quot; button.
+        </Text>
       )}
+
+      <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]} mb="lg">
+        <Title order={2}>Your job feed</Title>
+
+        <Button
+          variant="light"
+          size="xs"
+          onClick={() => setOpened(true)}
+          sx={{
+            width: 'fit-content',
+            alignSelf: 'center',
+            justifySelf: 'flex-end',
+
+            '@media (max-width: 768px)': {
+              justifySelf: 'flex-start'
+            }
+          }}
+        >
+          {preferences ? 'Customize' : 'Start customizing'}
+        </Button>
+      </SimpleGrid>
+
+      {isLoading ? (
+        <Center>
+          <Loader variant="bars" />
+        </Center>
+      ) : jobFeed ? (
+        <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]} mb="xl">
+          {jobFeed.map(job => (
+            <JobCard key={job.id} job={job} />
+          ))}
+        </SimpleGrid>
+      ) : (
+        <Text>
+          Set preferences to start seeing only jobs that interest you.
+        </Text>
+      )}
+
+      <JobFeedForm
+        opened={opened}
+        setOpened={setOpened}
+        onSubmit={handleJobCustomization}
+        preferences={parsePreferences(preferences) as any}
+      />
     </Layout>
   )
 }

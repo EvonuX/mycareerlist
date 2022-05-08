@@ -11,6 +11,7 @@ import { showNotification } from '@mantine/notifications'
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
 import axios from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
+import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Layout from '~/components/Layout'
@@ -51,7 +52,7 @@ const Tokens: NextPage<IProps> = ({ job }) => {
           <Alert title="Want to boost visibility?" mb="md">
             Make the job featured, for an extra $50! <br /> The job will be
             visible on the homepage and will have a special outline on the
-            listing page.
+            listing page. It will also be featured in our weekly newsletter!
           </Alert>
 
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -142,7 +143,21 @@ const Tokens: NextPage<IProps> = ({ job }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  req
+}) => {
+  const session = await getSession({ req })
+
+  if (!session || session.userRole !== 'EMPLOYER') {
+    return {
+      redirect: {
+        destination: '/?noPermissions=true',
+        permanent: false
+      }
+    }
+  }
+
   const job = await prisma.job.findUnique({
     where: {
       slug: params?.slug as string
@@ -151,7 +166,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       id: true,
       slug: true,
       draft: true,
-      featured: true
+      featured: true,
+      userId: true
     }
   })
 
@@ -159,6 +175,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return {
       redirect: {
         destination: '/account?notFound=true',
+        permanent: false
+      }
+    }
+  }
+
+  if (job.userId !== session.userId) {
+    return {
+      redirect: {
+        destination: '/?noPermissions=true',
         permanent: false
       }
     }

@@ -1,6 +1,6 @@
 import { TextInput, Select, Group, Button, Box } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 import { locations, categories, types } from '~/constants/general'
 import qs from 'query-string'
 import type { FC } from 'react'
@@ -10,6 +10,8 @@ interface IProps {
 }
 
 const JobFilters: FC<IProps> = ({ setQuery }) => {
+  const router = useRouter()
+
   const form = useForm({
     initialValues: {
       title: router.query.title || '',
@@ -37,29 +39,32 @@ const JobFilters: FC<IProps> = ({ setQuery }) => {
   return (
     <Box component="form" onSubmit={form.onSubmit(handleSubmit)}>
       <TextInput
-        mb={10}
+        mb="md"
         label="Search by job title"
         {...form.getInputProps('title')}
       />
 
       <Select
-        mb={10}
+        mb="md"
         label="Location"
         data={[{ label: 'All', value: '' }, ...locations]}
         {...form.getInputProps('location')}
       />
+
       <Select
-        mb={10}
+        mb="md"
         label="Category"
         data={[{ label: 'All', value: '' }, ...categories]}
         {...form.getInputProps('category')}
       />
+
       <Select
-        mb={15}
+        mb="md"
         label="Type"
         data={[{ label: 'All', value: '' }, ...types]}
         {...form.getInputProps('type')}
       />
+
       <Group grow>
         <Button type="submit">Search</Button>
 

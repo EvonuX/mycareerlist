@@ -18,6 +18,7 @@ export default async function handler(
         id: session.userId
       },
       select: {
+        preferences: true,
         savedJobs: {
           select: {
             id: true,
