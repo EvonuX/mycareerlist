@@ -21,6 +21,7 @@ import { useState } from 'react'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
+import ShareButtons from '~/components/ShareButtons'
 import type { Job } from '~/types/types'
 import { getCategory, getLocation, getType } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
@@ -112,9 +113,18 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             />
           </TypographyStylesProvider>
 
-          <Button component="a" href={job.applyLink} target="_blank">
+          <Button component="a" href={job.applyLink} target="_blank" mb="xl">
             Apply for this job
           </Button>
+
+          <Title mb="sm" order={3}>
+            Share this job
+          </Title>
+
+          <ShareButtons
+            title={`${job.title} at ${job.company.name}`}
+            url={`/jobs/${job.slug}`}
+          />
         </Grid.Col>
 
         <Grid.Col md={3}>
