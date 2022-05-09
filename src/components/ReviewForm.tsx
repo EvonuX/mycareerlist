@@ -6,7 +6,8 @@ import {
   SimpleGrid,
   Select,
   InputWrapper,
-  Button
+  Button,
+  Alert
 } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import axios from 'axios'
@@ -68,6 +69,10 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
       size="lg"
     >
       <Box component="form" onSubmit={form.onSubmit(handleSubmit)}>
+        <Alert title="Your trust is our top concern!" mb="md">
+          Companies can&lsquo;t alter or remove reviews.
+        </Alert>
+
         <TextInput
           label="Title"
           mb="md"

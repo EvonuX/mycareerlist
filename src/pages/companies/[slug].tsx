@@ -47,7 +47,7 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
 
   const fetchReviews = () => fetcher(`/api/review?companyId=${company.id}`)
 
-  const { data } = useQuery<Review[]>('reviews', fetchReviews, {
+  const { data } = useQuery<Review[]>(['reviews', company.slug], fetchReviews, {
     initialData: company.reviews
   })
 
@@ -95,7 +95,7 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
 
           <Group>
             <Badge radius="xs">
-              {getLocation(company.region, company.city || '')}
+              {getLocation(company.city || '', company.region)}
             </Badge>
 
             {company.website && (
@@ -132,7 +132,9 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
 
       <Grid justify="space-between" align="center" mb="md" mt="lg">
         <Grid.Col md={6}>
-          <Title order={2}>Company reviews ({reviewStats.count})</Title>
+          <Title order={2} mb="xs">
+            Company reviews ({reviewStats.count})
+          </Title>
 
           {reviewStats.count > 0 && (
             <Text>Average rating: {reviewStats.average}</Text>

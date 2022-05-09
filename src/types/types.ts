@@ -48,6 +48,7 @@ export interface Review {
   cons: string | null
   rating: number
   status: string
+  company: Company
   userId: string
   companyId: string
   createdAt: Date

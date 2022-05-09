@@ -611,13 +611,17 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
       {reviews.length > 0 && (
         <>
-          <Title mb="md" mt="lg">
+          <Title order={2} mb="md" mt="lg">
             Latest reviews
           </Title>
 
           <Stack>
             {reviews.map(review => (
-              <ReviewItem key={review.id} review={review} />
+              <ReviewItem
+                key={review.id}
+                review={review}
+                showCompanyInfo={true}
+              />
             ))}
           </Stack>
         </>

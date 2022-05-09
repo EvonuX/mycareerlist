@@ -62,7 +62,7 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
             type="email"
             placeholder="your@email.com"
             required
-            mb="sm"
+            mb="md"
             data-autofocus
             {...form.getInputProps('email')}
           />
@@ -77,6 +77,13 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
             <Button
               loading={loading}
               onClick={() => signIn('google', { callbackUrl: '/account' })}
+              sx={theme => ({
+                backgroundColor: '#DB4437',
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: theme.fn.lighten('#DB4437', 0.15)
+                }
+              })}
             >
               Google
             </Button>
@@ -84,6 +91,13 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
             <Button
               loading={loading}
               onClick={() => signIn('facebook', { callbackUrl: '/account' })}
+              sx={theme => ({
+                backgroundColor: '#1DA1F2',
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: theme.fn.lighten('#1DA1F2', 0.15)
+                }
+              })}
             >
               Facebook
             </Button>

@@ -51,19 +51,20 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   emailVerified DateTime?
-  image         String?   @db.Text
-  preferences   String?   @default("") @db.VarChar(255)
-  role          Role      @default(USER)
+  image         String?     @db.Text
+  preferences   String?     @default("") @db.VarChar(255)
+  role          Role        @default(USER)
   accounts      Account[]
   sessions      Session[]
   companies     Company[]
   reviews       Review[]
   payments      Payment[]
   savedJobs     Job[]
+  interviews    Interview[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -72,18 +73,19 @@ model User {
 }
 
 model Company {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  slug        String?  @unique @db.VarChar(255)
-  description String?  @db.Text
+  id          String      @id @default(cuid())
+  name        String      @unique
+  slug        String?     @unique @db.VarChar(255)
+  description String?     @db.Text
   website     String?
-  logo        String?  @db.Text
-  region      String   @db.VarChar(50)
+  logo        String?     @db.Text
+  region      String      @db.VarChar(50)
   city        String?
   userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   jobs        Job[]
   reviews     Review[]
+  interviews  Interview[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -101,6 +103,7 @@ model Job {
   location    String  @db.VarChar(50)
   city        String  @db.VarChar(50)
   applyLink   String  @db.Text
+  salaryRange String?
   draft       Boolean @default(true)
   featured    Boolean @default(false)
   expired     Boolean @default(false)
@@ -134,6 +137,30 @@ model Review {
   updatedAt DateTime @updatedAt
 
   @@map("reviews")
+}
+
+model Interview {
+  id                String  @id @default(cuid())
+  summary           String  @db.Text
+  hr                String  @db.Text
+  advanced          String  @db.Text
+  rating            Int
+  selectionDuration String
+  difficulty        String
+  offer             String
+  interviewYear     String
+  position          String
+  verified          Boolean @default(false)
+
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("interviews")
 }
 
 model Payment {

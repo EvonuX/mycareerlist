@@ -49,7 +49,15 @@ export default function App(props: AppProps) {
             <MantineProvider
               withGlobalStyles
               withNormalizeCSS
-              theme={{ colorScheme }}
+              theme={{
+                colorScheme,
+                colors: {
+                  google: ['#DB4437'],
+                  facebook: ['#4267B2'],
+                  twitter: ['#1DA1F2'],
+                  linkedin: ['#0077B5']
+                }
+              }}
               styles={{
                 AppShell: () => ({
                   body: {

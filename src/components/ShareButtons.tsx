@@ -37,7 +37,13 @@ const ShareButtons: FC<IProps> = ({ title, url }) => {
         href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&t=${shareTitle}`}
         target="_blank"
         rel="noopener noreferrer"
-        sx={{ backgroundColor: '#4267B2', color: '#fff' }}
+        sx={theme => ({
+          backgroundColor: '#4267B2',
+          color: '#fff',
+          '&:hover': {
+            backgroundColor: theme.fn.lighten('#4267B2', 0.5)
+          }
+        })}
       >
         Facebook
       </Button>
@@ -49,7 +55,13 @@ const ShareButtons: FC<IProps> = ({ title, url }) => {
         href={`https://twitter.com/share?text=${shareTitle}&url=${shareUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        sx={{ backgroundColor: '#1DA1F2', color: '#fff' }}
+        sx={theme => ({
+          backgroundColor: '#1DA1F2',
+          color: '#fff',
+          '&:hover': {
+            backgroundColor: theme.fn.lighten('#1DA1F2', 0.5)
+          }
+        })}
       >
         Twitter
       </Button>
@@ -61,7 +73,13 @@ const ShareButtons: FC<IProps> = ({ title, url }) => {
         href={`https://linkedin.com/shareArticle?mini=true&source=MCL&title=${shareTitle}&url=${shareUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        sx={{ backgroundColor: '#0077B5', color: '#fff' }}
+        sx={theme => ({
+          backgroundColor: '#0077B5',
+          color: '#fff',
+          '&:hover': {
+            backgroundColor: theme.fn.lighten('#0077B5', 0.5)
+          }
+        })}
       >
         LinkedIn
       </Button>
