@@ -54,7 +54,7 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
       : await fetcher(`/api/job?${query}`)
   }
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isRefetching } =
     useInfiniteQuery(['jobs', query], fetchJobs, {
       getNextPageParam: lastPage => lastPage.cursor,
       initialData: {
@@ -115,10 +115,12 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
             <Loader
               variant="dots"
               sx={{
-                display: isFetchingNextPage || isFetching ? 'block' : 'none'
+                display: isFetchingNextPage || isRefetching ? 'block' : 'none'
               }}
             />
-            {(isFetchingNextPage || isFetching) && <Text>Loading jobs...</Text>}
+            {(isFetchingNextPage || isRefetching) && (
+              <Text>Loading jobs...</Text>
+            )}
           </Stack>
         </Grid.Col>
       </Grid>

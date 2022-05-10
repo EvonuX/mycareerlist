@@ -48,6 +48,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
       city: '',
       applyLink: '',
       draft: true,
+      salaryRange: '',
       companyId: null
     },
 
@@ -148,7 +149,11 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               />
             </InputWrapper>
 
-            <SimpleGrid cols={2} mb="md">
+            <SimpleGrid
+              cols={2}
+              breakpoints={[{ maxWidth: 768, cols: 1 }]}
+              mb="md"
+            >
               <Select
                 required
                 label="Job Location"
@@ -161,7 +166,11 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               <TextInput label="Job City" {...form.getInputProps('city')} />
             </SimpleGrid>
 
-            <SimpleGrid cols={2} mb="md">
+            <SimpleGrid
+              cols={2}
+              breakpoints={[{ maxWidth: 768, cols: 1 }]}
+              mb="md"
+            >
               <Select
                 required
                 label="Job Category"
@@ -181,9 +190,12 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               />
             </SimpleGrid>
 
-            <SimpleGrid cols={2}>
+            <SimpleGrid
+              cols={2}
+              breakpoints={[{ maxWidth: 768, cols: 1 }]}
+              mb="md"
+            >
               <TextInput
-                mb={20}
                 label="Application Link or Email Address"
                 placeholder="https://yourwebsite.com/"
                 required
@@ -200,7 +212,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               />
             </SimpleGrid>
 
-            <Button type="submit" loading={loading}>
+            <Button type="submit" mt="sm" loading={loading}>
               Next step
             </Button>
           </form>

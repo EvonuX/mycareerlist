@@ -81,7 +81,7 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
                 backgroundColor: '#DB4437',
                 color: '#fff',
                 '&:hover': {
-                  backgroundColor: theme.fn.lighten('#DB4437', 0.15)
+                  backgroundColor: theme.fn.darken('#DB4437', 0.1)
                 }
               })}
             >
@@ -95,7 +95,7 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
                 backgroundColor: '#1DA1F2',
                 color: '#fff',
                 '&:hover': {
-                  backgroundColor: theme.fn.lighten('#1DA1F2', 0.15)
+                  backgroundColor: theme.fn.darken('#1DA1F2', 0.1)
                 }
               })}
             >

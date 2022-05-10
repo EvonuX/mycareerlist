@@ -198,7 +198,11 @@ const NewCompany = () => {
             </Box>
           )}
 
-          <SimpleGrid cols={2} mb="md">
+          <SimpleGrid
+            cols={2}
+            breakpoints={[{ maxWidth: 768, cols: 1 }]}
+            mb="md"
+          >
             <Select
               required
               label="Compoany Location"
@@ -212,7 +216,7 @@ const NewCompany = () => {
           </SimpleGrid>
 
           <TextInput
-            mb={20}
+            mb="xl"
             label="Website"
             placeholder="https://yourwebsite.com/"
             {...form.getInputProps('website')}
