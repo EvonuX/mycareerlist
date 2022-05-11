@@ -1,4 +1,4 @@
-import { TextInput, Select, Group, Button, Box } from '@mantine/core'
+import { TextInput, MultiSelect, Group, Button, Box } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useRouter } from 'next/router'
 import { locations, categories, types } from '~/constants/general'
@@ -12,19 +12,23 @@ interface IProps {
 const JobFilters: FC<IProps> = ({ setQuery }) => {
   const router = useRouter()
 
+  const { location, category, type } = router.query
+
   const form = useForm({
     initialValues: {
-      title: router.query.title || '',
-      location: router.query.location || '',
-      category: router.query.category || '',
-      type: router.query.type || ''
+      title: '',
+      location: location ? (location as string).split(',') : [],
+      category: category ? (category as string).split(',') : [],
+      type: type ? (type as string).split(',') : []
     }
   })
 
   const handleSubmit = (values: typeof form.values) => {
     const queryString = qs.stringify(values, {
       skipNull: true,
-      skipEmptyString: true
+      skipEmptyString: true,
+      arrayFormat: 'comma',
+      arrayFormatSeparator: ','
     })
 
     if (queryString) {
@@ -44,24 +48,24 @@ const JobFilters: FC<IProps> = ({ setQuery }) => {
         {...form.getInputProps('title')}
       />
 
-      <Select
+      <MultiSelect
         mb="md"
         label="Location"
-        data={[{ label: 'All', value: '' }, ...locations]}
+        data={locations}
         {...form.getInputProps('location')}
       />
 
-      <Select
+      <MultiSelect
         mb="md"
         label="Category"
-        data={[{ label: 'All', value: '' }, ...categories]}
+        data={categories}
         {...form.getInputProps('category')}
       />
 
-      <Select
+      <MultiSelect
         mb="md"
         label="Type"
-        data={[{ label: 'All', value: '' }, ...types]}
+        data={types}
         {...form.getInputProps('type')}
       />
 
@@ -71,14 +75,14 @@ const JobFilters: FC<IProps> = ({ setQuery }) => {
         <Button
           type="reset"
           variant="outline"
-          onClick={() =>
+          onClick={() => {
             form.setValues({
               title: '',
-              location: '',
-              category: '',
-              type: ''
+              location: [],
+              category: [],
+              type: []
             })
-          }
+          }}
         >
           Reset
         </Button>

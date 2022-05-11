@@ -15,7 +15,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import qs from 'query-string'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
@@ -38,7 +38,9 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
 
   const initialQuery = qs.stringify(router.query, {
     skipNull: true,
-    skipEmptyString: true
+    skipEmptyString: true,
+    arrayFormat: 'comma',
+    arrayFormatSeparator: ','
   })
 
   const [query, setQuery] = useState(initialQuery || '')
@@ -102,13 +104,14 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
 
         <Grid.Col md={9}>
           <Stack>
-            {data?.pages.map(page =>
-              page.jobs
-                ? page.jobs.map((job: Job) => (
-                    <JobCard key={job.id} job={job} />
-                  ))
-                : null
-            )}
+            {data &&
+              data.pages.map(page =>
+                page.jobs
+                  ? page.jobs.map((job: Job) => (
+                      <JobCard key={job.id} job={job} />
+                    ))
+                  : null
+              )}
           </Stack>
 
           <Stack align="center" my={20} ref={ref}>
@@ -186,14 +189,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       title: {
         contains: title || undefined
       },
+      location: {
+        in: location?.split(',') || undefined
+      },
       category: {
-        equals: category || undefined
+        in: category?.split(',') || undefined
       },
       type: {
-        equals: type || undefined
-      },
-      location: {
-        equals: location || undefined
+        in: type?.split(',') || undefined
       },
       expired: {
         not: true

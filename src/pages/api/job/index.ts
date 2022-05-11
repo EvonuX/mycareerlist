@@ -167,14 +167,14 @@ const fetchJobs = async (query: any) => {
       title: {
         contains: title || undefined
       },
+      location: {
+        in: location?.split(',') || undefined
+      },
       category: {
-        equals: category || undefined
+        in: category?.split(',') || undefined
       },
       type: {
-        equals: type || undefined
-      },
-      location: {
-        equals: location || undefined
+        in: type?.split(',') || undefined
       },
       expired: {
         not: true

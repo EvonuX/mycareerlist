@@ -41,7 +41,7 @@ const ShareButtons: FC<IProps> = ({ title, url }) => {
           backgroundColor: '#4267B2',
           color: '#fff',
           '&:hover': {
-            backgroundColor: theme.fn.lighten('#4267B2', 0.5)
+            backgroundColor: theme.fn.darken('#4267B2', 0.1)
           }
         })}
       >
@@ -59,7 +59,7 @@ const ShareButtons: FC<IProps> = ({ title, url }) => {
           backgroundColor: '#1DA1F2',
           color: '#fff',
           '&:hover': {
-            backgroundColor: theme.fn.lighten('#1DA1F2', 0.5)
+            backgroundColor: theme.fn.darken('#1DA1F2', 0.1)
           }
         })}
       >
@@ -77,7 +77,7 @@ const ShareButtons: FC<IProps> = ({ title, url }) => {
           backgroundColor: '#0077B5',
           color: '#fff',
           '&:hover': {
-            backgroundColor: theme.fn.lighten('#0077B5', 0.5)
+            backgroundColor: theme.fn.darken('#0077B5', 0.1)
           }
         })}
       >
