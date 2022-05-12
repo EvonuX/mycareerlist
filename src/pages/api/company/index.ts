@@ -36,7 +36,8 @@ export default async function handler(
         },
         jobs: {
           none: {
-            expired: true
+            expired: true,
+            draft: true
           }
         }
       }

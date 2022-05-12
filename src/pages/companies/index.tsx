@@ -61,7 +61,7 @@ const CompanyListing: NextPage<IProps> = ({ initialData }) => {
         <Select
           label="Sort companies by"
           data={[
-            { value: '', label: 'Default' },
+            { value: '', label: 'Join date' },
             { value: 'jobs', label: 'Active jobs' },
             { value: 'reviews', label: 'Review count' }
           ]}
@@ -70,15 +70,21 @@ const CompanyListing: NextPage<IProps> = ({ initialData }) => {
         />
       </SimpleGrid>
 
-      <SimpleGrid cols={4} breakpoints={[{ maxWidth: 768, cols: 2 }]}>
-        {data ? (
-          data.map(company => (
-            <CompanyCard key={company.id} company={company} />
-          ))
-        ) : (
-          <Text>No companies to show</Text>
-        )}
-      </SimpleGrid>
+      {data ? (
+        <>
+          <SimpleGrid
+            cols={4}
+            breakpoints={[{ maxWidth: 768, cols: 2 }]}
+            mb="md"
+          >
+            {data.map(company => (
+              <CompanyCard key={company.id} company={company} />
+            ))}
+          </SimpleGrid>
+        </>
+      ) : (
+        <Text>No companies to show</Text>
+      )}
     </Layout>
   )
 }
@@ -98,7 +104,8 @@ export async function getStaticProps() {
     where: {
       jobs: {
         none: {
-          expired: true
+          expired: true,
+          draft: true
         }
       }
     }

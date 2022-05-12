@@ -59,6 +59,7 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isRefetching } =
     useInfiniteQuery(['jobs', query], fetchJobs, {
       getNextPageParam: lastPage => lastPage.cursor,
+      keepPreviousData: true,
       initialData: {
         pageParams: [undefined],
         pages: [jobs]
