@@ -1,6 +1,7 @@
 import {
   Alert,
   Box,
+  List,
   Paper,
   SimpleGrid,
   Switch,
@@ -49,10 +50,26 @@ const Tokens: NextPage<IProps> = ({ job }) => {
             and you&lsquo;ll start receiving applicants.
           </Text>
 
-          <Alert title="Want to boost visibility?" mb="md">
-            Make the job featured, for an extra $50! <br /> The job will be
-            visible on the homepage and will have a special outline on the
-            listing page. It will also be featured in our weekly newsletter!
+          <Alert
+            title="Want to boost visibility and receive more candidates?"
+            mb="md"
+            styles={{
+              title: {
+                fontSize: 16
+              }
+            }}
+          >
+            <Text mb="xs">Make the job featured, for an extra $50!</Text>
+
+            <List>
+              <List.Item>
+                Highlighted post on the homepage and the job listing page
+              </List.Item>
+
+              <List.Item>
+                Be featured in our weekly newsletter, Slack and Twitter
+              </List.Item>
+            </List>
           </Alert>
 
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -126,8 +143,6 @@ const Tokens: NextPage<IProps> = ({ job }) => {
 
                 router.push(`/jobs/${job.slug}`)
               } catch (err: any) {
-                console.error(err.response.data)
-
                 showNotification({
                   title: 'Payment failed',
                   message:

@@ -83,13 +83,27 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
         <Textarea
           label="Review"
           mb="md"
-          {...form.getInputProps('content')}
           required
+          autosize
+          minRows={2}
+          {...form.getInputProps('content')}
         />
 
-        <Textarea label="Pros" mb="md" {...form.getInputProps('pros')} />
+        <Textarea
+          label="Pros"
+          autosize
+          minRows={2}
+          mb="md"
+          {...form.getInputProps('pros')}
+        />
 
-        <Textarea label="Cons" mb="md" {...form.getInputProps('cons')} />
+        <Textarea
+          label="Cons"
+          autosize
+          minRows={2}
+          mb="md"
+          {...form.getInputProps('cons')}
+        />
 
         <SimpleGrid cols={2}>
           <Select

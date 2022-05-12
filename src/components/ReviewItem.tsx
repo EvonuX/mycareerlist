@@ -47,22 +47,22 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
       <Text mt="sm">{review.content}</Text>
 
       {review.pros && (
-        <Box mb="md" mt="sm">
-          <Badge radius="sm" color="green">
+        <Box mb="md" mt="md">
+          <Badge radius="sm" mb="xs" color="green">
             Pros
           </Badge>
 
-          <Text sx={{ fontStyle: 'italic' }}>{review.pros}</Text>
+          <Text>{review.pros}</Text>
         </Box>
       )}
 
       {review.cons && (
         <Box>
-          <Badge radius="sm" color="red">
+          <Badge radius="sm" mb="xs" color="red">
             Cons
           </Badge>
 
-          <Text sx={{ fontStyle: 'italic' }}>{review.cons}</Text>
+          <Text>{review.cons}</Text>
         </Box>
       )}
     </Paper>

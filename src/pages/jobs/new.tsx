@@ -48,7 +48,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
       city: '',
       applyLink: '',
       draft: true,
-      salaryRange: '',
+      // salaryRange: '',
       companyId: null
     },
 
