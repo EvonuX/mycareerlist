@@ -58,11 +58,13 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isRefetching } =
     useInfiniteQuery(['jobs', query], fetchJobs, {
-      getNextPageParam: lastPage => lastPage.cursor,
+      getNextPageParam: lastPage => lastPage.cursor ?? undefined,
       keepPreviousData: true,
-      initialData: {
-        pageParams: [undefined],
-        pages: [jobs]
+      initialData: () => {
+        return {
+          pageParams: [null],
+          pages: [jobs]
+        }
       }
     })
 
@@ -185,7 +187,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   } = query
 
   const jobs = await prisma.job.findMany({
-    take: 10,
+    take: 13,
     where: {
       title: {
         contains: title || undefined

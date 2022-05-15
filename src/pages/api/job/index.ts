@@ -174,7 +174,7 @@ const fetchJobs = async (query: any) => {
   } = query
 
   const jobs = await prisma.job.findMany({
-    take: 10,
+    take: 13,
     skip: cursor ? 1 : 0,
     cursor: cursor ? { id: cursor } : undefined,
     where: {
