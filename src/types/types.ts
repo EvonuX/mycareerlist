@@ -33,6 +33,7 @@ export interface Job {
   draft: boolean
   featured: boolean
   expired: boolean
+  salaryRange: string | null
   companyId: string
   savedBy: User[]
   company: Company

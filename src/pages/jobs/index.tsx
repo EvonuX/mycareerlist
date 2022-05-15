@@ -47,7 +47,7 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
   const [opened, setOpened] = useState(false)
 
   const [ref, observer] = useIntersection({
-    rootMargin: '200px'
+    rootMargin: '300px'
   })
 
   const fetchJobs = async ({ pageParam }: { pageParam?: string }) => {

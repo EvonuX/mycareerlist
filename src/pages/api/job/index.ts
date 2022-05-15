@@ -1,7 +1,7 @@
-import type { Job } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import slugify from 'slugify'
+import type { Job } from '~/types/types'
 import prisma from '~/utils/prisma'
 
 export default async function handler(
@@ -82,10 +82,24 @@ export default async function handler(
   res.status(400).json({ message: 'Bad request' })
 }
 
-const createJob = async (body: Job, userId: string) => {
+const createJob = async (body: any, userId: string) => {
+  const salaryRange =
+    body.salaryMin > 0 && body.salaryMax > 0
+      ? `$${body.salaryMin} - $${body.salaryMax}`
+      : '0'
+
   const newJob = await prisma.job.create({
     data: {
-      ...body,
+      title: body.title,
+      description: body.description,
+      type: body.type,
+      category: body.category,
+      location: body.location,
+      city: body.city,
+      applyLink: body.applyLink,
+      companyId: body.companyId,
+      draft: true,
+      salaryRange,
       userId
     },
     select: {

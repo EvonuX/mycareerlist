@@ -77,7 +77,7 @@ const EmployerAccountPage = () => {
                       alt={company.name}
                       width={40}
                       height={40}
-                      objectFit="cover"
+                      objectFit="contain"
                     />
                   </Box>
 

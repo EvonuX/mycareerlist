@@ -9,7 +9,7 @@ import {
   Button,
   Alert
 } from '@mantine/core'
-import { useForm } from '@mantine/hooks'
+import { useForm } from '@mantine/form'
 import axios from 'axios'
 import { FC, useState } from 'react'
 import StarPicker from 'react-star-picker'
@@ -18,7 +18,7 @@ import { useQueryClient } from 'react-query'
 
 interface IProps {
   open: boolean
-  setOpen: (open?: boolean) => void
+  setOpen: (open: boolean) => void
   companyId: string
 }
 
@@ -35,6 +35,11 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
       cons: '',
       status: '',
       companyId
+    },
+
+    validate: {
+      rating: (value: number) =>
+        (value < 1 || value > 5) && 'Rating must be between 1 and 5'
     }
   })
 
@@ -76,8 +81,8 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
         <TextInput
           label="Title"
           mb="md"
-          {...form.getInputProps('title')}
           required
+          {...form.getInputProps('title')}
         />
 
         <Textarea

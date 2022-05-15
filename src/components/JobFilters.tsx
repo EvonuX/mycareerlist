@@ -1,5 +1,5 @@
 import { TextInput, MultiSelect, Group, Button, Box } from '@mantine/core'
-import { useForm } from '@mantine/hooks'
+import { useForm } from '@mantine/form'
 import { useRouter } from 'next/router'
 import { locations, categories, types } from '~/constants/general'
 import qs from 'query-string'

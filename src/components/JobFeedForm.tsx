@@ -1,5 +1,5 @@
 import { Box, Button, Group, Modal, MultiSelect } from '@mantine/core'
-import { useForm } from '@mantine/hooks'
+import { useForm } from '@mantine/form'
 import type { FC } from 'react'
 import { categories, locations, types } from '~/constants/general'
 

@@ -30,7 +30,7 @@ const CompanyCard: FC<IProps> = ({ company }) => {
               layout="fixed"
               width={80}
               height={80}
-              objectFit="cover"
+              objectFit="contain"
             />
           </Box>
 

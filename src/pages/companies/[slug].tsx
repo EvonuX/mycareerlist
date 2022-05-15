@@ -55,8 +55,8 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
     <Layout>
       <SEO
         title={company.name}
-        description={company.description as string}
-        image={company.logo as string}
+        description={company.description ?? ''}
+        image={company.logo ?? ''}
         url={`/companies/${company.slug}`}
       />
 
@@ -76,7 +76,7 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
               src={company.logo || ''}
               alt={company.name}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
               priority={true}
             />
           </Box>
@@ -160,7 +160,6 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
       <Divider mb="xl" mt={-5} />
 
       {isUser && (
-        // @ts-ignore
         <ReviewForm open={opened} setOpen={setOpened} companyId={company.id} />
       )}
 

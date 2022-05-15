@@ -91,8 +91,8 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
     <Layout>
       <SEO
         title={`${job.title} at ${job.company.name}`}
-        description={job.description as string}
-        image={job.company.logo as string}
+        description={job.description ?? ''}
+        image={job.company.logo ?? ''}
         url={`/jobs/${job.slug}`}
       />
 
@@ -104,6 +104,11 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             <Badge radius="xs">{getLocation(job.city, job.location)}</Badge>
             <Badge radius="xs">{getType(job.type)}</Badge>
             <Badge radius="xs">{getCategory(job.category)}</Badge>
+            {job.salaryRange && (
+              <Badge color="green" radius="xs">
+                {job.salaryRange}
+              </Badge>
+            )}
           </Group>
 
           <TypographyStylesProvider>
@@ -153,7 +158,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                   layout="fixed"
                   width={100}
                   height={100}
-                  objectFit="cover"
+                  objectFit="contain"
                 />
               </Box>
 
@@ -280,6 +285,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       location: true,
       city: true,
       expired: true,
+      salaryRange: true,
       savedBy: {
         select: {
           id: true

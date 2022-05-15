@@ -7,7 +7,7 @@ import {
   TextInput,
   Title
 } from '@mantine/core'
-import { useForm } from '@mantine/hooks'
+import { useForm } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
 import { useState } from 'react'
@@ -21,7 +21,6 @@ const Newsletter = () => {
       email: ''
     },
 
-    // @ts-ignore
     validate: {
       email: (value: string) =>
         regex.email.test(value) ? null : 'Invalid email'

@@ -7,7 +7,7 @@ import {
   Text,
   Stack
 } from '@mantine/core'
-import { useForm } from '@mantine/hooks'
+import { useForm } from '@mantine/form'
 import { signIn } from 'next-auth/react'
 import { FC, useState } from 'react'
 import regex from '~/constants/regex'
@@ -25,7 +25,6 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
       email: ''
     },
 
-    // @ts-ignore
     validate: {
       email: (value: string) =>
         regex.email.test(value) ? null : 'Invalid email'
