@@ -37,7 +37,7 @@ export default async function handler(
 
     const config = {
       method: 'GET',
-      url: `https://plausible.io/api/v1/stats/timeseries?site_id=mycareerlist.vercel.app&period=custom&date=${jobDate},${currentDate}&interval=date&filters=event:page==/jobs/${slug}`,
+      url: `https://plausible.io/api/v1/stats/timeseries?site_id=mycareerlist.com&period=custom&date=${jobDate},${currentDate}&interval=date&filters=event:page==/jobs/${slug}`,
       headers: {
         Authorization: `Bearer ${process.env.PLAUSIBLE_API_KEY}`
       }

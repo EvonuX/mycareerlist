@@ -111,7 +111,8 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             <Badge radius="xs">{getLocation(job.city, job.location)}</Badge>
             <Badge radius="xs">{getType(job.type)}</Badge>
             <Badge radius="xs">{getCategory(job.category)}</Badge>
-            {job.salaryRange && (
+
+            {job.salaryRange && job.salaryRange !== '0' && (
               <Badge color="green" radius="xs">
                 {job.salaryRange}
               </Badge>

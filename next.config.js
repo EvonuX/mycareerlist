@@ -1,7 +1,7 @@
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://plausible.io/js/plausible.js;
-  child-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://plausible.io/js/plausible.js https://www.paypal.com/sdk/js;
+  child-src 'self' https://www.sandbox.paypal.com/;
   object-src 'none';
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;

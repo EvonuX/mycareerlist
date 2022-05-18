@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import slugify from 'slugify'
-import type { Job } from '~/types/types'
 import prisma from '~/utils/prisma'
 
 export default async function handler(

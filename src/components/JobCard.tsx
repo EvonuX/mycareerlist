@@ -25,8 +25,8 @@ const JobCard: FC<IProps> = ({ job }) => {
         >
           <Box
             sx={{
-              height: 75,
-              width: 75,
+              height: 80,
+              width: 80,
               position: 'relative',
               borderRadius: 5,
               overflow: 'hidden',
@@ -37,8 +37,8 @@ const JobCard: FC<IProps> = ({ job }) => {
               src={job.company.logo || 'https://picsum.photos/700/700'}
               alt={job.company.name}
               layout="fixed"
-              width={75}
-              height={75}
+              width={80}
+              height={80}
               objectFit="contain"
             />
           </Box>

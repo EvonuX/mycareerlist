@@ -84,7 +84,7 @@ export default function App(props: AppProps) {
 
               <NotificationsProvider>
                 <PlausibleProvider
-                  domain="mycareerlist.vercel.app"
+                  domain="mycareerlist.com"
                   enabled={process.env.NODE_ENV === 'production'}
                   trackLocalhost={false}
                 >
