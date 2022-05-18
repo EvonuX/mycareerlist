@@ -27,9 +27,9 @@ export default async function handler(
         }
       },
       where: {
-        // featured: {
-        //   not: false
-        // },
+        featured: {
+          not: false
+        },
         expired: {
           not: true
         },

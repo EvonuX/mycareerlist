@@ -17,7 +17,7 @@ import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
@@ -37,13 +37,20 @@ interface IProps {
 
 const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   const { data: user } = useSession()
-
-  const isSaved = !!!job.savedBy.find(
-    (s: { id: string }) => s.id === user?.userId
-  )
-
-  const [jobSaved, setJobSaved] = useState(isSaved || false)
+  const [jobSaved, setJobSaved] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (!user) {
+      return
+    }
+
+    const isSaved = !!!job.savedBy.find(
+      (s: { id: string }) => s.id === user.userId
+    )
+
+    setJobSaved(isSaved)
+  }, [job, user])
 
   const handleSave = async () => {
     setLoading(true)
@@ -265,7 +272,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params?.slug) {
+  if (!params || !params.slug) {
     return {
       notFound: true
     }

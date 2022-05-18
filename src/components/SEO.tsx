@@ -13,12 +13,12 @@ interface IProps {
 const structuredDataWebSite = {
   '@context': 'http://schema.org',
   '@type': 'WebSite',
-  name: 'My Career List',
+  name: 'My Career List - The Global Job Posting Platform',
   url: 'https://mycareerlist.vercel.app'
 }
 
 const SEO = ({
-  title = 'My Career List',
+  title = 'My Career List - The Global Job Posting Platform',
   description = 'Easiest way to find your next job.',
   url = 'https://mycareerlist.vercel.app',
   image = 'https://secure.gravatar.com/avatar/16468e56307e475c543a356a7f42814d?s=30',

@@ -48,8 +48,8 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
       category: '',
       city: '',
       applyLink: '',
-      salaryMin: 0,
-      salaryMax: 0,
+      salaryMin: '',
+      salaryMax: '',
       companyId: null
     },
 

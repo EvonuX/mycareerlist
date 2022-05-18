@@ -11,7 +11,7 @@ export default class _Document extends Document {
     return {
       ...initialProps,
       styles: (
-        <Html lang="en-US">
+        <Html lang="en">
           {initialProps.styles}
           <ServerStyles html={initialProps.html} server={stylesServer} />
         </Html>

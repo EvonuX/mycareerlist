@@ -4,6 +4,7 @@ import type { FC } from 'react'
 import { categories, locations, types } from '~/constants/general'
 
 interface IProps {
+  loading: boolean
   opened: boolean
   setOpened: (opened: boolean) => void
   onSubmit: (values: any) => void
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 const JobFeedForm: FC<IProps> = ({
+  loading,
   opened,
   setOpened,
   onSubmit,
@@ -81,7 +83,9 @@ const JobFeedForm: FC<IProps> = ({
         />
 
         <Group grow>
-          <Button type="submit">Save</Button>
+          <Button type="submit" loading={loading}>
+            Save
+          </Button>
 
           <Button
             type="button"

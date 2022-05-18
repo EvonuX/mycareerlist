@@ -35,8 +35,9 @@ interface UserQuery {
 const UserAccountPage: FC = () => {
   const [preferences, setPreferences] = useState('')
   const [opened, setOpened] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const { data, isLoading } = useQuery<UserQuery>(
+  const { data, isFetching, isRefetching } = useQuery<UserQuery>(
     'accountPage',
     () => fetcher('/api/user'),
     {
@@ -66,6 +67,8 @@ const UserAccountPage: FC = () => {
   })
 
   const handleJobCustomization = async (values: any) => {
+    setLoading(true)
+
     try {
       const parsedPreferences = qs.stringify(values, {
         skipNull: true,
@@ -77,7 +80,6 @@ const UserAccountPage: FC = () => {
       await axios.post('/api/user/feed', { parsedPreferences })
 
       setPreferences(parsedPreferences)
-
       setOpened(false)
 
       showNotification({
@@ -93,6 +95,8 @@ const UserAccountPage: FC = () => {
         message: 'Please try refreshing the page or try again alter',
         color: 'red'
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -119,7 +123,7 @@ const UserAccountPage: FC = () => {
         Your saved jobs
       </Title>
 
-      {isLoading ? (
+      {isFetching || isRefetching ? (
         <Center>
           <Loader variant="bars" />
         </Center>
@@ -157,7 +161,7 @@ const UserAccountPage: FC = () => {
         </Button>
       </SimpleGrid>
 
-      {isLoading ? (
+      {isFetching || isRefetching ? (
         <Center>
           <Loader variant="bars" />
         </Center>
@@ -174,6 +178,7 @@ const UserAccountPage: FC = () => {
       )}
 
       <JobFeedForm
+        loading={loading}
         opened={opened}
         setOpened={setOpened}
         onSubmit={handleJobCustomization}

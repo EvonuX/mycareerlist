@@ -333,19 +333,19 @@
   resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.1.tgz#ed0da773bd5f794d0603f5a5b5cee6d2354e5660"
   integrity sha512-mMyQ9vjpuFqePkfe5bZVIf/H3Dmk6wA8Kjxff9RcO4kqzJo+Ek9pGKwZHpeMr7Eku0QhLXMCd7fNCSnEnRMubg==
 
-"@paypal/paypal-js@^5.0.5":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.0.5.tgz#f2f61e6ef414847fdcae847054039a05454df8dd"
-  integrity sha512-OV+0Z2MgHVj6dQiE58x9vq6upWWvajbyuwYlDQ4aBkwj6sLLsdkXO8HDuYJPYoVzbX3+/Di6fNKvlUlCJiv+zA==
+"@paypal/paypal-js@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.0.6.tgz#92f260b54a72e2f914afb0aaac2d7124ad686117"
+  integrity sha512-q40h/Rc2Dus5p7Ctgq8EQyyqWGVCdfaezi4D5eWSIl2+p0FHL1mBA4XnXYgv9FPYejrVUmnIATdbqBdEYwasYg==
   dependencies:
     promise-polyfill "^8.2.3"
 
-"@paypal/react-paypal-js@^7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.7.0.tgz#0e4076aef6da3b71938904c7cd98da66ccd3fdfd"
-  integrity sha512-f+SXVtyO4Yr0IkV6UVAlHC3GlpRxTNyP9EUUFLhBjyW0z9paMJ47XsG6QcqSoj2Y+YEpdVTVhfvji2K0Gpy7lA==
+"@paypal/react-paypal-js@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.8.0.tgz#480c7a2391246d30b75e9f69e1525f7de0dc0f25"
+  integrity sha512-4WEhrqi5KP3c/kSaY6cAbEbsQo2zCJFbLZYwU+OqCyD258IZn0xNyLBuVAY5snrnvafgdyir7+5DY3rp8ezAKA==
   dependencies:
-    "@paypal/paypal-js" "^5.0.5"
+    "@paypal/paypal-js" "^5.0.6"
     "@paypal/sdk-constants" "^1.0.116"
 
 "@paypal/sdk-constants@^1.0.116":
@@ -571,10 +571,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.27.tgz#f4df3981ae8268c066e8f49995639f855469081e"
   integrity sha512-4/Ke7bbWOasuT3kceBZFGakP1dYN2XFd8v2l9bqF2LNWrmeU07JLpp56aEeG6+Q3olqO5TvXpW0yaiYnZJ5CXg==
 
-"@types/node@^17.0.33":
-  version "17.0.33"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.33.tgz#3c1879b276dc63e73030bb91165e62a4509cd506"
-  integrity sha512-miWq2m2FiQZmaHfdZNcbpp9PuXg34W5JZ5CrJ/BaS70VuhoJENBEQybeiYSaPBRNq6KQGnjfEnc/F3PN++D+XQ==
+"@types/node@^17.0.34":
+  version "17.0.34"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.34.tgz#3b0b6a50ff797280b8d000c6281d229f9c538cef"
+  integrity sha512-XImEz7XwTvDBtzlTnm8YvMqGW/ErMWBsKZ+hMTvnDIjGCKxwK5Xpc+c/oQjOauwq8M4OS11hEkpjX8rrI/eEgA==
 
 "@types/prop-types@*":
   version "15.7.4"

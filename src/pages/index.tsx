@@ -8,17 +8,16 @@ import {
   Title
 } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
+import { NextLink } from '@mantine/next'
 import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import CompanyCard from '~/components/CompanyCard'
 import JobCard from '~/components/JobCard'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
 import type { Company, Job, Review } from '~/types/types'
 import prisma from '~/utils/prisma'
-import Layout from '../components/Layout'
+import Layout from '~/components/Layout'
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
   ssr: false
@@ -32,7 +31,6 @@ interface IProps {
 
 const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
   const matches = useMediaQuery('(max-width: 768px)')
-  const router = useRouter()
 
   return (
     <Layout>
@@ -59,11 +57,11 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
           </Text>
 
           <Group grow={matches}>
-            <Button onClick={() => router.push('/jobs/new')}>
+            <Button component={NextLink} href="/jobs/new">
               Post a job for $100
             </Button>
 
-            <Button variant="light" onClick={() => router.push('/jobs')}>
+            <Button variant="light" component={NextLink} href="/jobs">
               View all jobs
             </Button>
           </Group>
@@ -543,22 +541,22 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
       <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]} mb="md">
         <Title order={2}>Latest featured jobs</Title>
 
-        <Link href="/jobs" passHref>
-          <Button
-            variant="light"
-            sx={{
-              width: 'fit-content',
-              alignSelf: 'center',
-              justifySelf: 'flex-end',
+        <Button
+          component={NextLink}
+          href="/jobs"
+          variant="light"
+          sx={{
+            width: 'fit-content',
+            alignSelf: 'center',
+            justifySelf: 'flex-end',
 
-              '@media (max-width: 768px)': {
-                justifySelf: 'flex-start'
-              }
-            }}
-          >
-            View all
-          </Button>
-        </Link>
+            '@media (max-width: 768px)': {
+              justifySelf: 'flex-start'
+            }
+          }}
+        >
+          View all
+        </Button>
       </SimpleGrid>
 
       <SimpleGrid
@@ -580,22 +578,22 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
       >
         <Title order={2}>Latest companies</Title>
 
-        <Link href="/companies" passHref>
-          <Button
-            variant="light"
-            sx={{
-              width: 'fit-content',
-              alignSelf: 'center',
-              justifySelf: 'flex-end',
+        <Button
+          component={NextLink}
+          href="/companies"
+          variant="light"
+          sx={{
+            width: 'fit-content',
+            alignSelf: 'center',
+            justifySelf: 'flex-end',
 
-              '@media (max-width: 768px)': {
-                justifySelf: 'flex-start'
-              }
-            }}
-          >
-            View all
-          </Button>
-        </Link>
+            '@media (max-width: 768px)': {
+              justifySelf: 'flex-start'
+            }
+          }}
+        >
+          View all
+        </Button>
       </SimpleGrid>
 
       <SimpleGrid
@@ -659,6 +657,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
       draft: {
         not: true
+      },
+      featured: {
+        not: false
       }
     },
     orderBy: {
@@ -681,7 +682,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     where: {
       jobs: {
         none: {
-          expired: true
+          expired: true,
+          draft: true
         }
       }
     }
