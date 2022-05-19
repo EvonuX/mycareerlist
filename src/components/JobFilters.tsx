@@ -12,11 +12,11 @@ interface IProps {
 const JobFilters: FC<IProps> = ({ setQuery }) => {
   const router = useRouter()
 
-  const { location, category, type } = router.query
+  const { title, location, category, type } = router.query
 
   const form = useForm({
     initialValues: {
-      title: '',
+      title: title || '',
       location: location ? (location as string).split(',') : [],
       category: category ? (category as string).split(',') : [],
       type: type ? (type as string).split(',') : []

@@ -4,10 +4,10 @@ import {
   Grid,
   Menu,
   Header as MantineHeader,
-  Divider
+  Divider,
+  Box
 } from '@mantine/core'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { signOut, useSession } from 'next-auth/react'
@@ -50,21 +50,96 @@ const Header: FC = () => {
       sx={theme => ({ boxShadow: theme.shadows.xs })}
     >
       <Container size="xl">
-        <Grid columns={2} justify="space-between" align="center" py="md">
+        <Grid columns={2} align="center" py="md" grow>
           <Grid.Col span={1} py={0}>
-            <Link href="/" passHref>
-              <Button variant="default" component="a">
-                Logo
-              </Button>
-            </Link>
+            <Button variant="default" component={NextLink} href="/">
+              Logo
+            </Button>
           </Grid.Col>
 
           <Grid.Col span={1} py={0} sx={{ textAlign: 'right' }}>
+            <Box
+              sx={{
+                '@media screen and (max-width: 768px)': {
+                  display: 'none'
+                }
+              }}
+            >
+              <Button
+                color="white"
+                variant="subtle"
+                component={NextLink}
+                href="/jobs"
+              >
+                View all jobs
+              </Button>
+
+              <Button
+                color="white"
+                variant="subtle"
+                component={NextLink}
+                href="/companies"
+              >
+                View all companies
+              </Button>
+
+              {data ? (
+                <Menu
+                  title="menu"
+                  menuButtonLabel="menu"
+                  placement="end"
+                  control={<Button variant="default">Menu</Button>}
+                  ml="sm"
+                >
+                  <Menu.Item component={NextLink} href="/account">
+                    Your account
+                  </Menu.Item>
+
+                  {data.userRole === 'EMPLOYER' && (
+                    <>
+                      <Menu.Item component={NextLink} href="/jobs/new">
+                        Create new job post
+                      </Menu.Item>
+
+                      <Menu.Item component={NextLink} href="/companies/new">
+                        Create new company
+                      </Menu.Item>
+                    </>
+                  )}
+
+                  <Divider />
+
+                  <Menu.Item
+                    onClick={() =>
+                      signOut({
+                        callbackUrl: '/'
+                      })
+                    }
+                  >
+                    Logout
+                  </Menu.Item>
+                </Menu>
+              ) : (
+                <Button
+                  variant="default"
+                  ml="sm"
+                  onClick={() => setOpened(true)}
+                >
+                  Log in
+                </Button>
+              )}
+            </Box>
+
             <Menu
               title="menu"
               menuButtonLabel="menu"
               placement="end"
               control={<Button variant="default">Menu</Button>}
+              sx={{
+                '@media screen and (min-width: 768px)': {
+                  display: 'none'
+                }
+              }}
             >
               <Menu.Item component={NextLink} href="/jobs">
                 View all jobs

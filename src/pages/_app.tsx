@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { NotificationsProvider } from '@mantine/notifications'
 import PlausibleProvider from 'next-plausible'
+import NextProgress from 'next-progress'
 
 export default function App(props: AppProps) {
   const {
@@ -88,6 +89,7 @@ export default function App(props: AppProps) {
                   enabled={process.env.NODE_ENV === 'production'}
                   trackLocalhost={false}
                 >
+                  <NextProgress options={{ showSpinner: false }} />
                   <Component {...pageProps} />
                 </PlausibleProvider>
               </NotificationsProvider>

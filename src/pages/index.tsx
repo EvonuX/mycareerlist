@@ -538,7 +538,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         </Box>
       </SimpleGrid>
 
-      <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]} mb="md">
+      <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]} mb="xl">
         <Title order={2}>Latest featured jobs</Title>
 
         <Button
@@ -574,7 +574,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         cols={1}
         breakpoints={[{ minWidth: 480, cols: 2 }]}
         mb="md"
-        mt="lg"
+        mt="xl"
       >
         <Title order={2}>Latest companies</Title>
 
@@ -609,8 +609,8 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
       {reviews.length > 0 && (
         <>
-          <Title order={2} mb="md" mt="lg">
-            Latest reviews
+          <Title order={2} mb="md" mt="xl">
+            Latest company reviews
           </Title>
 
           <Stack>
