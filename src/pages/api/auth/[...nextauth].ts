@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import prisma from '~/utils/prisma'
+import sendVerificationRequest from '~/utils/verify-email'
 
 export default NextAuth({
   providers: [
@@ -16,7 +17,9 @@ export default NextAuth({
           user: process.env.EMAIL_SERVER_USER,
           pass: process.env.EMAIL_SERVER_PASSWORD
         }
-      }
+      },
+      sendVerificationRequest: ({ identifier, url }) =>
+        sendVerificationRequest({ identifier, url })
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,

@@ -5,13 +5,17 @@ import {
   MantineProvider
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { NotificationsProvider } from '@mantine/notifications'
 import { SessionProvider } from 'next-auth/react'
+import PlausibleProvider from 'next-plausible'
 import type { AppProps } from 'next/app'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
-import { NotificationsProvider } from '@mantine/notifications'
-import PlausibleProvider from 'next-plausible'
-import NextProgress from 'next-progress'
+
+const NextProgress = dynamic(() => import('next-progress'), {
+  ssr: false
+})
 
 export default function App(props: AppProps) {
   const {

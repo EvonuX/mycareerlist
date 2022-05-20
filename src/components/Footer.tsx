@@ -6,7 +6,7 @@ import {
 
 const Footer = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
-  const dark = colorScheme === 'dark'
+  const isDarkTheme = colorScheme === 'dark'
 
   return (
     <MantineFooter height="auto" p="sm" mt="md">
@@ -15,7 +15,7 @@ const Footer = () => {
         onClick={() => toggleColorScheme()}
         title="Toggle color scheme"
       >
-        {dark ? (
+        {isDarkTheme ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

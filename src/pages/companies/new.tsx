@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Image,
   Input,
   InputWrapper,
   Select,
@@ -12,16 +11,17 @@ import {
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
-import { Company } from '@prisma/client'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useRef, useState } from 'react'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 import { locations } from '~/constants/general'
 import regex from '~/constants/regex'
+import type { Company } from '~/types/types'
 
 const RichTextEditor = dynamic(() => import('@mantine/rte'), {
   ssr: false
@@ -44,6 +44,14 @@ const NewCompany = () => {
       region: '',
       city: '',
       website: ''
+    },
+
+    validate: {
+      website: value => {
+        if (value.length > 0 && !regex.website.test(value)) {
+          return 'Invalid URL'
+        }
+      }
     }
   })
 
@@ -153,7 +161,7 @@ const NewCompany = () => {
 
           <Button
             mb="md"
-            variant="light"
+            variant="default"
             leftIcon={
               <Box
                 component="svg"
@@ -181,13 +189,21 @@ const NewCompany = () => {
 
           {logoPreview && (
             <Box sx={{ display: 'flex', alignItems: 'center' }} mb="md">
-              <Box sx={{ width: '100px', height: '100px' }}>
+              <Box
+                sx={{
+                  backgroundColor: '#fff',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: 5,
+                  width: 100,
+                  height: 100
+                }}
+              >
                 <Image
                   src={logoPreview}
                   alt="logo preview"
-                  width={100}
-                  height={100}
-                  sx={{ borderRadius: 5, overflow: 'hidden' }}
+                  layout="fill"
+                  objectFit="contain"
                 />
               </Box>
 
@@ -205,7 +221,7 @@ const NewCompany = () => {
           >
             <Select
               required
-              label="Compoany Location"
+              label="Company Location"
               data={locations}
               searchable
               nothingFound="No options"

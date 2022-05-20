@@ -67,7 +67,7 @@ const Header: FC = () => {
             >
               <Button
                 color="white"
-                variant="subtle"
+                variant={router.pathname === '/jobs' ? 'light' : 'subtle'}
                 component={NextLink}
                 href="/jobs"
               >
@@ -76,9 +76,10 @@ const Header: FC = () => {
 
               <Button
                 color="white"
-                variant="subtle"
+                variant={router.pathname === '/companies' ? 'light' : 'subtle'}
                 component={NextLink}
                 href="/companies"
+                ml="sm"
               >
                 View all companies
               </Button>

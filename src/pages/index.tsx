@@ -544,7 +544,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         <Button
           component={NextLink}
           href="/jobs"
-          variant="light"
+          variant="default"
           sx={{
             width: 'fit-content',
             alignSelf: 'center',
@@ -581,7 +581,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         <Button
           component={NextLink}
           href="/companies"
-          variant="light"
+          variant="default"
           sx={{
             width: 'fit-content',
             alignSelf: 'center',

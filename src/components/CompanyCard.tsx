@@ -1,4 +1,4 @@
-import { Badge, Box, Group, Paper, Text, Title } from '@mantine/core'
+import { Badge, Box, Group, Paper, Text } from '@mantine/core'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'

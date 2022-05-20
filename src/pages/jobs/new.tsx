@@ -210,6 +210,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
                 data={companies.map(c => ({ value: c.id, label: c.name }))}
                 searchable
                 nothingFound="No companies found"
+                placeholder="Select a company or start typing to search"
                 {...form.getInputProps('companyId')}
               />
             </SimpleGrid>

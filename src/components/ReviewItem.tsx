@@ -17,13 +17,15 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
   return (
     <Paper p="sm" shadow="sm">
       <Box>
-        {/* @ts-ignore */}
-        <StarPicker
-          value={review.rating}
-          disabled={true}
-          name="rating"
-          size={22}
-        />
+        <Box sx={{ pointerEvents: 'none' }}>
+          {/* @ts-ignore */}
+          <StarPicker
+            value={review.rating}
+            disabled={true}
+            name="rating"
+            size={22}
+          />
+        </Box>
 
         <Text size="lg" weight={600}>
           {review.title}

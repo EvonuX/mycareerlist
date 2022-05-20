@@ -44,7 +44,7 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: ['picsum.photos', 'cdn.remote.work'],
+    domains: ['res.cloudinary.com', 'cdn.remote.work'],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60
   },
