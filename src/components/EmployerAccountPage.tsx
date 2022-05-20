@@ -9,7 +9,8 @@ import {
   Box,
   Anchor,
   Badge,
-  Text
+  Text,
+  Grid
 } from '@mantine/core'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -33,146 +34,160 @@ const EmployerAccountPage = () => {
     <Layout>
       <SEO title="Your account" noindex />
 
-      <Title order={1} mb="xl">
-        Your account
-      </Title>
+      <Grid columns={12}>
+        <Grid.Col md={3} span={12} sx={{ position: 'relative' }}>
+          <Box sx={{ position: 'sticky', top: 15 }}>
+            <Title order={1} mb="xl">
+              Your account
+            </Title>
 
-      <Group grow mb="lg">
-        <Link href="/jobs/new" passHref>
-          <Button>Create a job</Button>
-        </Link>
+            <Group grow direction="column">
+              <Link href="/jobs/new" passHref>
+                <Button>Create a job</Button>
+              </Link>
 
-        <Link href="/companies/new" passHref>
-          <Button>Create a company</Button>
-        </Link>
-      </Group>
+              <Link href="/companies/new" passHref>
+                <Button>Create a company</Button>
+              </Link>
+            </Group>
+          </Box>
+        </Grid.Col>
 
-      <Title order={2} mb="md">
-        Company and job overview
-      </Title>
+        <Grid.Col md={9} span={12}>
+          <Title order={2} mb="md">
+            Company and job overview
+          </Title>
 
-      {isLoading ? (
-        <Center mt="xl">
-          <Loader variant="bars" />
-        </Center>
-      ) : (
-        <Stack>
-          {data?.companies.map(company => {
-            return (
-              <Paper p="sm" shadow="sm" key={company.slug}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }} mb="sm">
-                  <Box
-                    mr="sm"
-                    sx={{
-                      height: 40,
-                      width: 40,
-                      position: 'relative',
-                      borderRadius: 5,
-                      overflow: 'hidden',
-                      backgroundColor: '#fff'
-                    }}
-                  >
-                    <Image
-                      src={company.logo as string}
-                      alt={company.name}
-                      width={40}
-                      height={40}
-                      objectFit="contain"
-                    />
-                  </Box>
+          {isLoading ? (
+            <Center mt="xl">
+              <Loader variant="bars" />
+            </Center>
+          ) : (
+            <Stack>
+              {data?.companies.map(company => {
+                return (
+                  <Paper p="sm" shadow="sm" key={company.slug}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }} mb="sm">
+                      <Box
+                        mr="sm"
+                        sx={{
+                          height: 40,
+                          width: 40,
+                          position: 'relative',
+                          borderRadius: 5,
+                          overflow: 'hidden',
+                          backgroundColor: '#fff'
+                        }}
+                      >
+                        <Image
+                          src={company.logo as string}
+                          alt={company.name}
+                          width={40}
+                          height={40}
+                          objectFit="contain"
+                        />
+                      </Box>
 
-                  <Link href={`/companies/${company.slug}`} passHref>
-                    <Anchor sx={{ color: 'inherit' }}>
-                      <Title order={3} sx={{ fontSize: 18 }}>
-                        {company.name}
-                      </Title>
-                    </Anchor>
-                  </Link>
-                </Box>
+                      <Link href={`/companies/${company.slug}`} passHref>
+                        <Anchor sx={{ color: 'inherit' }}>
+                          <Title order={3} sx={{ fontSize: 18 }}>
+                            {company.name}
+                          </Title>
+                        </Anchor>
+                      </Link>
+                    </Box>
 
-                {company.jobs.length ? (
-                  company.jobs.map(job => {
-                    return (
-                      <Stack key={job.slug}>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            flexDirection: 'revert',
-                            justifyContent: 'space-between'
-                          }}
-                        >
-                          <Box>
-                            {!job.expired || !job.draft ? (
-                              <Link href={`/jobs/${job.slug}`} passHref>
-                                <Anchor sx={{ color: 'inherit' }}>
+                    {company.jobs.length ? (
+                      company.jobs.map(job => {
+                        return (
+                          <Stack key={job.slug}>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                flexDirection: 'revert',
+                                justifyContent: 'space-between'
+                              }}
+                            >
+                              <Box>
+                                {!job.expired || !job.draft ? (
+                                  <Link href={`/jobs/${job.slug}`} passHref>
+                                    <Anchor sx={{ color: 'inherit' }}>
+                                      <Title
+                                        order={4}
+                                        sx={{ fontWeight: 'normal' }}
+                                      >
+                                        {job.title}
+                                      </Title>
+                                    </Anchor>
+                                  </Link>
+                                ) : (
                                   <Title
                                     order={4}
                                     sx={{ fontWeight: 'normal' }}
                                   >
                                     {job.title}
                                   </Title>
-                                </Anchor>
-                              </Link>
-                            ) : (
-                              <Title order={4} sx={{ fontWeight: 'normal' }}>
-                                {job.title}
-                              </Title>
-                            )}
-                          </Box>
+                                )}
+                              </Box>
 
-                          <Group>
-                            {job.expired && (
-                              <Badge
-                                size="sm"
-                                radius="xs"
-                                variant="outline"
-                                color="red"
-                              >
-                                Expired
-                              </Badge>
-                            )}
+                              <Group>
+                                {job.expired && (
+                                  <Badge
+                                    size="sm"
+                                    radius="xs"
+                                    variant="outline"
+                                    color="red"
+                                  >
+                                    Expired
+                                  </Badge>
+                                )}
 
-                            {job.draft && (
-                              <Badge
-                                size="sm"
-                                radius="xs"
-                                variant="outline"
-                                color="yellow"
-                              >
-                                Draft
-                              </Badge>
-                            )}
+                                {job.draft && (
+                                  <Badge
+                                    size="sm"
+                                    radius="xs"
+                                    variant="outline"
+                                    color="yellow"
+                                  >
+                                    Draft
+                                  </Badge>
+                                )}
 
-                            {job.featured && (
-                              <Badge
-                                size="sm"
-                                radius="xs"
-                                variant="outline"
-                                color="green"
-                              >
-                                Featured
-                              </Badge>
-                            )}
+                                {job.featured && (
+                                  <Badge
+                                    size="sm"
+                                    radius="xs"
+                                    variant="outline"
+                                    color="green"
+                                  >
+                                    Featured
+                                  </Badge>
+                                )}
 
-                            <Link href={`/jobs/${job.slug}/analytics`} passHref>
-                              <Button size="xs" variant="subtle">
-                                Insights
-                              </Button>
-                            </Link>
-                          </Group>
-                        </Box>
-                      </Stack>
-                    )
-                  })
-                ) : (
-                  <Text>This company does not have any jobs yet.</Text>
-                )}
-              </Paper>
-            )
-          })}
-        </Stack>
-      )}
+                                <Link
+                                  href={`/jobs/${job.slug}/analytics`}
+                                  passHref
+                                >
+                                  <Button size="xs" variant="subtle">
+                                    Insights
+                                  </Button>
+                                </Link>
+                              </Group>
+                            </Box>
+                          </Stack>
+                        )
+                      })
+                    ) : (
+                      <Text>This company does not have any jobs yet.</Text>
+                    )}
+                  </Paper>
+                )
+              })}
+            </Stack>
+          )}
+        </Grid.Col>
+      </Grid>
     </Layout>
   )
 }
