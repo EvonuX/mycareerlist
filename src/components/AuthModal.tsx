@@ -37,7 +37,6 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
     try {
       await signIn('email', {
         email: formData.email,
-        redirect: false,
         callbackUrl: '/account'
       })
     } catch (err) {
@@ -45,7 +44,7 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
 
       form.setFieldError(
         'email',
-        err?.message || 'An error occured, please reload and try again.'
+        'An error occured, please reload and try again.'
       )
     } finally {
       setLoading(false)
