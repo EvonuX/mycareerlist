@@ -42,6 +42,11 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
       })
     } catch (err) {
       console.error(err)
+
+      form.setFieldError(
+        'email',
+        err?.message || 'An error occured, please reload and try again.'
+      )
     } finally {
       setLoading(false)
     }
@@ -63,6 +68,7 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
             required
             mb="md"
             data-autofocus
+            error={form.errors.email}
             {...form.getInputProps('email')}
           />
 

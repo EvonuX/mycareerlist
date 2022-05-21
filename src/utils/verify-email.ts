@@ -13,7 +13,7 @@ export default async function sendVerificationRequest({
       from: 'noreply@mcl.com',
       templateId: 'd-70c057ce34dc48e883f6fd5fed3eaf66',
       dynamicTemplateData: {
-        url: encodeURIComponent(url)
+        url
       }
     })
   } catch (err) {

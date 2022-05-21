@@ -5,7 +5,8 @@ import {
   Menu,
   Header as MantineHeader,
   Divider,
-  Box
+  Box,
+  useMantineColorScheme
 } from '@mantine/core'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
@@ -21,6 +22,7 @@ const AuthModal = dynamic(() => import('./AuthModal'), {
 const Header: FC = () => {
   const router = useRouter()
   const [opened, setOpened] = useState(false)
+  const { colorScheme } = useMantineColorScheme()
 
   const { data } = useSession()
 
@@ -52,8 +54,14 @@ const Header: FC = () => {
       <Container size="xl">
         <Grid columns={2} align="center" py="md" grow>
           <Grid.Col span={1} py={0}>
-            <Button variant="default" component={NextLink} href="/">
-              Logo
+            <Button
+              variant="subtle"
+              component={NextLink}
+              href="/"
+              color={colorScheme === 'dark' ? 'gray' : 'dark'}
+              title="Home"
+            >
+              My Career List
             </Button>
           </Grid.Col>
 

@@ -12,6 +12,7 @@ import {
   Text,
   Grid
 } from '@mantine/core'
+import { NextLink } from '@mantine/next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useQuery } from 'react-query'
@@ -26,8 +27,11 @@ interface QueryProps {
 }
 
 const EmployerAccountPage = () => {
-  const { data, isLoading } = useQuery<QueryProps, Error>('accountPage', () =>
-    fetcher('/api/user')
+  const fetchEmployerData = () => fetcher('/api/user')
+
+  const { data, isLoading } = useQuery<QueryProps, Error>(
+    'accountPage',
+    fetchEmployerData
   )
 
   return (
@@ -42,13 +46,13 @@ const EmployerAccountPage = () => {
             </Title>
 
             <Group grow direction="column">
-              <Link href="/jobs/new" passHref>
-                <Button>Create a job</Button>
-              </Link>
+              <Button component={NextLink} href="/jobs/new">
+                Create a job
+              </Button>
 
-              <Link href="/companies/new" passHref>
-                <Button>Create a company</Button>
-              </Link>
+              <Button component={NextLink} href="/companies/new">
+                Create a company
+              </Button>
             </Group>
           </Box>
         </Grid.Col>
