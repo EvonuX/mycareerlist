@@ -23,6 +23,8 @@ const Newsletter = dynamic(() => import('~/components/Newsletter'), {
   ssr: false
 })
 
+const Features = dynamic(() => import('~/components/Features'))
+
 interface IProps {
   jobs: Job[]
   companies: Company[]
@@ -569,6 +571,8 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
           <JobCard key={job.id} job={job} />
         ))}
       </SimpleGrid>
+
+      <Features />
 
       <SimpleGrid
         cols={1}

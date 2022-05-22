@@ -90,13 +90,20 @@ const Newsletter = () => {
             Join our newsletter to get the latest jobs straight to your inbox.
           </Title>
 
-          <Grid>
+          <Grid gutter={0}>
             <Grid.Col md={6} span={9}>
               <TextInput
+                type="email"
                 placeholder="your@email.com"
                 aria-label="Email address"
                 required
                 {...form.getInputProps('email')}
+                styles={{
+                  input: {
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0
+                  }
+                }}
               />
 
               <Text mt="xs" sx={{ opacity: 0.5 }} size="xs">
@@ -105,7 +112,15 @@ const Newsletter = () => {
             </Grid.Col>
 
             <Grid.Col span={1}>
-              <Button type="submit" loading={loading}>
+              <Button
+                type="submit"
+                loading={loading}
+                sx={{
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0,
+                  marginRight: -1
+                }}
+              >
                 Sign up
               </Button>
             </Grid.Col>
