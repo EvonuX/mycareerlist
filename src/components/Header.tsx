@@ -31,7 +31,7 @@ const Header: FC = () => {
       showNotification({
         title: "You don't have access to this page",
         message:
-          'Only employers can post new jobs. Create an account to start posting jobs.',
+          'Only employers can post new jobs. Log in to start posting jobs.',
         color: 'yellow'
       })
     }
