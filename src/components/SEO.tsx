@@ -24,7 +24,7 @@ const SEO = ({
   image = 'https://secure.gravatar.com/avatar/16468e56307e475c543a356a7f42814d?s=30',
   noindex
 }: IProps) => {
-  const seoTitle = `${title} | MCL`.slice(0, 59)
+  const seoTitle = `${title} - My Career List`.slice(0, 59)
 
   const { colorScheme } = useMantineColorScheme()
 
@@ -44,7 +44,6 @@ const SEO = ({
 
       <meta name="twitter:card" content="summary_large_image" />
 
-      {/* domain only: pet-alert.com */}
       <meta property="twitter:domain" content={url} />
       <meta property="twitter:url" content={url} />
       <meta name="twitter:title" content={seoTitle} />

@@ -27,7 +27,7 @@ interface IProps {
 const Tokens: NextPage<IProps> = ({ job }) => {
   const router = useRouter()
 
-  const [total, setTotal] = useState('100')
+  const [total, setTotal] = useState('150')
   const [checked, setChecked] = useState(false)
 
   return (
@@ -81,9 +81,9 @@ const Tokens: NextPage<IProps> = ({ job }) => {
                 setChecked(event.currentTarget.checked)
 
                 if (event.currentTarget.checked) {
-                  setTotal('150')
+                  setTotal('200')
                 } else {
-                  setTotal('100')
+                  setTotal('150')
                 }
               }}
             />

@@ -54,6 +54,12 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
     },
 
     validate: {
+      description: value => {
+        if (!value || value.length < 250) {
+          return 'Description must be at least 250 characters long'
+        }
+      },
+
       applyLink: value => {
         if (!regex.website.test(value) || !regex.email.test(value)) {
           return 'Invalid URL or email address'
@@ -137,6 +143,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               id="description"
               label="Job Description"
               mb="md"
+              error={form.errors.description}
             >
               <RichTextEditor
                 value={description}

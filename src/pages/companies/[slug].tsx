@@ -54,7 +54,7 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
   return (
     <Layout>
       <SEO
-        title={company.name}
+        title={`Jobs at ${company.name}`}
         description={company.description ?? ''}
         image={company.logo ?? ''}
         url={`/companies/${company.slug}`}

@@ -36,7 +36,10 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
   return (
     <Layout>
-      <SEO title="My Career List" />
+      <SEO
+        title="My Career List"
+        description="MyCareerList is the most advanced job search and job posting platform. Receive company insights, learn about interview experiences and salaries."
+      />
 
       <SimpleGrid
         cols={2}
@@ -60,7 +63,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
           <Group grow={matches}>
             <Button component={NextLink} href="/jobs/new">
-              Post a job for $100
+              Post a job for $150
             </Button>
 
             <Button variant="light" component={NextLink} href="/jobs">
