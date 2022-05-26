@@ -11,11 +11,11 @@ import {
   Title
 } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import qs from 'query-string'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
@@ -56,17 +56,21 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
       : await fetcher(`/api/job?${query}`)
   }
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isRefetching } =
-    useInfiniteQuery(['jobs', query], fetchJobs, {
-      getNextPageParam: lastPage => lastPage.cursor ?? undefined,
-      keepPreviousData: true,
-      initialData: () => {
-        return {
-          pageParams: [null],
-          pages: [jobs]
-        }
-      }
-    })
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    isRefetching
+  } = useInfiniteQuery(['jobs', query], fetchJobs, {
+    getNextPageParam: lastPage => lastPage.cursor ?? undefined,
+    keepPreviousData: true,
+    initialData: {
+      pageParams: [null],
+      pages: [jobs]
+    }
+  })
 
   useEffect(() => {
     if (observer?.isIntersecting && hasNextPage) {
@@ -121,10 +125,13 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
             <Loader
               variant="dots"
               sx={{
-                display: isFetchingNextPage || isRefetching ? 'block' : 'none'
+                display:
+                  isFetchingNextPage || isFetching || isRefetching
+                    ? 'block'
+                    : 'none'
               }}
             />
-            {(isFetchingNextPage || isRefetching) && (
+            {(isFetchingNextPage || isFetching || isRefetching) && (
               <Text>Loading jobs...</Text>
             )}
           </Stack>
@@ -173,34 +180,10 @@ const JobListing: NextPage<IProps> = ({ jobs }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const {
-    title,
-    location,
-    category,
-    type
-  }: {
-    title?: string
-    location?: string
-    category?: string
-    type?: string
-  } = query
-
+export const getStaticProps: GetStaticProps = async () => {
   const jobs = await prisma.job.findMany({
     take: 13,
     where: {
-      title: {
-        contains: title || undefined
-      },
-      location: {
-        in: location?.split(',') || undefined
-      },
-      category: {
-        in: category?.split(',') || undefined
-      },
-      type: {
-        in: type?.split(',') || undefined
-      },
       expired: {
         not: true
       },
@@ -232,6 +215,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   })
 
   return {
+    revalidate: 10,
     props: {
       jobs
     }
