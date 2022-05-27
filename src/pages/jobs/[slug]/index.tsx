@@ -203,16 +203,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             </Paper>
 
             <Group mt="md" grow>
-              <Button
-                component="a"
-                href={job.applyLink}
-                target="_blank"
-                sx={{
-                  '@media (max-width: 768px)': {
-                    display: 'none'
-                  }
-                }}
-              >
+              <Button component="a" href={job.applyLink} target="_blank">
                 Apply for job
               </Button>
 

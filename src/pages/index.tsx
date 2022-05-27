@@ -38,7 +38,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
     <Layout>
       <SEO
         title="My Career List"
-        description="MyCareerList is the most advanced job search and job posting platform. Receive company insights, learn about interview experiences and salaries."
+        description="My Career List is the most advanced job search and job posting platform. Receive company insights, learn about interview experiences and salaries."
       />
 
       <SimpleGrid

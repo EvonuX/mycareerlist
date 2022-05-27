@@ -104,13 +104,26 @@ const EmployerAccountPage = () => {
                     {company.jobs.length ? (
                       company.jobs.map(job => {
                         return (
-                          <Stack key={job.slug}>
+                          <Stack
+                            key={job.slug}
+                            sx={{
+                              marginBottom: 15,
+
+                              '&:last-child': {
+                                marginBottom: 0
+                              }
+                            }}
+                          >
                             <Box
                               sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                flexDirection: 'revert',
-                                justifyContent: 'space-between'
+                                justifyContent: 'space-between',
+
+                                '@media (max-width: 768px)': {
+                                  alignItems: 'flex-start',
+                                  flexDirection: 'column'
+                                }
                               }}
                             >
                               <Box>
@@ -135,7 +148,11 @@ const EmployerAccountPage = () => {
                                 )}
                               </Box>
 
-                              <Group>
+                              <Group
+                                sx={{
+                                  '@media (max-width: 768px)': { marginTop: 10 }
+                                }}
+                              >
                                 {job.expired && (
                                   <Badge
                                     size="sm"
@@ -169,14 +186,14 @@ const EmployerAccountPage = () => {
                                   </Badge>
                                 )}
 
-                                <Link
+                                <Button
+                                  component={NextLink}
                                   href={`/jobs/${job.slug}/analytics`}
-                                  passHref
+                                  size="xs"
+                                  variant="subtle"
                                 >
-                                  <Button size="xs" variant="subtle">
-                                    Insights
-                                  </Button>
-                                </Link>
+                                  Insights
+                                </Button>
                               </Group>
                             </Box>
                           </Stack>

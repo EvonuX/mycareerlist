@@ -31,16 +31,20 @@ const JobCard: FC<IProps> = ({ job }) => {
               position: 'relative',
               borderRadius: 5,
               overflow: 'hidden',
-              backgroundColor: '#fff'
+              backgroundColor: '#fff',
+
+              '@media (max-width: 768px)': {
+                height: 75,
+                width: 75
+              }
             }}
           >
             <Image
               src={job.company.logo || noImage}
               alt={job.company.name}
-              layout="fixed"
-              width={80}
-              height={80}
+              layout="fill"
               objectFit="contain"
+              quality={100}
             />
           </Box>
 
@@ -54,11 +58,18 @@ const JobCard: FC<IProps> = ({ job }) => {
             }}
           >
             <Box>
-              <Text size="lg" weight="bold">
+              <Text
+                size="lg"
+                weight="bold"
+                sx={{ '@media (max-width: 768px)': { fontSize: 16 } }}
+              >
                 {job.title}
               </Text>
 
-              <Text mb="xs">
+              <Text
+                mb="xs"
+                sx={{ '@media (max-width: 768px)': { fontSize: 15 } }}
+              >
                 at {job.company.name} &bull;{' '}
                 {getLocation(job.city, job.location)}
               </Text>
