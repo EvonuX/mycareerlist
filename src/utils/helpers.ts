@@ -1,5 +1,10 @@
 import axios from 'axios'
-import { categories, locations, types } from '~/constants/general'
+import {
+  categories,
+  interviewOffers,
+  locations,
+  types
+} from '~/constants/general'
 
 export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
@@ -26,4 +31,8 @@ export const getType = (type: string) => {
 export const getLocation = (city: string, location: string) => {
   const loc = locations.find(c => c.value === location)
   return city ? `${loc?.label}, ${city}` : loc?.label
+}
+
+export const getInterviewOffer = (difficulty: string) => {
+  return interviewOffers.find(d => d.value === difficulty)?.label
 }

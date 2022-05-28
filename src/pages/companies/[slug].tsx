@@ -3,12 +3,12 @@ import {
   Badge,
   Box,
   Button,
-  Divider,
   Grid,
   Group,
   Paper,
   SimpleGrid,
   Stack,
+  Tabs,
   Text,
   Title,
   TypographyStylesProvider
@@ -19,11 +19,12 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useQuery } from 'react-query'
+import InterviewItem from '~/components/InterviewItem'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
-import type { Company, Review } from '~/types/types'
+import type { Company, Interview, Review } from '~/types/types'
 import { fetcher, getLocation } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
@@ -31,25 +32,51 @@ const ReviewForm = dynamic(() => import('~/components/ReviewForm'), {
   ssr: false
 })
 
+const InterviewForm = dynamic(() => import('~/components/InterviewForm'), {
+  ssr: false
+})
+
 interface IProps {
   company: Company
-  reviewStats: {
-    average: number
-    count: number
+  stats: {
+    reviews: {
+      average: number
+      count: number
+    }
+    interviews: {
+      averageRating: number
+      averageDuration: number
+      count: number
+    }
   }
 }
 
-const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
+const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
   const { data: user } = useSession()
   const [opened, setOpened] = useState(false)
+  const [interviewOpened, setInterviewOpened] = useState(false)
 
   const isUser = user?.userRole === 'USER'
 
   const fetchReviews = () => fetcher(`/api/review?companyId=${company.id}`)
+  const fetchInterviews = () =>
+    fetcher(`/api/interview?companyId=${company.id}`)
 
-  const { data } = useQuery<Review[]>(['reviews', company.slug], fetchReviews, {
-    initialData: company.reviews
-  })
+  const { data: reviews } = useQuery<Review[]>(
+    ['reviews', company.slug],
+    fetchReviews,
+    {
+      initialData: company.reviews
+    }
+  )
+
+  const { data: interviews } = useQuery<Interview[]>(
+    ['interviews', company.slug],
+    fetchInterviews,
+    {
+      initialData: company.interviews
+    }
+  )
 
   return (
     <Layout>
@@ -130,45 +157,106 @@ const CompanyPage: NextPage<IProps> = ({ company, reviewStats }) => {
         ))}
       </SimpleGrid>
 
-      <Grid justify="space-between" align="center" mb="md" mt="lg">
-        <Grid.Col md={6}>
-          <Title order={2} mb="xs">
-            Company reviews ({reviewStats.count})
-          </Title>
+      <Tabs mt="xl">
+        <Tabs.Tab label={`Reviews (${stats.reviews.count})`}>
+          <Grid justify="space-between" align="center" mb="sm">
+            <Grid.Col md={6}>
+              <Title order={2} mb="xs">
+                Company reviews
+              </Title>
 
-          {reviewStats.count > 0 && (
-            <Text>Average rating: {reviewStats.average}</Text>
+              {stats.reviews.count > 0 && (
+                <Text>Average rating: {stats.reviews.average}</Text>
+              )}
+            </Grid.Col>
+
+            {isUser && (
+              <Grid.Col
+                md={6}
+                sx={{
+                  textAlign: 'right',
+
+                  '@media (max-width: 768px)': {
+                    textAlign: 'left'
+                  }
+                }}
+              >
+                <Button onClick={() => setOpened(true)}>Write a review</Button>
+              </Grid.Col>
+            )}
+          </Grid>
+
+          {reviews && (
+            <Stack>
+              {reviews.map(review => (
+                <ReviewItem key={review.id} review={review} />
+              ))}
+            </Stack>
           )}
-        </Grid.Col>
+        </Tabs.Tab>
 
-        {isUser && (
-          <Grid.Col
-            md={6}
-            sx={{
-              textAlign: 'right',
+        <Tabs.Tab label={`Interviews (${stats.interviews.count})`}>
+          <Grid justify="space-between" align="center" mb="sm">
+            <Grid.Col md={6}>
+              <Title order={2} mb="xs">
+                Interview experiences
+              </Title>
+            </Grid.Col>
 
-              '@media (max-width: 768px)': {
-                textAlign: 'left'
-              }
-            }}
-          >
-            <Button onClick={() => setOpened(true)}>Write a review</Button>
-          </Grid.Col>
-        )}
-      </Grid>
+            {isUser && (
+              <Grid.Col
+                md={6}
+                sx={{
+                  textAlign: 'right',
 
-      <Divider mb="xl" mt={-5} />
+                  '@media (max-width: 768px)': {
+                    textAlign: 'left'
+                  }
+                }}
+              >
+                <Button onClick={() => setInterviewOpened(true)}>
+                  Interview experience
+                </Button>
+              </Grid.Col>
+            )}
+          </Grid>
+
+          {/* <Box>
+            <Text>Average interview rating:</Text>
+            <Text>{stats.interviews.averageRating}</Text>
+          </Box>
+
+          <Box>
+            <Text>Average selection process duration:</Text>
+            <Text>{stats.interviews.averageDuration} weeks</Text>
+          </Box> */}
+
+          {interviews && (
+            <Stack>
+              {interviews.map(interview => (
+                <InterviewItem key={interview.id} interview={interview} />
+              ))}
+            </Stack>
+          )}
+        </Tabs.Tab>
+
+        {/* <Tabs.Tab label="Salaries">COMING SOON</Tabs.Tab> */}
+      </Tabs>
 
       {isUser && (
-        <ReviewForm open={opened} setOpen={setOpened} companyId={company.id} />
-      )}
+        <>
+          <ReviewForm
+            open={opened}
+            setOpen={setOpened}
+            companyId={company.id}
+          />
 
-      {data && (
-        <Stack>
-          {data.map(review => (
-            <ReviewItem key={review.id} review={review} />
-          ))}
-        </Stack>
+          <InterviewForm
+            open={interviewOpened}
+            setOpen={setInterviewOpened}
+            companyId={company.id}
+          />
+        </>
       )}
     </Layout>
   )
@@ -182,13 +270,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     where: {
       slug: {
         not: null
-      },
-      jobs: {
-        every: {
-          expired: {
-            equals: false
-          }
-        }
       }
     }
   })
@@ -256,6 +337,23 @@ export const getStaticProps: GetStaticProps = async context => {
         orderBy: {
           createdAt: 'desc'
         }
+      },
+      interviews: {
+        select: {
+          id: true,
+          title: true,
+          hr: true,
+          technical: true,
+          year: true,
+          difficulty: true,
+          rating: true,
+          position: true,
+          duration: true,
+          offer: true
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
       }
     }
   })
@@ -272,6 +370,19 @@ export const getStaticProps: GetStaticProps = async context => {
     _count: true
   })
 
+  const interviews = await prisma.interview.aggregate({
+    where: {
+      company: {
+        slug: context.params?.slug as string
+      }
+    },
+    _avg: {
+      rating: true,
+      duration: true
+    },
+    _count: true
+  })
+
   if (!company) {
     return {
       notFound: true
@@ -281,9 +392,16 @@ export const getStaticProps: GetStaticProps = async context => {
   return {
     props: {
       company,
-      reviewStats: {
-        average: reviews._avg.rating,
-        count: reviews._count
+      stats: {
+        reviews: {
+          average: reviews._avg.rating,
+          count: reviews._count
+        },
+        interviews: {
+          averageRating: interviews._avg.rating,
+          averageDuration: interviews._avg.duration,
+          count: interviews._count
+        }
       }
     },
     revalidate: 10

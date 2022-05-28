@@ -29,3 +29,9 @@ export const categories = [
   { label: 'Sales & Marketing', value: 'sales-marketing' },
   { label: 'Other', value: 'other' }
 ]
+
+export const interviewOffers = [
+  { label: 'Accepted offer', value: 'accepted' },
+  { label: 'Declined offer', value: 'declined' },
+  { label: 'Did not receive an offer', value: 'no' }
+]

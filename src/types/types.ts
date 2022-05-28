@@ -11,6 +11,7 @@ export interface Company {
   city: string | null
   userId: string
   reviews: Review[]
+  interviews: Interview[]
   jobs: Job[]
   createdAt: Date
   updatedAt: Date
@@ -52,6 +53,25 @@ export interface Review {
   company: Company
   userId: string
   companyId: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface Interview {
+  id: string
+  title: string
+  position: string
+  year: string
+  hr: string
+  technical: string
+  duration: number
+  difficulty: string
+  offer: string
+  rating: number
+  companyId: string
+  company: Company
+  userId: string
+  user: User
   createdAt: Date
   updatedAt: Date
 }

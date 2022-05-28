@@ -35,11 +35,6 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
       cons: '',
       status: '',
       companyId
-    },
-
-    validate: {
-      rating: (value: number) =>
-        (value < 1 || value > 5) && 'Rating must be between 1 and 5'
     }
   })
 
