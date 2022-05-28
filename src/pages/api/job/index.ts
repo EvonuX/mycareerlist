@@ -1,3 +1,4 @@
+import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import slugify from 'slugify'
@@ -23,9 +24,13 @@ export default async function handler(
       return res.status(401).json({ message: 'Unauthorized' })
     }
 
-    const newJob = await createJob(req.body, session.userId)
+    try {
+      const newJob = await createJob(req.body, session.userId)
 
-    return res.status(201).json(newJob)
+      return res.status(201).json(newJob)
+    } catch (err) {
+      return res.status(500).json({ success: false })
+    }
   }
 
   if (req.method === 'PUT') {
@@ -78,7 +83,7 @@ export default async function handler(
     }
   }
 
-  res.status(400).json({ message: 'Bad request' })
+  res.status(405).send('Method not allowed')
 }
 
 const createJob = async (body: any, userId: string) => {

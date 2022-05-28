@@ -1,4 +1,5 @@
 import type { Prisma } from '@prisma/client'
+import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import slugify from 'slugify'
@@ -93,9 +94,11 @@ export default async function handler(
         }
       })
 
+      await res.unstable_revalidate('/')
       return res.status(201).json(updatedNewCompany)
     }
 
+    await res.unstable_revalidate('/')
     return res.status(201).json(newCompany)
   }
 

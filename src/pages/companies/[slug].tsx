@@ -421,8 +421,7 @@ export const getStaticProps: GetStaticProps = async context => {
           count: interviews._count
         }
       }
-    },
-    revalidate: 10
+    }
   }
 }
 

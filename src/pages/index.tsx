@@ -18,6 +18,7 @@ import SEO from '~/components/SEO'
 import type { Company, Job, Review } from '~/types/types'
 import prisma from '~/utils/prisma'
 import Layout from '~/components/Layout'
+import { formatDate } from '~/utils/helpers'
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
   ssr: false
@@ -706,6 +707,7 @@ export const getStaticProps: GetStaticProps = async () => {
       pros: true,
       cons: true,
       status: true,
+      createdAt: true,
       company: {
         select: {
           name: true,
@@ -718,12 +720,18 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
+  const transformedReviews = reviews.map(review => {
+    return {
+      ...review,
+      createdAt: formatDate(review.createdAt)
+    }
+  })
+
   return {
-    revalidate: 10,
     props: {
       jobs,
       companies,
-      reviews
+      reviews: transformedReviews
     }
   }
 }

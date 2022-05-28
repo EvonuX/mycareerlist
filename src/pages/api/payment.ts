@@ -58,6 +58,9 @@ export default async function handler(
         )
       }
 
+      await res.unstable_revalidate('/')
+      await res.unstable_revalidate(`/companies/${job.company.slug}`)
+
       return res.status(200).json({ success: true })
     }
 

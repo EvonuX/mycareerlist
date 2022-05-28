@@ -351,8 +351,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       job,
       relatedJobs
-    },
-    revalidate: 10
+    }
   }
 }
 
