@@ -68,9 +68,11 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
         </Box>
       )}
 
-      <Text size="xs" color="dimmed" mt="sm">
-        <>Posted on: {review.createdAt}</>
-      </Text>
+      {review.createdAt && (
+        <Text size="xs" color="dimmed" mt="sm">
+          <>Posted on: {review.createdAt}</>
+        </Text>
+      )}
     </Paper>
   )
 }

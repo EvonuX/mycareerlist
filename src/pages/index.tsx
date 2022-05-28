@@ -11,20 +11,19 @@ import { useMediaQuery } from '@mantine/hooks'
 import { NextLink } from '@mantine/next'
 import type { GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
-import CompanyCard from '~/components/CompanyCard'
 import JobCard from '~/components/JobCard'
-import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
 import type { Company, Job, Review } from '~/types/types'
 import prisma from '~/utils/prisma'
 import Layout from '~/components/Layout'
-import { formatDate } from '~/utils/helpers'
+
+const ReviewItem = dynamic(() => import('~/components/ReviewItem'))
+const CompanyCard = dynamic(() => import('~/components/CompanyCard'))
+const Features = dynamic(() => import('~/components/Features'))
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
   ssr: false
 })
-
-const Features = dynamic(() => import('~/components/Features'))
 
 interface IProps {
   jobs: Job[]
@@ -707,7 +706,6 @@ export const getStaticProps: GetStaticProps = async () => {
       pros: true,
       cons: true,
       status: true,
-      createdAt: true,
       company: {
         select: {
           name: true,
@@ -720,18 +718,11 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
-  const transformedReviews = reviews.map(review => {
-    return {
-      ...review,
-      createdAt: formatDate(review.createdAt)
-    }
-  })
-
   return {
     props: {
       jobs,
       companies,
-      reviews: transformedReviews
+      reviews
     }
   }
 }

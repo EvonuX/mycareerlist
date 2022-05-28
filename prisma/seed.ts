@@ -21,6 +21,12 @@ async function seed() {
       select: { id: true }
     })
 
+    await prisma.payment.deleteMany()
+    await prisma.review.deleteMany()
+    await prisma.interview.deleteMany()
+    await prisma.company.deleteMany()
+    await prisma.job.deleteMany()
+
     for (let i = 0; i < companies.length; i++) {
       const company = companies[i]
 
@@ -74,6 +80,7 @@ async function seed() {
           city: job.location,
           applyLink: job.apply,
           userId: userId,
+          featured: Math.random() > 0.5,
           draft: false,
           company: {
             connect: {
