@@ -24,5 +24,6 @@ export default async function handler(
   })
 
   await res.unstable_revalidate('/')
+  await res.unstable_revalidate('/jobs')
   res.status(200).json(expiredJobs)
 }

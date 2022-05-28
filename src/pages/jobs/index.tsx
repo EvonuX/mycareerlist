@@ -11,7 +11,7 @@ import {
   Title
 } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import qs from 'query-string'
@@ -37,14 +37,7 @@ interface IProps {
 const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
   const router = useRouter()
 
-  const initialQuery = qs.stringify(router.query, {
-    skipNull: true,
-    skipEmptyString: true,
-    arrayFormat: 'comma',
-    arrayFormatSeparator: ','
-  })
-
-  const [query, setQuery] = useState(initialQuery || '')
+  const [query, setQuery] = useState('')
   const [opened, setOpened] = useState(false)
 
   const [ref, observer] = useIntersection({
@@ -74,6 +67,19 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observer])
+
+  useEffect(() => {
+    const routerQuery = qs.stringify(router.query, {
+      skipNull: true,
+      skipEmptyString: true,
+      arrayFormat: 'comma',
+      arrayFormatSeparator: ','
+    })
+
+    setQuery(routerQuery)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Layout>
@@ -177,37 +183,10 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  res,
-  query
-}) => {
-  const {
-    title,
-    location,
-    category,
-    type
-  }: {
-    title?: string
-    location?: string
-    category?: string
-    type?: string
-  } = query
-
+export const getStaticProps: GetStaticProps = async () => {
   const jobs = await prisma.job.findMany({
     take: 13,
     where: {
-      title: {
-        contains: title || undefined
-      },
-      location: {
-        in: location?.split(',') || undefined
-      },
-      category: {
-        in: category?.split(',') || undefined
-      },
-      type: {
-        in: type?.split(',') || undefined
-      },
       expired: {
         not: true
       },
@@ -237,8 +216,6 @@ export const getServerSideProps: GetServerSideProps = async ({
       createdAt: 'desc'
     }
   })
-
-  res.setHeader('Cache-Control', `s-maxage=240, stale-while-revalidate`)
 
   return {
     props: {
