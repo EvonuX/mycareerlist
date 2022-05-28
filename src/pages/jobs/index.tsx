@@ -137,7 +137,12 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
         padding="md"
         size="xl"
       >
-        <JobFilters setQuery={setQuery} />
+        <JobFilters
+          setQuery={query => {
+            setQuery(query)
+            setOpened(false)
+          }}
+        />
       </Drawer>
 
       <Button
@@ -172,7 +177,10 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  res,
+  query
+}) => {
   const {
     title,
     location,
@@ -229,6 +237,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       createdAt: 'desc'
     }
   })
+
+  res.setHeader('Cache-Control', `s-maxage=240, stale-while-revalidate`)
 
   return {
     props: {
