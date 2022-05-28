@@ -67,6 +67,10 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
           <Text>{review.cons}</Text>
         </Box>
       )}
+
+      <Text size="xs" color="dimmed" mt="sm">
+        <>Posted on: {review.createdAt}</>
+      </Text>
     </Paper>
   )
 }

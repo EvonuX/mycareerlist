@@ -20,9 +20,10 @@ interface IProps {
   open: boolean
   setOpen: (open: boolean) => void
   companyId: string
+  companySlug: string
 }
 
-const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
+const ReviewForm: FC<IProps> = ({ open, setOpen, companyId, companySlug }) => {
   const queryClient = useQueryClient()
   const [loading, setLoading] = useState(false)
 
@@ -42,7 +43,7 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
     setLoading(true)
 
     try {
-      await axios.post('/api/review', values)
+      await axios.post(`/api/company/${companySlug}/reviews`, values)
 
       showNotification({
         title: 'Review posted!',
@@ -50,7 +51,7 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
         color: 'green'
       })
 
-      queryClient.invalidateQueries('reviews')
+      queryClient.invalidateQueries('company')
 
       setOpen(false)
     } catch (err) {

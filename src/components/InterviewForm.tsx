@@ -21,9 +21,15 @@ interface IProps {
   open: boolean
   setOpen: (open: boolean) => void
   companyId: string
+  companySlug: string
 }
 
-const InterviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
+const InterviewForm: FC<IProps> = ({
+  open,
+  setOpen,
+  companyId,
+  companySlug
+}) => {
   const queryClient = useQueryClient()
   const [loading, setLoading] = useState(false)
 
@@ -46,7 +52,7 @@ const InterviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
     setLoading(true)
 
     try {
-      await axios.post('/api/interview', values)
+      await axios.post(`/api/company/${companySlug}/interviews`, values)
 
       showNotification({
         title: 'Interview experience posted!',
@@ -54,7 +60,7 @@ const InterviewForm: FC<IProps> = ({ open, setOpen, companyId }) => {
         color: 'green'
       })
 
-      queryClient.invalidateQueries('interviews')
+      queryClient.invalidateQueries('company')
 
       setOpen(false)
     } catch (err) {

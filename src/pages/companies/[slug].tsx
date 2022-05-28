@@ -24,9 +24,10 @@ import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
-import type { Company, Interview, Review } from '~/types/types'
-import { fetcher, getLocation } from '~/utils/helpers'
+import type { Company } from '~/types/types'
+import { fetcher, formatDate, getLocation } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
+import NotFoundPage from '../404'
 
 const ReviewForm = dynamic(() => import('~/components/ReviewForm'), {
   ssr: false
@@ -58,33 +59,27 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
 
   const isUser = user?.userRole === 'USER'
 
-  const fetchReviews = () => fetcher(`/api/review?companyId=${company.id}`)
-  const fetchInterviews = () =>
-    fetcher(`/api/interview?companyId=${company.id}`)
+  const fetchCompany = () => fetcher(`/api/company/${company.slug}`)
 
-  const { data: reviews } = useQuery<Review[]>(
-    ['reviews', company.slug],
-    fetchReviews,
+  const { data } = useQuery<IProps, Error>(
+    ['company', company.slug],
+    fetchCompany,
     {
-      initialData: company.reviews
+      initialData: { company, stats }
     }
   )
 
-  const { data: interviews } = useQuery<Interview[]>(
-    ['interviews', company.slug],
-    fetchInterviews,
-    {
-      initialData: company.interviews
-    }
-  )
+  if (!data) {
+    return <NotFoundPage />
+  }
 
   return (
     <Layout>
       <SEO
-        title={`Jobs at ${company.name}`}
-        description={company.description ?? ''}
-        image={company.logo ?? ''}
-        url={`/companies/${company.slug}`}
+        title={`Jobs at ${data.company.name}`}
+        description={data.company.description ?? ''}
+        image={data.company.logo ?? ''}
+        url={`/companies/${data.company.slug}`}
       />
 
       <Paper sx={{ display: 'flex' }} p="md" shadow="xs">
@@ -100,8 +95,8 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
             }}
           >
             <Image
-              src={company.logo || ''}
-              alt={company.name}
+              src={data.company.logo || ''}
+              alt={data.company.name}
               layout="fill"
               objectFit="contain"
               priority={true}
@@ -117,7 +112,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
           }}
         >
           <Title order={1} mb={10}>
-            {company.name}
+            {data.company.name}
           </Title>
 
           <Group>
@@ -125,11 +120,11 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
               {getLocation(company.city || '', company.region)}
             </Badge>
 
-            {company.website && (
+            {data.company.website && (
               <Badge radius="xs">
                 <Anchor
                   size="xs"
-                  href={company.website}
+                  href={data.company.website}
                   target="_blank"
                   sx={{ color: 'inherit' }}
                 >
@@ -152,7 +147,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
       </Title>
 
       <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]}>
-        {company.jobs.map(job => (
+        {data.company.jobs.map(job => (
           <JobCard key={job.id} job={job} />
         ))}
       </SimpleGrid>
@@ -186,9 +181,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
             )}
           </Grid>
 
-          {reviews && (
+          {data.company.reviews && (
             <Stack>
-              {reviews.map(review => (
+              {data.company.reviews.map(review => (
                 <ReviewItem key={review.id} review={review} />
               ))}
             </Stack>
@@ -231,9 +226,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
             <Text>{stats.interviews.averageDuration} weeks</Text>
           </Box> */}
 
-          {interviews && (
+          {data.company.interviews && (
             <Stack>
-              {interviews.map(interview => (
+              {data.company.interviews.map(interview => (
                 <InterviewItem key={interview.id} interview={interview} />
               ))}
             </Stack>
@@ -248,13 +243,15 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
           <ReviewForm
             open={opened}
             setOpen={setOpened}
-            companyId={company.id}
+            companyId={data.company.id}
+            companySlug={data.company.slug as string}
           />
 
           <InterviewForm
             open={interviewOpened}
             setOpen={setInterviewOpened}
-            companyId={company.id}
+            companyId={data.company.id}
+            companySlug={data.company.slug as string}
           />
         </>
       )}
@@ -293,6 +290,7 @@ export const getStaticProps: GetStaticProps = async context => {
     },
     select: {
       id: true,
+      slug: true,
       name: true,
       description: true,
       logo: true,
@@ -332,7 +330,8 @@ export const getStaticProps: GetStaticProps = async context => {
           rating: true,
           pros: true,
           cons: true,
-          status: true
+          status: true,
+          createdAt: true
         },
         orderBy: {
           createdAt: 'desc'
@@ -349,12 +348,33 @@ export const getStaticProps: GetStaticProps = async context => {
           rating: true,
           position: true,
           duration: true,
-          offer: true
+          offer: true,
+          createdAt: true
         },
         orderBy: {
           createdAt: 'desc'
         }
       }
+    }
+  })
+
+  if (!company) {
+    return {
+      notFound: true
+    }
+  }
+
+  const transformedReviews = company.reviews.map(review => {
+    return {
+      ...review,
+      createdAt: formatDate(review.createdAt)
+    }
+  })
+
+  const transformedInterviews = company.interviews.map(interview => {
+    return {
+      ...interview,
+      createdAt: formatDate(interview.createdAt)
     }
   })
 
@@ -383,15 +403,13 @@ export const getStaticProps: GetStaticProps = async context => {
     _count: true
   })
 
-  if (!company) {
-    return {
-      notFound: true
-    }
-  }
-
   return {
     props: {
-      company,
+      company: {
+        ...company,
+        reviews: transformedReviews,
+        interviews: transformedInterviews
+      },
       stats: {
         reviews: {
           average: reviews._avg.rating,
