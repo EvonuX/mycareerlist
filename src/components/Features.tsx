@@ -153,29 +153,29 @@ const employerFeatures = [
     title: 'Insights',
     description: 'Receive daily updates for each job posting'
   },
-  {
-    icon: (
-      <Box
-        component="svg"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-        width="20"
-        height="20"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-        />
-      </Box>
-    ),
-    title: 'Too busy? We can do the heavy lifting',
-    description:
-      "Filter out candidates that don't match your job requirements, automatically"
-  },
+  // {
+  //   icon: (
+  //     <Box
+  //       component="svg"
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       fill="none"
+  //       viewBox="0 0 24 24"
+  //       stroke="currentColor"
+  //       strokeWidth={2}
+  //       width="20"
+  //       height="20"
+  //     >
+  //       <path
+  //         strokeLinecap="round"
+  //         strokeLinejoin="round"
+  //         d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+  //       />
+  //     </Box>
+  //   ),
+  //   title: 'Too busy? We can do the heavy lifting',
+  //   description:
+  //     "Filter out candidates that don't match your job requirements, automatically"
+  // },
   {
     icon: (
       <Box

@@ -1,5 +1,6 @@
 import {
   Alert,
+  Anchor,
   Button,
   Center,
   Loader,
@@ -18,6 +19,8 @@ import Layout from './Layout'
 import SEO from './SEO'
 import qs from 'query-string'
 import axios from 'axios'
+import Link from 'next/link'
+import { NextLink } from '@mantine/next'
 
 const JobCard = dynamic(() => import('./JobCard'), {
   ssr: false
@@ -113,8 +116,10 @@ const UserAccountPage: FC = () => {
           onClose={() => setNotification(false)}
         >
           <Text>
-            Employers can create companies and post jobs to expand their reach.
-            Become one by reaching out to us.
+            Employers can create companies and post jobs to expand their reach.{' '}
+            <Anchor component={NextLink} href="/contact">
+              Become one by reaching out to us.
+            </Anchor>
           </Text>
         </Alert>
       )}
