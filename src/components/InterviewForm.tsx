@@ -41,7 +41,7 @@ const InterviewForm: FC<IProps> = ({
       hr: '',
       technical: '',
       duration: 2,
-      difficulty: '',
+      difficulty: 0,
       offer: '',
       rating: 0,
       companyId
@@ -147,9 +147,9 @@ const InterviewForm: FC<IProps> = ({
             required
             {...form.getInputProps('difficulty')}
           >
-            <Radio value="easy" label="Easy" />
-            <Radio value="medium" label="Medium" />
-            <Radio value="hard" label="Hard" />
+            <Radio value="1" label="Easy" />
+            <Radio value="2" label="Medium" />
+            <Radio value="3" label="Hard" />
           </RadioGroup>
 
           <InputWrapper label="Rating" required error={form.errors.rating}>

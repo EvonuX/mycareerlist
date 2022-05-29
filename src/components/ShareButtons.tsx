@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const ShareButtons: FC<IProps> = ({ title, url }) => {
-  const urlValue = `${process.env.NEXT_PUBLIC_BASE_URL}/${url}`
+  const urlValue = process.env.NEXT_PUBLIC_BASE_URL + url
   const buttonSize = 'xs'
   const buttonVariant = 'light'
 

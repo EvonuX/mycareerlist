@@ -2,7 +2,7 @@ import { Box, Paper, Text, Title } from '@mantine/core'
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 import type { Interview } from '~/types/types'
-import { getInterviewOffer } from '~/utils/helpers'
+import { getInterviewDifficulty, getInterviewOffer } from '~/utils/helpers'
 
 const StarPicker = dynamic(() => import('react-star-picker'), {
   ssr: false
@@ -16,6 +16,7 @@ const InterviewItem: FC<IProps> = ({ interview }) => {
   return (
     <Paper p="sm" shadow="sm">
       <Title order={3}>{interview.title}</Title>
+
       <Text color="dimmed" size="xs" mb="xs">
         <>Posted on: {interview.createdAt}</>
       </Text>
@@ -40,9 +41,7 @@ const InterviewItem: FC<IProps> = ({ interview }) => {
         <Text size="sm" mr={5}>
           Interview difficulty:
         </Text>
-        <Text size="sm" transform="capitalize">
-          {interview.difficulty}
-        </Text>
+        <Text size="sm">{getInterviewDifficulty(interview.difficulty)}</Text>
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center' }} mb="sm">

@@ -33,6 +33,19 @@ const SEO = ({
       <title>{seoTitle}</title>
       <meta name="description" content={stripHtml(description).slice(0, 159)} />
 
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
+
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={seoTitle} />

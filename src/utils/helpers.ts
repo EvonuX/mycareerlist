@@ -33,6 +33,19 @@ export const getLocation = (city: string, location: string) => {
   return city ? `${loc?.label}, ${city}` : loc?.label
 }
 
-export const getInterviewOffer = (difficulty: string) => {
-  return interviewOffers.find(d => d.value === difficulty)?.label
+export const getInterviewOffer = (offer: string) => {
+  return interviewOffers.find(d => d.value === offer)?.label
+}
+
+export const getInterviewDifficulty = (difficulty: number) => {
+  switch (difficulty) {
+    case 1:
+      return 'Easy'
+    case 2:
+      return 'Medium'
+    case 3:
+      return 'Hard'
+    default:
+      return 'Easy'
+  }
 }

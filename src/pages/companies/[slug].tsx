@@ -1,6 +1,4 @@
 import {
-  Anchor,
-  Badge,
   Box,
   Button,
   Grid,
@@ -28,6 +26,7 @@ import type { Company } from '~/types/types'
 import { fetcher, formatDate, getLocation } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 import NotFoundPage from '../404'
+import noImage from '../../../public/no-image.png'
 
 const ReviewForm = dynamic(() => import('~/components/ReviewForm'), {
   ssr: false
@@ -82,161 +81,228 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
         url={`/companies/${data.company.slug}`}
       />
 
-      <Paper sx={{ display: 'flex' }} p="md" shadow="xs">
-        <Box mr={10}>
-          <Box
-            sx={{
-              backgroundColor: '#fff',
-              position: 'relative',
-              overflow: 'hidden',
-              borderRadius: 5,
-              width: 100,
-              height: 100
-            }}
+      <Grid>
+        <Grid.Col span={12} md={3} sx={{ position: 'relative' }}>
+          <Paper
+            p="md"
+            shadow="xs"
+            sx={{ position: 'sticky', top: 20, textAlign: 'center' }}
           >
-            <Image
-              src={data.company.logo || ''}
-              alt={data.company.name}
-              layout="fill"
-              objectFit="contain"
-              priority={true}
-            />
-          </Box>
-        </Box>
+            <Box mb={10}>
+              <Box
+                mx="auto"
+                sx={{
+                  backgroundColor: '#fff',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: 5,
+                  width: 100,
+                  height: 100
+                }}
+              >
+                <Image
+                  src={data.company.logo || noImage}
+                  alt={data.company.name}
+                  layout="fill"
+                  objectFit="contain"
+                  priority={true}
+                />
+              </Box>
+            </Box>
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}
-        >
-          <Title order={1} mb={10}>
-            {data.company.name}
-          </Title>
-
-          <Group>
-            <Badge radius="xs">
-              {getLocation(company.city || '', company.region)}
-            </Badge>
-
-            {data.company.website && (
-              <Badge radius="xs">
-                <Anchor
-                  size="xs"
-                  href={data.company.website}
-                  target="_blank"
-                  sx={{ color: 'inherit' }}
-                >
-                  Website
-                </Anchor>
-              </Badge>
-            )}
-          </Group>
-        </Box>
-      </Paper>
-
-      <TypographyStylesProvider>
-        <Text
-          dangerouslySetInnerHTML={{ __html: company.description as string }}
-        />
-      </TypographyStylesProvider>
-
-      <Title order={2} mb={15}>
-        Active job postings
-      </Title>
-
-      <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]}>
-        {data.company.jobs.map(job => (
-          <JobCard key={job.id} job={job} />
-        ))}
-      </SimpleGrid>
-
-      <Tabs mt="xl">
-        <Tabs.Tab label={`Reviews (${stats.reviews.count})`}>
-          <Grid justify="space-between" align="center" mb="sm">
-            <Grid.Col md={6}>
-              <Title order={2} mb="xs">
-                Company reviews
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Title order={1} mb={10}>
+                {data.company.name}
               </Title>
 
-              {stats.reviews.count > 0 && (
-                <Text>Average rating: {stats.reviews.average}</Text>
+              <Group position="center" direction="column">
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box
+                    component="svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1}
+                    width="20"
+                    height="20"
+                    mr={3}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </Box>
+
+                  <Text>{getLocation(company.city || '', company.region)}</Text>
+                </Box>
+
+                {data.company.website && (
+                  <Button
+                    component="a"
+                    size="xs"
+                    variant="outline"
+                    href={data.company.website}
+                    target="_blank"
+                    rightIcon={
+                      <Box
+                        component="svg"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={1}
+                        width="18"
+                        height="18"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </Box>
+                    }
+                  >
+                    Website
+                  </Button>
+                )}
+              </Group>
+            </Box>
+          </Paper>
+        </Grid.Col>
+
+        <Grid.Col span={12} md={9}>
+          <Tabs>
+            <Tabs.Tab label="Description & Jobs">
+              <Title order={2} mb="md">
+                Company description
+              </Title>
+
+              <TypographyStylesProvider>
+                <Text
+                  dangerouslySetInnerHTML={{
+                    __html: company.description as string
+                  }}
+                />
+              </TypographyStylesProvider>
+
+              <Title order={2} mb={15}>
+                Active job postings ({data.company.jobs.length})
+              </Title>
+
+              <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]}>
+                {data.company.jobs.map(job => (
+                  <JobCard key={job.id} job={job} />
+                ))}
+              </SimpleGrid>
+            </Tabs.Tab>
+
+            <Tabs.Tab label={`Reviews (${stats.reviews.count})`}>
+              <Grid justify="space-between" align="center" mb="sm">
+                <Grid.Col md={6}>
+                  <Title order={2}>Company reviews</Title>
+
+                  {stats.reviews.count > 0 && (
+                    <Text mt="xs">Average rating: {stats.reviews.average}</Text>
+                  )}
+                </Grid.Col>
+
+                {isUser && (
+                  <Grid.Col
+                    md={6}
+                    sx={{
+                      textAlign: 'right',
+
+                      '@media (max-width: 768px)': {
+                        textAlign: 'left'
+                      }
+                    }}
+                  >
+                    <Button onClick={() => setOpened(true)}>
+                      Write a review
+                    </Button>
+                  </Grid.Col>
+                )}
+              </Grid>
+
+              {data.company.reviews && (
+                <Stack>
+                  {data.company.reviews.map(review => (
+                    <ReviewItem key={review.id} review={review} />
+                  ))}
+                </Stack>
               )}
-            </Grid.Col>
+            </Tabs.Tab>
 
-            {isUser && (
-              <Grid.Col
-                md={6}
-                sx={{
-                  textAlign: 'right',
+            <Tabs.Tab label={`Interviews (${stats.interviews.count})`}>
+              <Grid justify="space-between" align="center" mb="sm">
+                <Grid.Col md={6}>
+                  <Title order={2}>Interview experiences</Title>
+                </Grid.Col>
 
-                  '@media (max-width: 768px)': {
-                    textAlign: 'left'
-                  }
-                }}
-              >
-                <Button onClick={() => setOpened(true)}>Write a review</Button>
-              </Grid.Col>
-            )}
-          </Grid>
+                {isUser && (
+                  <Grid.Col
+                    md={6}
+                    sx={{
+                      textAlign: 'right',
 
-          {data.company.reviews && (
-            <Stack>
-              {data.company.reviews.map(review => (
-                <ReviewItem key={review.id} review={review} />
-              ))}
-            </Stack>
-          )}
-        </Tabs.Tab>
+                      '@media (max-width: 768px)': {
+                        textAlign: 'left'
+                      }
+                    }}
+                  >
+                    <Button onClick={() => setInterviewOpened(true)}>
+                      Interview experience
+                    </Button>
+                  </Grid.Col>
+                )}
+              </Grid>
 
-        <Tabs.Tab label={`Interviews (${stats.interviews.count})`}>
-          <Grid justify="space-between" align="center" mb="sm">
-            <Grid.Col md={6}>
-              <Title order={2} mb="xs">
-                Interview experiences
-              </Title>
-            </Grid.Col>
+              {stats.interviews.averageRating && (
+                <SimpleGrid
+                  cols={2}
+                  breakpoints={[{ maxWidth: 768, cols: 1 }]}
+                  mb="xl"
+                >
+                  <Box sx={{ textAlign: 'center' }}>
+                    <Text size="lg" weight="bold">
+                      {stats.interviews.averageRating}
+                    </Text>
+                    <Text>Average interview rating</Text>
+                  </Box>
 
-            {isUser && (
-              <Grid.Col
-                md={6}
-                sx={{
-                  textAlign: 'right',
+                  <Box sx={{ textAlign: 'center' }}>
+                    <Text size="lg" weight="bold">
+                      {stats.interviews.averageDuration} weeks
+                    </Text>
+                    <Text>Average selection process duration</Text>
+                  </Box>
+                </SimpleGrid>
+              )}
 
-                  '@media (max-width: 768px)': {
-                    textAlign: 'left'
-                  }
-                }}
-              >
-                <Button onClick={() => setInterviewOpened(true)}>
-                  Interview experience
-                </Button>
-              </Grid.Col>
-            )}
-          </Grid>
-
-          {/* <Box>
-            <Text>Average interview rating:</Text>
-            <Text>{stats.interviews.averageRating}</Text>
-          </Box>
-
-          <Box>
-            <Text>Average selection process duration:</Text>
-            <Text>{stats.interviews.averageDuration} weeks</Text>
-          </Box> */}
-
-          {data.company.interviews && (
-            <Stack>
-              {data.company.interviews.map(interview => (
-                <InterviewItem key={interview.id} interview={interview} />
-              ))}
-            </Stack>
-          )}
-        </Tabs.Tab>
-
-        {/* <Tabs.Tab label="Salaries">COMING SOON</Tabs.Tab> */}
-      </Tabs>
+              {data.company.interviews && (
+                <Stack>
+                  {data.company.interviews.map(interview => (
+                    <InterviewItem key={interview.id} interview={interview} />
+                  ))}
+                </Stack>
+              )}
+            </Tabs.Tab>
+          </Tabs>
+        </Grid.Col>
+      </Grid>
 
       {isUser && (
         <>

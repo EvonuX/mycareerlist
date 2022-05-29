@@ -65,7 +65,7 @@ export interface Interview {
   hr: string
   technical: string
   duration: number
-  difficulty: string
+  difficulty: number
   offer: string
   rating: number
   companyId: string

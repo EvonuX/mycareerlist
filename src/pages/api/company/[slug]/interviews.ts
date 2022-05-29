@@ -17,6 +17,7 @@ export default async function handler(
       data: {
         ...req.body,
         userId: session.userId,
+        difficulty: Number(req.body.difficulty),
         duration: Number(req.body.duration)
       }
     })
