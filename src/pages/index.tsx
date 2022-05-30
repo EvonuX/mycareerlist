@@ -719,6 +719,7 @@ export const getStaticProps: GetStaticProps = async () => {
   })
 
   return {
+    revalidate: 21600,
     props: {
       jobs,
       companies,
