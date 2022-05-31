@@ -14,6 +14,7 @@ import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
+import { usePlausible } from 'next-plausible'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -36,6 +37,8 @@ interface IProps {
 }
 
 const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
+  const plausible = usePlausible()
+
   const { data: user } = useSession()
   const [jobSaved, setJobSaved] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -126,7 +129,25 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             />
           </TypographyStylesProvider>
 
-          <Button component="a" href={job.applyLink} target="_blank" mb="xl">
+          <Button
+            component="a"
+            href={job.applyLink}
+            target="_blank"
+            mb="xl"
+            onClick={(e: any) => {
+              e.preventDefault()
+
+              plausible('application', {
+                props: {
+                  title: job.title,
+                  slug: job.slug
+                }
+              })
+
+              // @ts-ignore
+              window.open(e.currentTarget.href, '_blank').focus()
+            }}
+          >
             Apply for this job
           </Button>
 
@@ -203,7 +224,24 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             </Paper>
 
             <Group mt="md" grow>
-              <Button component="a" href={job.applyLink} target="_blank">
+              <Button
+                component="a"
+                href={job.applyLink}
+                target="_blank"
+                onClick={(e: any) => {
+                  e.preventDefault()
+
+                  plausible('application', {
+                    props: {
+                      title: job.title,
+                      slug: job.slug
+                    }
+                  })
+
+                  // @ts-ignore
+                  window.open(e.currentTarget.href, '_blank').focus()
+                }}
+              >
                 Apply for job
               </Button>
 

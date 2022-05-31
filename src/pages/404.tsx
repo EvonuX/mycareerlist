@@ -1,10 +1,13 @@
 import { Box, Button, Center, Title } from '@mantine/core'
 import { NextLink } from '@mantine/next'
 import Layout from '~/components/Layout'
+import SEO from '~/components/SEO'
 
 const NotFoundPage = () => {
   return (
     <Layout>
+      <SEO title="Page not found" />
+
       <Center>
         <Box>
           <Box>

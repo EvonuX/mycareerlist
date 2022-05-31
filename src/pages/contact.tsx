@@ -13,6 +13,7 @@ import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
 import { useState } from 'react'
 import Layout from '~/components/Layout'
+import SEO from '~/components/SEO'
 import regex from '~/constants/regex'
 
 const Contact = () => {
@@ -59,6 +60,8 @@ const Contact = () => {
 
   return (
     <Layout>
+      <SEO title="Contact us" />
+
       <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]}>
         <Box>
           <Title order={1} mb="md">
