@@ -62,11 +62,11 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
           </Text>
 
           <Group grow={matches}>
-            <Button component={NextLink} href="/jobs/new">
+            <Button component={NextLink} href="/jobs/new" size="md">
               Post a job for $150
             </Button>
 
-            <Button variant="light" component={NextLink} href="/jobs">
+            <Button variant="light" component={NextLink} href="/jobs" size="md">
               View all jobs
             </Button>
           </Group>
@@ -639,7 +639,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const jobs = await prisma.job.findMany({
-    take: 6,
+    take: 8,
     select: {
       id: true,
       title: true,

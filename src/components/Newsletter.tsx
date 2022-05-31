@@ -10,10 +10,12 @@ import {
 import { useForm } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
+import { usePlausible } from 'next-plausible'
 import { useState } from 'react'
 import regex from '~/constants/regex'
 
 const Newsletter = () => {
+  const plausible = usePlausible()
   const [loading, setLoading] = useState(false)
 
   const form = useForm({
@@ -32,6 +34,8 @@ const Newsletter = () => {
 
     try {
       await axios.post('/api/signup', formData)
+
+      plausible('newsletter-signup')
 
       showNotification({
         title: 'You are subscribed!',
