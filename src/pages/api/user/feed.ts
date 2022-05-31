@@ -57,11 +57,9 @@ export default async function handler(
       select: {
         id: true,
         title: true,
-        description: true,
         slug: true,
         category: true,
         type: true,
-        applyLink: true,
         location: true,
         city: true,
         featured: true,

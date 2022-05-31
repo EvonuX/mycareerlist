@@ -330,11 +330,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     select: {
       id: true,
       title: true,
-      description: true,
       slug: true,
       category: true,
       type: true,
-      applyLink: true,
       location: true,
       city: true,
       company: {
