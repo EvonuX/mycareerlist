@@ -4,7 +4,6 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import type { Job } from '~/types/types'
 import { getCategory, getLocation, getType } from '~/utils/helpers'
-import noImage from '../../public/no-image.png'
 
 interface IProps {
   job: Job
@@ -40,7 +39,7 @@ const JobCard: FC<IProps> = ({ job }) => {
             }}
           >
             <Image
-              src={job.company.logo || noImage}
+              src={job.company.logo || '/no-image.png'}
               alt={job.company.name}
               layout="fill"
               objectFit="contain"

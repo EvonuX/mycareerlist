@@ -45,6 +45,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
 
   useEffect(() => {
     if (!user) {
+      setJobSaved(false)
       return
     }
 
@@ -56,12 +57,37 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   }, [job, user])
 
   const handleSave = async () => {
+    if (!user) {
+      showNotification({
+        title: 'You need to be logged in to save jobs',
+        message:
+          'Only logged in users can save jobs, log in to save this job post'
+      })
+
+      return
+    }
+
+    if (user?.userRole !== 'USER') {
+      showNotification({
+        title: 'Employers cannot save jobs',
+        message: ''
+      })
+
+      return
+    }
+
     setLoading(true)
 
     try {
       await axios.put('/api/job', {
         slug: job.slug,
         save: jobSaved
+      })
+
+      plausible('job-save', {
+        props: {
+          job: `${job.title} - ${job.company.name}`
+        }
       })
 
       const title = jobSaved ? 'Job saved' : 'Job no longer saved'
@@ -122,7 +148,13 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             )}
           </Group>
 
-          <TypographyStylesProvider>
+          <TypographyStylesProvider
+            sx={theme => ({
+              a: {
+                color: `${theme.colors.blue[6]} !important`
+              }
+            })}
+          >
             <Text
               dangerouslySetInnerHTML={{ __html: job.description as string }}
               sx={{ wordBreak: 'break-word' }}
@@ -137,10 +169,9 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             onClick={(e: any) => {
               e.preventDefault()
 
-              plausible('application', {
+              plausible('job-application', {
                 props: {
-                  title: job.title,
-                  slug: job.slug
+                  title: `${job.title} - ${job.company.name}`
                 }
               })
 
@@ -182,7 +213,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                 mb="md"
               >
                 <Image
-                  src={job.company.logo || 'https://picsum.photos/700/700'}
+                  src={job.company.logo || '/no-image.png'}
                   alt={job.title}
                   layout="fixed"
                   width={100}
@@ -231,10 +262,9 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                 onClick={(e: any) => {
                   e.preventDefault()
 
-                  plausible('application', {
+                  plausible('job-application', {
                     props: {
-                      title: job.title,
-                      slug: job.slug
+                      title: `${job.title} - ${job.company.name}`
                     }
                   })
 
@@ -245,15 +275,9 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                 Apply for job
               </Button>
 
-              {user?.userRole === 'USER' && (
-                <Button
-                  variant="outline"
-                  loading={loading}
-                  onClick={handleSave}
-                >
-                  {jobSaved ? 'Save job' : 'Unsave job'}
-                </Button>
-              )}
+              <Button variant="outline" loading={loading} onClick={handleSave}>
+                {!user ? 'Save job' : jobSaved ? 'Save job' : 'Unsave job'}
+              </Button>
             </Group>
           </Box>
         </Grid.Col>

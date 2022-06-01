@@ -37,7 +37,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
   return (
     <Layout>
       <SEO
-        title="My Career List"
+        title="Find your next job"
         description="My Career List is the most advanced job search and job posting platform. Receive company insights, learn about interview experiences and salaries."
       />
 

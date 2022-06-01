@@ -26,7 +26,6 @@ import type { Company } from '~/types/types'
 import { fetcher, formatDate, getLocation } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 import NotFoundPage from '../404'
-import noImage from '../../../public/no-image.png'
 
 const ReviewForm = dynamic(() => import('~/components/ReviewForm'), {
   ssr: false
@@ -101,7 +100,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                 }}
               >
                 <Image
-                  src={data.company.logo || noImage}
+                  src={data.company.logo || '/no-image.png'}
                   alt={data.company.name}
                   layout="fill"
                   objectFit="contain"
@@ -190,7 +189,13 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                 Company description
               </Title>
 
-              <TypographyStylesProvider>
+              <TypographyStylesProvider
+                sx={theme => ({
+                  a: {
+                    color: `${theme.colors.blue[6]} !important`
+                  }
+                })}
+              >
                 <Text
                   dangerouslySetInnerHTML={{
                     __html: company.description as string

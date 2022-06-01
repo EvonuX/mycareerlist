@@ -21,7 +21,7 @@ const SEO = ({
   title = 'My Career List - The Global Job Posting Platform',
   description = 'Easiest way to find your next job.',
   url = process.env.NEXT_PUBLIC_BASE_URL,
-  image = 'https://secure.gravatar.com/avatar/16468e56307e475c543a356a7f42814d?s=30',
+  image = '/logo-regular.png',
   noindex
 }: IProps) => {
   const seoTitle = `${title} - My Career List`.slice(0, 59)

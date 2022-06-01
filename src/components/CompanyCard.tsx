@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 import type { Company } from '~/types/types'
-import noImage from '../../public/no-image.png'
 
 interface IProps {
   company: Company
@@ -25,7 +24,7 @@ const CompanyCard: FC<IProps> = ({ company }) => {
           mb={5}
         >
           <Image
-            src={company.logo || noImage}
+            src={company.logo || '/no-image.png'}
             alt={company.name}
             layout="fixed"
             width={80}
