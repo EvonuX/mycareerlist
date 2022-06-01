@@ -9,7 +9,11 @@ import {
 export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
 export const stripHtml = (html: string) => {
-  return html.replace(/<[^>]+>/gm, '').replace(/([\r\n]+ +)+/gm, '')
+  return html
+    .replace(/<[^>]+>/gm, '')
+    .replace(/([\r\n]+ +)+/gm, '')
+    .replace(/([A-Z])/g, ' $1')
+    .trim()
 }
 
 export const formatDate = (date: any) => {
