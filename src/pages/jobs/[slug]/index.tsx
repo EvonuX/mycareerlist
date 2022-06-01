@@ -24,7 +24,7 @@ import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 import ShareButtons from '~/components/ShareButtons'
 import type { Job } from '~/types/types'
-import { getCategory, getLocation, getType } from '~/utils/helpers'
+import { formatDate, getCategory, getLocation, getType } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
@@ -134,9 +134,11 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
 
       <Grid>
         <Grid.Col md={9}>
-          <Title order={1}>{job.title}</Title>
+          <Title order={1} mb="lg">
+            {job.title}
+          </Title>
 
-          <Group my="lg">
+          <Group mb="sm">
             <Badge radius="xs">{getLocation(job.city, job.location)}</Badge>
             <Badge radius="xs">{getType(job.type)}</Badge>
             <Badge radius="xs">{getCategory(job.category)}</Badge>
@@ -147,6 +149,12 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
               </Badge>
             )}
           </Group>
+
+          {job.createdAt && (
+            <Text color="dimmed" size="xs">
+              Posted on: {job.createdAt}
+            </Text>
+          )}
 
           <TypographyStylesProvider
             sx={theme => ({
@@ -166,6 +174,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             href={job.applyLink}
             target="_blank"
             mb="xl"
+            size="md"
             onClick={(e: any) => {
               e.preventDefault()
 
@@ -347,6 +356,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       city: true,
       expired: true,
       salaryRange: true,
+      createdAt: true,
       savedBy: {
         select: {
           id: true
@@ -409,7 +419,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      job,
+      job: {
+        ...job,
+        createdAt: formatDate(job.createdAt)
+      },
       relatedJobs
     }
   }

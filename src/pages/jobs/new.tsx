@@ -227,7 +227,10 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               breakpoints={[{ maxWidth: 768, cols: 1 }]}
               mb="md"
             >
-              <InputWrapper label="Salary Range">
+              <InputWrapper
+                label="Salary Range"
+                description="Adding a salary range can increase your reach"
+              >
                 <SimpleGrid cols={2} mb="md">
                   <NumberInput
                     aria-label="Min"

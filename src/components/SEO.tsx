@@ -19,7 +19,7 @@ const structuredDataWebSite = {
 
 const SEO = ({
   title = 'My Career List - The Global Job Posting Platform',
-  description = 'Easiest way to find your next job.',
+  description = 'Save jobs to your account, get alerted for new jobs. Work for famous brands, from home! Software engineer, designer, project manager, customer success, and much much more!',
   url = process.env.NEXT_PUBLIC_BASE_URL,
   image = '/logo-regular.png',
   noindex
