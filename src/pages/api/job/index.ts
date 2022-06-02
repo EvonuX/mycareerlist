@@ -103,6 +103,7 @@ const createJob = async (body: any, userId: string) => {
       applyLink: body.applyLink,
       companyId: body.companyId,
       draft: true,
+      createdAt: new Date().toISOString(),
       salaryRange,
       userId
     },

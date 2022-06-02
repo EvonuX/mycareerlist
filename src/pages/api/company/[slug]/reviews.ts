@@ -15,6 +15,7 @@ export default async function handler(
   if (req.method === 'POST') {
     const newReview = await prisma.review.create({
       data: {
+        createdAt: new Date().toISOString(),
         userId: session.userId,
         ...req.body
       }

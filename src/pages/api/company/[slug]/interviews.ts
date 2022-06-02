@@ -16,6 +16,7 @@ export default async function handler(
     const newInterview = await prisma.interview.create({
       data: {
         ...req.body,
+        createdAt: new Date().toISOString(),
         userId: session.userId,
         difficulty: Number(req.body.difficulty),
         duration: Number(req.body.duration)

@@ -77,6 +77,7 @@ export default async function handler(
             userId: userId,
             featured: Math.random() > 0.5,
             draft: false,
+            createdAt: new Date().toISOString(),
             company: {
               connect: {
                 name: job.cName

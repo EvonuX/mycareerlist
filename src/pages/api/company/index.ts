@@ -55,6 +55,7 @@ export default async function handler(
     const newCompany = await prisma.company.create({
       data: {
         userId: session.userId,
+        createdAt: new Date().toISOString(),
         ...req.body
       },
       select: {

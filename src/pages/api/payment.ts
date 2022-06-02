@@ -21,7 +21,8 @@ export default async function handler(
         data: {
           orderID: req.body.id,
           userId: session.userId,
-          amount: req.body.total
+          amount: req.body.total,
+          createdAt: new Date().toISOString()
         }
       })
 

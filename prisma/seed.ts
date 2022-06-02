@@ -49,7 +49,8 @@ async function seed() {
           slug: slug,
           city: company.location,
           logo: company.logo,
-          userId: userId
+          userId: userId,
+          createdAt: new Date().toISOString()
         },
         update: {
           name: company.name
@@ -82,6 +83,7 @@ async function seed() {
           userId: userId,
           featured: Math.random() > 0.5,
           draft: false,
+          createdAt: new Date().toISOString(),
           company: {
             connect: {
               name: job.cName
