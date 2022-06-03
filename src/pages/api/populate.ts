@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const { companies, jobs } = req.body
+    const { companies, jobs, reviews } = req.body
 
     if (!companies || !jobs) {
       return res.status(401).json({ success: false })
@@ -87,6 +87,56 @@ export default async function handler(
         })
 
         console.log(`Create job: ${job.title} at ${job.cName}`)
+      }
+
+      if (reviews) {
+        for (let i = 0; i < reviews.length; i++) {
+          const review = reviews[i]
+
+          if (review.reviews.length > 0) {
+            const company = await prisma.company.findUnique({
+              where: {
+                name: review.company
+              },
+              select: {
+                name: true,
+                reviews: {
+                  select: {
+                    id: true
+                  }
+                }
+              }
+            })
+
+            if (company && company.reviews.length === 0) {
+              for (const rev of review.reviews) {
+                await prisma.review.create({
+                  data: {
+                    title: rev.title,
+                    content: rev.content,
+                    rating: rev.rating,
+                    status: rev.status,
+                    pros: rev.pros,
+                    cons: rev.cons,
+                    verified: Math.random() > 0.5,
+                    user: {
+                      connect: {
+                        id: userId
+                      }
+                    },
+                    company: {
+                      connect: {
+                        name: company.name
+                      }
+                    }
+                  }
+                })
+              }
+
+              console.log(`Created reviews for: ${company.name}`)
+            }
+          }
+        }
       }
 
       await res.unstable_revalidate('/')

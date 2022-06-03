@@ -1,170 +1,142 @@
 [
   {
-    "name": "Kin + Carta",
-    "description": "<p></p><p><span>A global consulting firm built for the 2020s, Kin + Carta makes the journey to becoming a digital business tangible, sustainable and profitable. At Kin + Carta, our difference comes down to a simple belief: Highly specialized talent can be connected without being diluted. We bring 1,600 specialists across four continents closer together, delivering end-to-end digital services via three integrated pillars: Kin + Carta Advise, a tech-centric management consultancy; Kin + Carta Create, a next-gen software engineering studio; and Kin + Carta Connect, a digital marketing agency. </span></p><p><br></p><p><span>By building digital twins to replace existing analog processes, designing and launching new digital products and services, and unlocking future innovation through modernisation initiatives, Kin + Carta seamlessly integrates the strategic consulting, software engineering and marketing technology needed to help businesses Make It Happen.  </span></p><p><br></p><p><span>Headquartered out of London and Chicago, clients have access to a global ecosystem of 1,600 strategists, engineers and creatives across four continents.</span></p><p></p>",
-    "website": "http://www.kinandcarta.com/",
+    "name": "FireMon",
+    "description": "<p></p><p><span>FireMon is the only agile network security policy platform for firewalls and cloud security groups providing the fastest way to streamline network security policy management, which is one of the biggest impediments to IT and enterprise agility. Since creating the first-ever network security policy management solution, FireMon has delivered command and control over complex network security infrastructures for more than 1,700 customers located in nearly 70 countries around the world.</span></p><p></p>",
+    "website": "https://www.firemon.com/",
     "location": "US",
-    "logo": "https://cdn.remote.work/companies/kY0nJWbUpDYYuH4ZDDFm1G39ZFKU3kvq5J4klRWj.jpg"
+    "logo": "https://cdn.remote.work/companies/8wvyb5khxmHmiCLAXlA7xPKvxASCgeBxlqEHhHrd.jpg"
   },
   {
-    "name": "SAP",
-    "description": "<p></p><p><span>At SAP, our purpose is to help the world run better and improve people’s lives. Our promise is to innovate to help our customers run at their best. SAP is committed to helping every customer become a best-run business. We engineer solutions to fuel innovation, foster equality, and spread opportunity across borders and cultures. Together, with our customers and partners, we can transform industries, grow economies, lift up societies, and sustain our environment. #TheBestRun</span></p><p><br></p><p><span>SAP privacy statement for followers: www.sap.com/sps</span></p><p></p>",
-    "website": "http://www.sap.com/",
-    "location": "BW",
-    "logo": "https://cdn.remote.work/companies/wKECaDdDujSHb6U3qieChFMUTMA5XpyrNu4UiCYe.jpg"
-  },
-  {
-    "name": "GEICO",
-    "description": "<p></p><p><span>We know you know GEICO, but we want you to know that with us, you’ll find a rewarding career no matter which path you take. Our over 40,000 associates have been unexpectedly delighted to find that their jobs have turned into illuminating careers. You know us for insurance. Get to know us for great careers, too.</span></p><p><br></p><p><span>Just the Stats on GEICO</span></p><p><br></p><p><span>■ 16 million auto policyholders (and growing!)</span></p><p><span>■  Insures more than 20 million vehicles </span></p><p><span>■  Second-largest private passenger auto insurer in the United States (A.M. Best)</span></p><p><span>■  Employs more than 40,000 associates </span></p><p><span>■  Maintains 16+ offices around the country </span></p><p><span>■  Provides 24-hour service, 7 days a week, 365 days a year</span></p><p><br></p><p><span>GEICO's seven operating principles help create a workplace in which our associates can thrive. We're looking for great associates that share our ability to incorporate these values into our corporate culture and day-to-day business activities!</span></p><p><br></p><p><span>■ Respect, support and provide opportunity for all associates</span></p><p><span>■ Be fanatics for outstanding customer service</span></p><p><span>■ Be the low-cost provider</span></p><p><span>■ Operate with uncompromising integrity</span></p><p><span>■ Maintain a disciplined balance sheet</span></p><p><span>■ Make an underwriting profit while achieving optimum growth</span></p><p><span>■ Invest for total return</span></p><p><br></p><p><span>Career Opportunities at GEICO</span></p><p><br></p><p><span>■ Jobs in Sales, Customer Service and Claims in most major locations</span></p><p><span>■ Auto Damage Adjuster careers in most states </span></p><p><span>■ Information Technology jobs utilizing cutting edge technologies </span></p><p><span>■ Careers in Actuary, Product Management and Underwriting Research</span></p><p><span>■ Fast-track Leadership Programs for college graduates</span></p><p><span>■ Legal careers in headquarters and in many states</span></p><p><br></p><p><span>GEICO Has Office Locations In</span></p><p><br></p><p><span>■ Chevy Chase, Maryland (HQ)</span></p><p><span>■ Fredericksburg, Virginia</span></p><p><span>■ Woodbury, New York</span></p><p><span>■ Macon, Georgia</span></p><p><span>■ San Diego, California</span></p><p><span>■ Dallas, Texas</span></p><p><span>■ Lakeland, Florida</span></p><p><span>■ Marlton, New Jersey</span></p><p><span>■ Virginia Beach, Virginia</span></p><p><span>■ Buffalo, New York</span></p><p><span>■ Tucson, Arizona</span></p><p><span>■ Indianapolis, Indiana</span></p><p><span>■ North Liberty, Iowa</span></p><p><span>■ Honolulu, Hawaii</span></p><p><span>■ Houston, Texas</span></p><p><span>■ Seattle, Washington</span></p><p><span>■ Kansas City, Kansas</span></p><p></p>",
-    "website": "http://www.geico.jobs/",
+    "name": "Innovien Solutions",
+    "description": "<p></p><p><span>High-Performers. Supercharged Solutions. On-Demand Talent.</span></p><p><br></p><p><span>Innovien Solutions is in the business of catapulting technology leaders and IT professionals to their next level of performance while making them look good in the process.</span></p><p><span> </span></p><p><span>We offer technology consulting, managed services, project implementation and staff augmentation for mid-sized to Fortune 500 companies.</span></p><p><span> </span></p><p><span>In an industry rife with reputation problems, we aim to please, developing deep and meaningful relationships with our clients and teams in order to serve and steward with trust. Working as partners, we're intentional and proactive, always looking for the next opportunity and the next win. Not one to rest on our laurels, were committed to consistency and we're disruptors of complacency. Obsessed with delivering remarkable client service, we don't forget the fundamentals, because the small stuff matters, too.</span></p><p></p>",
+    "website": "http://www.innovien.com/",
     "location": "US",
-    "logo": "https://cdn.remote.work/companies/ev01jrXlg9lkMPg6VORKMuVXlJTQWuWXNzyw44oP.jpg"
+    "logo": "https://cdn.remote.work/companies/MTvuuVfZEmlT6syQ5WvTTGOIuEMXtkwQyQFSt2jb.jpg"
   },
   {
-    "name": "McAfee",
-    "description": "<p>McAfee is a global organization with a 30-year history and a brand known the world over for innovation, collaboration and trust. McAfee’s historical accomplishments are founded upon decades of threat and vulnerability research, product innovation, practical application and a brand which individuals, organizations and governments have come to trust.</p>",
-    "website": "https://www.mcafee.com/",
+    "name": "Provi",
+    "description": "<p></p><p><span>Provi simplifies the beverage industry in the increasingly saturated business of booze. As a communication platform and open marketplace, Provi empowers thousands of buyers, distributors, and brands to streamline their operations and make better business decisions.</span></p><p></p>",
+    "website": "https://provi.com/",
     "location": "US",
-    "logo": "https://cdn.remote.work/companies/336IL8FwPfe8zYX1a5DN4ijZlFZnZCbX75vG4iOm.png"
+    "logo": "https://cdn.remote.work/companies/BjBfDC7DP2CezaQID6LnK7FwrmlbaQSoEqxPOBwk.jpg"
   },
   {
-    "name": "SmartCommerce",
-    "description": "<p></p><p><span>SmartCommerce empowers marketing teams at CPG brands like P&amp;G, Unilever and Nestle to own and drive their customers'​ buying experience.  </span></p><p><span>SmartCommerce's Click2Cart functionality lets shoppers drop products into digital store carts from anywhere - the brand's website, social media, email, ads, influencer blogs, and more.</span></p><p></p>",
-    "website": "http://www.smartcommerce.co/",
+    "name": "Level Ex",
+    "description": "<p></p><p>Level Ex® (a Brainlab company) creates industry-leading video games for physicians. The company uses state-of-the-art video game technology and cognitive neuroscience to capture the challenges of practicing medicine—revolutionizing the way healthcare professionals advance their clinical skills, earn CME, and keep up-to-speed on challenging cases, new medical devices, drug therapies, and clinical best practices. The company's medical video games run on phones, tablets, and web browsers with over 700,000 healthcare professionals playing its games. Top 20 pharmaceutical and medical device companies, national medical societies, and government organizations including NASA leverage Level Ex’s acclaimed platform for education and training.</p><p><br></p><p></p>",
+    "website": "http://www.levelex.com/",
     "location": "US",
-    "logo": "https://cdn.remote.work/companies/Obqog3JGg46nSEr5xZAOP5eWsaqjnLeXFvnfx1uU.png"
+    "logo": "https://cdn.remote.work/companies/gBrKlhdvF5KItYPAac8d8tf5YuWop4iVXot8wKRF.jpg"
   },
   {
-    "name": "bttr",
-    "description": "<p></p><p><span>We teach brands to walk and talk for tomorrow. It’s our craft. One that demands relevant solutions for a savvy consumer. We strategize, campaign and influence, tapping into those cultural truths that shape your business.</span></p><p></p>",
-    "website": "http://www.bttr-la.com/",
+    "name": "Q-Centrix",
+    "description": "<p></p><p><span>Q-Centrix is a quality data management solutions provider that comprehensively partners with health care providers to measurably improve the safety and quality of care they deliver while reducing costs. Combining modern technology with a team of top quality information experts throughout the country, we process in excess of 2 million quality data transactions annually.</span></p><p><br></p><p><span>Core Measures ▪ Registries ▪ Concurrent Review ▪ Mortality Review Infection Prevention ▪ Peer Review</span></p><p></p>",
+    "website": "http://q-centrix.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/oxpxTRF8KdSOZyoYzjp7E2UO2cd6aneJyiEO1sIb.jpg"
+  },
+  {
+    "name": "UKG",
+    "description": "<p></p><p>At UKG (Ultimate Kronos Group), Our Purpose Is People. Built from a merger that created one of the largest cloud companies in the world, UKG believes organizations succeed when they focus on their people. As a leading global provider of HCM, payroll, HR service delivery, and workforce management solutions, UKG’s award-winning Pro, Dimensions, and Ready solutions help tens of thousands of organizations across geographies and in every industry drive better business outcomes, improve HR effectiveness, streamline the payroll process, and help make work a better, more connected experience for everyone. With more than 12,000 employees around the globe, UKG’s inclusive workplace culture has led to numerous awards, including consecutive years ranked as one of Fortune’s 100 Best Companies to Work For. To learn more, visit www.ukg.com.</p><p><br></p><p></p>",
+    "website": "https://www.ukg.com/",
+    "location": "Not Listed",
+    "logo": "https://cdn.remote.work/companies/xTAIRN3HCE4Kf3xKWqm5Agx7RALjCHlyjW6uYfzH.jpg"
+  },
+  {
+    "name": "InfoTrust",
+    "description": "<p></p><p><span>InfoTrust is a digital analytics consulting, data governance, and technology company with a broad range of Google Partner Certifications. Our team works with many of the largest brands in the world. From San Francisco to Dubai, InfoTrust specializes in online measurement architecture for multi-brand companies, breaking down silos and validating data to ensure teams have the confidence to make data-backed decisions for their business.</span></p><p><br></p><p><span>InfoTrust is a certified Google Marketing Platform Sales Partner and Google Cloud Partner.</span></p><p><br></p><p><span>Our product division is the engineering team behind Tag Inspector, a tag audit platform designed for marketers who manage large sites or multi-brand enterprises.</span></p><p><br></p><p><span>Learn more about us at infotrust.com and check out our open positions at infotrust.com/careers.</span></p><p></p>",
+    "website": "https://infotrust.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/tFEqdJfZ1zZm4vB2uzgwTv7xcOPBbnEBXpCz180N.png"
+  },
+  {
+    "name": "Metova",
+    "description": "<p></p><p><span>Metova is a privately held leading technology company creating custom world-class mobile, web, and Internet of Things technology services for customers looking to respond to a disruption in their industry or looking to make waves as the disruptor.</span></p><p><br></p><p><span>We build amazing things for companies that disrupt and innovate, have been building custom software solutions since 2006, and can help anyone do the same.</span></p><p><br></p><p><span>We help companies transform their business through technology to meet the growing expectations of the customers they have and the customers they want. By helping identify their needs, we can define and build the experiences they expect, align with business goals to streamline workflows, and increase revenues while delighting customers.</span></p><p></p>",
+    "website": "http://metova.com/",
+    "location": "http://metova.com/",
+    "logo": "https://cdn.remote.work/companies/1gOb5QkDJdKId7ghpRJLCZeubYBpcC8O263qgLPX.png"
+  },
+  {
+    "name": "Allscripts",
+    "description": "<p></p><p>Allscripts (NASDAQ: MDRX) is a leader in healthcare information technology solutions that advance clinical, financial and operational results. Our innovative solutions connect people, places and data across an Open, Connected Community of Health™. Connectivity empowers caregivers to make better decisions and deliver better care for healthier populations. To learn more, visit&nbsp;www.allscripts.com, Twitter, YouTube and blog.allscripts.com.</p><p><br></p><p></p>",
+    "website": "http://www.allscripts.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/xrSiPBqallHgV5Yv1M6sGtHorzVl1kNnWASOuU1V.jpg"
+  },
+  {
+    "name": "Litmus",
+    "description": "<p></p><p>At Litmus, we know the importance of continuous innovation. By staying in front of industry trends, we are able to provide cutting edge solutions for marketers around the world. With the latest release, simplify your workflow, create more effective emails, and get valuable insights that can inform and improve the results of your other marketing channels—all within one, seamless view. Major global brands across every industry and vertical trust Litmus to make email better and easier than ever, including 9 of the top 10 ecommerce brands, 7 of the top 10 technology companies, and 23 of the top 25 US ad agencies. Backed by Spectrum Equity, the new, redesigned Litmus makes it easier than ever for teams to quickly organize, build, test, and review emails in one centralized application, streamlining the production process and improving visibility and collaboration.</p><p></p>",
+    "website": "http://litmus.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/3fgTUxeid2uV6IP2fuTN8TLMPvJBhuSw7NK76zzv.png"
+  },
+  {
+    "name": "Zynga",
+    "description": "<p></p><p>Zynga was founded in 2007 with the vision that play would become one of the core activities on the Internet. We pioneered social games with the belief that if we could make games simple, accessible and social the world would start playing. We are excited that games have grown to become the second most popular activity by time spent, even surpassing email. But we have a lot of hard work, innovation and growth ahead of us to create a future where social gaming is a daily habit for everyone.</p><p><br></p><p></p>",
+    "website": "http://www.zynga.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/uC1CK8yL893teuUL8KG2pj2YfnFiUoQ0W1s73lcH.jpg"
+  },
+  {
+    "name": "Lumen",
+    "description": "<p></p><p><span>We are a global company of over 40,000 professionals, dedicated to empowering businesses to produce amazing things. Driven by the challenges and opportunities of the 4th Industrial Revolution, we’re helping to change how people interact and how companies acquire, analyze and act on data with flexible, intelligent, secure and collaborative solutions built for the next generation of business.</span></p><p></p>",
+    "website": "https://www.lumen.com/en-us/home.html",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/oY3FNXN04As7GA77JXNCPLuYuIx9Y0MxFDoMWhPb.jpg"
+  },
+  {
+    "name": "Highmark",
+    "description": "<p></p><p>Highmark Inc. is among the ten largest health insurers in the United States and is the fourth-largest Blue Cross and Blue Shield-affiliated company. Highmark and its diversified businesses and affiliates operate health insurance plans in Pennsylvania, Delaware and West Virginia that serve 5.2 million members. Its diversified health businesses serve group customer and individual health needs across the United States through dental insurance, vision care and other related health businesses. Highmark is an independent licensee of the Blue Cross and Blue Shield Association, an association of independent Blue Cross and Blue Shield companies. For more information, visit www.highmark.com.</p><p><br></p><p></p>",
+    "website": "http://www.highmark.com/",
+    "location": "Not Listed",
+    "logo": "https://cdn.remote.work/companies/Xw2ASpBELoZSLRUWzWmGDEH4SiDTol28kdQs5VuD.png"
+  },
+  {
+    "name": "Relativity",
+    "description": "<p></p><p>At Relativity, we make software to help users organize data, discover the truth, and act on it. Our platform is used by more than 13,000 organizations around the world to manage large volumes of data and quickly identify key issues during litigation, internal investigations, and compliance operations with SaaS platform RelativityOne and Relativity Trace. Relativity has users in 48+ countries from organizations, including the U.S. Department of Justice, and 199 of the Am Law 200. Relativity has been named one of Chicago's Top Workplaces by the Chicago Tribune for nine consecutive years.</p><p><br></p><p></p>",
+    "website": "http://www.relativity.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/LBvbQwK4z78wGm46ULfAcC1mwlsN0MiyIfEZGipU.png"
+  },
+  {
+    "name": "Thermo Fisher Scientific",
+    "description": "<p></p><p><span>Thermo Fisher Scientific Inc. (NYSE: TMO) is the world leader in serving science, with revenues of more than $24 billion and approximately 70,000 employees globally. Our mission is to enable our customers to make the world healthier, cleaner and safer. We help our customers accelerate life sciences research, solve complex analytical challenges, improve patient diagnostics, deliver medicines to market and increase laboratory productivity. Through our premier brands – Thermo Scientific, Applied Biosystems, Invitrogen, Fisher Scientific and Unity Lab Services – we offer an unmatched combination of innovative technologies, purchasing convenience and comprehensive services. For more information, please visit www.thermofisher.com</span></p><p></p>",
+    "website": "https://www.thermofisher.com/",
+    "location": "MA",
+    "logo": "https://cdn.remote.work/companies/M2yL74oFCXPthQNdL6n0SwGxBjfj13oJ4oLHwDDz.png"
+  },
+  {
+    "name": "Pinterest",
+    "description": "<p></p><p><span>Pinterest's mission is to bring everyone the inspiration to create a life they love. It’s the biggest dataset of ideas ever assembled, with over 100 billion recipes, home hacks, style inspiration and other ideas to try. More than 440 million people around the world use Pinterest to dream about, plan and prepare for things they want to do in life.</span></p><p></p>",
+    "website": "https://www.pinterestcareers.com/",
+    "location": "California US",
+    "logo": "https://cdn.remote.work/companies/HNtwP418DsXt2JehpYlRJOLstkVQabas2xhg7Whx.jpeg"
+  },
+  {
+    "name": "Magellan Health",
+    "description": "<p></p><p><span>Magellan Health is a leader in managing the fastest growing, most complex areas of health, including special populations, complete pharmacy benefits and other specialty areas of healthcare. Magellan supports innovative ways of accessing better health through technology, while remaining focused on the critical personal relationships that are necessary to achieve a healthy, vibrant life. Magellan's customers include health plans and other managed care organizations, employers, labor unions, various military and governmental agencies and third-party administrators. For more information, visit MagellanHealth.com.</span></p><p><br></p><p><br></p><p></p>",
+    "website": "http://www.magellanhealth.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/jjeEQc1JIAT8xPFipduHvA8mc9iVl1SFIaXI8gLh.png"
+  },
+  {
+    "name": "Conduent",
+    "description": "<p>Conduent delivers mission-critical ​services and solutions on behalf of businesses and governments – creating exceptional outcomes for its clients and the millions of people who count on them. Through people, process and technology, Conduent solutions and services automate workflows, improve efficiencies, reduce costs and enable revenue growth. It’s why most Fortune 100 companies and over 500 government entities depend on Conduent every day to manage their essential interactions and move their operations forward.\n \nConduent’s differentiated services and solutions improve experiences for millions of people every day, including two-thirds of all insured patients in the U.S., 10 million employees who use its HR Services, and nearly nine million people who travel through toll systems daily. Conduent’s solutions deliver exceptional outcomes for its clients including $17 billion in savings from medical bill review of workers compensation claims, up to 40% efficiency increase in HR operations, and up to 40% improvement in processing costs, while driving higher end-user satisfaction.</p>",
+    "website": "https://www.conduent.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/ztRyntuamyOCdGJ9KtVNwZAB7qVLynr0UKY3XlLo.jpeg"
+  },
+  {
+    "name": "Jitterbit",
+    "description": "<p></p><p><span>Jitterbit is the API transformation company that accelerates innovation by combining the power of APIs and integration. The Jitterbit API integration platform enables companies to rapidly connect SaaS, on-premise and cloud applications and instantly infuse artificial intelligence into any business process. With Jitterbit, integration moves at the speed of business as needs evolve. Jitterbit has been in business for more than 10 years and 50,000 users trust Jitterbit to connect the digital systems they use every day. A leader in the Gartner Magic Quadrant for Enterprise Integration Platform-as-a-Service, Jitterbit is also ranked #1 in Customer Satisfaction for Cloud Data Integration on G2Crowd.</span></p><p></p>",
+    "website": "http://www.jitterbit.com/",
+    "location": "US",
+    "logo": "https://cdn.remote.work/companies/m9Eh0T5HwQFUEdwf3DvfQkY6eQ3Wbsyz0KCxIrNr.png"
+  },
+  {
+    "name": "VSP Global",
+    "description": "<p></p><p><strong>About Us</strong></p><p>At VSP Global, our vision is to provide access to affordable, high-quality eye care and eyewear to the world. VSP Global comprises five complementary businesses that combine eye care insurance, high-quality eyewear, lens and lens enhancements, ophthalmic technology, and connected experiences to strengthen the relationship between patients and their eye doctors. </p><p><br></p><p>Vision Care</p><p>VSP Vision Care provides global access to high-quality, affordable eye care and eyewear, partnering with more than 40,000 network doctors and nearly 90 million members worldwide.</p><p><br></p><p>Eyewear</p><p>Marchon® Eyewear is one of the world's largest designer manufacturers and distributors of quality eyewear and sun wear. Marchon includes Altair®, which supports independent optical retailers with an innovative approach to frame board management and desirable brands. </p><p><br></p><p>Optics</p><p>VSP Optics brings together ophthalmic technology and lab services to create custom lens solutions that meet the individual vision and lifestyle needs of millions of people every year.</p><p><br></p><p>Practice Solutions</p><p>Eyefinity is the industry leader in practice management and EHR software, offering solutions that integrate technology products and services, and help streamline the everyday complexities of managing a business.</p><p><br></p><p>Retail</p><p>VSP Retail creates connected consumer experiences designed to strengthen the relationship between patients and their eye doctors.</p><p><br></p><p>Eyes of Hope</p><p>Through Eyes of Hope, we support local communities around the globe through programs that bring access to eye care, eyewear, education, and disaster relief where they're needed most. Together with VSP network doctors, to date, VSP Global Eyes of Hope has provided access to no-cost eye care and eyewear for more than 2 million people in need worldwide.</p><p><br></p><p></p>",
+    "website": "http://www.vspglobal.com/",
     "location": "CA",
-    "logo": "https://cdn.remote.work/companies/xMpCY9yBwqA1ZQdj8bpIf517bADfFEW9rhS1mKoP.png"
-  },
-  {
-    "name": "Future PLC",
-    "description": "<p></p><p>Future is a global platform for specialist media with scalable, diversified brands. We connect people to their passions through the high-quality content we create, the innovative technology we pioneer and the engaging experiences we deliver.</p><p></p>",
-    "website": "https://www.futureplc.com/",
-    "location": "GB",
-    "logo": "https://cdn.remote.work/companies/9QsAa4mouzRm7zVpOJo7pZSxRdNL4gtNPGPw3jk8.png"
-  },
-  {
-    "name": "WebstaurantStore",
-    "description": "<p></p><p><span>Since our start in 2004, WebstaurantStore.com has succeeded in creating and fostering an innovative, easy-to-use website that meets the purchasing needs of foodservice professionals throughout the world. Our six warehouses located across the United States mean that we are able to serve both North American and international customers with great speed – many items located in our warehouses are ready to ship within one business day! </span></p><p></p>",
-    "website": "https://www.webstaurantstore.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/LYGxY6ODGTYvtgnxLf06LQnPxtnr8ypes6B2rurN.png"
-  },
-  {
-    "name": "Tetrate.io",
-    "description": "<p></p><p>Enterprise Service Mesh</p><p><br></p><p></p>",
-    "website": "http://www.tetrate.io/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/jBR60kNUsDudBg5fxwqDryoSo45MAfEMDrt0QrWv.jpeg"
-  },
-  {
-    "name": "Valvoline",
-    "description": "<p></p><p><span>Since its founding, Valvoline and its scientists have been innovating, creating and reinventing formulas for racing, high-mileage and synthetic recycled motor oils. To do this, we take pride in hiring the most innovative and creative minds and helping shape long-term careers. Explore our opportunities and take the step in joining us today for hands-on experience with Valvoline.</span></p><p></p>",
-    "website": "http://www.valvoline.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/vAPMXaRUrl2OPdPQPV08xo56FCIMQwepptyNNS8U.png"
-  },
-  {
-    "name": "Capgemini",
-    "description": "<p></p><p>Capgemini is a global leader in consulting, digital transformation, technology, and engineering services. The Group is at the forefront of innovation to address the entire breadth of clients’ opportunities in the evolving world of cloud, digital and platforms. Building on its strong 50-year heritage and deep industry-specific expertise, Capgemini enables organizations to realize their business ambitions through an array of services from strategy to operations. A responsible and multicultural company of 265,000 people in nearly 50 countries, Capgemini’s purpose is to unleash human energy through technology for an inclusive and sustainable future. With Altran, the Group reported 2019 combined global revenues of €17 billion. </p><p><br></p><p></p>",
-    "website": "https://www.capgemini.com/",
-    "location": "FR",
-    "logo": "https://cdn.remote.work/companies/6gHLkGlAwXPn0sMMdznTfYzSg3Ndesx5keBjd6EM.jpg"
-  },
-  {
-    "name": "New Incentives",
-    "description": "<p></p><p><span>Helping mothers vaccinate their babies against deadly diseases in Nigeria</span></p><p><br></p><p><span>We are recruiting: https://new-incentives.breezy.hr/</span></p><p></p>",
-    "website": "http://www.newincentives.org/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/ttrt1ZlbGtcJtdeYzlGN0g3LCF4nfU1pcLuclz4Z.jpg"
-  },
-  {
-    "name": "LPL Financial",
-    "description": "<p>LPL Financial is a leader in the retail financial advice market and the nation’s largest independent broker/dealer*. We serve independent financial advisors and financial institutions, providing them with the technology, research, clearing and compliance services, and practice management programs they need to create and grow thriving practices. LPL enables them to provide objective guidance to millions of American families seeking wealth management, retirement planning, financial planning and asset management solutions. LPL.com\n\nSecurities and Advisory Services offered through LPL Financial. A registered investment advisor, Member FINRA/SIPC.\n\nFollow us on Twitter @lpl.\n\n• Third party posts found on this profile do not reflect the views of LPL and have not been reviewed by LPL as to accuracy or completeness.</p>",
-    "website": "https://www.lpl.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/eN4HspIm2von77Mv7r0plIKjFBwbc8uvgfZvTrKh.png"
-  },
-  {
-    "name": "Tetrate.io",
-    "description": "<p></p><p>Enterprise Service Mesh</p><p><br></p><p></p>",
-    "website": "http://www.tetrate.io/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/jBR60kNUsDudBg5fxwqDryoSo45MAfEMDrt0QrWv.jpeg"
-  },
-  {
-    "name": "Regen Network",
-    "description": "<p>Regen Network is a community of actors engaging with ecological regeneration, ecological monitoring, verification, distributed computing and technology development, centered around Regen Ledger. Network members track specific changes of land, oceans and watersheds. By improving our understanding of ecosystems and enabling rewards for verified positive changes, Regen Network catalyses the regeneration of the earth's ecosystems.\n\nUsing distributed ledger technology, satellite remote sensing, and Ecological State Protocols, Regen Network monitors on-the-ground conditions and generates trusted attestations about ecological state. Regen Network provides an open platform designed specifically to run diverse applications such as Regenerative Carbon Credits, Supply Chain Transparency, Reforestation Monitoring, and investment vehicles such as Ecological Bonds. There may be nothing of more critical importance than the regeneration of global ecosystems. Regen Network brings together the tools and communities needed to incentivize actions aligned with planetary health.</p>",
-    "website": "https://www.regen.network/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/HWrzzNr0zm1NVYROLToHcLjznGGbkgYmwUjKwjHa.png"
-  },
-  {
-    "name": "Rockwell Automation",
-    "description": "<p></p><p><span>At Rockwell Automation, we connect the imaginations of people with the potential of technology to expand what is humanly possible, making the world more intelligent, more connected and more productive. </span></p><p><br></p><p><span>Throughout the world, our flagship Allen-Bradley® and Rockwell Software® product brands are recognized for innovation and excellence.</span></p><p></p>",
-    "website": "http://www.rockwellautomation.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/OffFDarJcLKucq1GybhCqvI82ilucxtE8uoB2iGu.png"
-  },
-  {
-    "name": "Leadfeeder",
-    "description": "<p></p><p><span>Leadfeeder is a website visitor analytics software that shows you the companies visiting your website, how they got there, and what pages they clicked. </span></p><p><br></p><p><span>Think of us like your lead generation, account-based marketing, and sales intelligence tool all rolled into one, like a burrito. </span></p><p><br></p><p><span>Simply install the Leadfeeder Tracker script in less than 5 minutes! The Leadfeeder Tracker will reveal up to 30% more companies in close to real-time (fresh leads every hour). </span></p><p><br></p><p><span>You can try Leadfeeder Premium free for 14 days (no credit card required).  </span></p><p><br></p><p><span>Plus, we integrate with multiple tools: </span></p><p><span>Google Analytics</span></p><p><span>MailChimp </span></p><p><span>Pipedrive</span></p><p><span>Salesforce</span></p><p><span>HubSpot</span></p><p><span>And, many more! </span></p><p><br></p><p><span>We are an international startup headquartered in Helsinki, Finland.</span></p><p></p>",
-    "website": "https://www.leadfeeder.com/",
-    "location": "FI",
-    "logo": "https://cdn.remote.work/companies/fGnNOvmo5U4aCdO9gD9SgCV3D2YlASW9CT9H8NPn.png"
-  },
-  {
-    "name": "LearnWorlds",
-    "description": "<p></p><p><span>LearnWorlds is a powerful, easy-to-use and reliable training solution for individuals and enterprises. A fully customizable, white-label solution to train employees and associates, educate customers, or sell online courses to a wide audience.</span></p><p><span>Our cloud-based e-learning platform offers Professionals, Entrepreneurs &amp; Training Managers a solution tailored to their specific needs and a team of experts to help achieve your goals.</span></p><p></p>",
-    "website": "https://www.learnworlds.com/corporate-training/",
-    "location": "CY",
-    "logo": "https://cdn.remote.work/companies/zmCWADA5MleRmuzT50aAPlXPprvYgdAD9lxuFx03.png"
-  },
-  {
-    "name": "BD",
-    "description": "<p></p><p><span>BD is one of the largest global medical technology companies in the world and is advancing the world of health by improving medical discovery, diagnostics and the delivery of care. The company supports the heroes on the frontlines of health care by developing innovative technology, services and solutions that help advance both clinical therapy for patients and clinical process for health care providers. BD and its 65,000 employees have a passion and commitment to help improve patient outcomes, improve the safety and efficiency of clinicians’ care delivery process, enable laboratory scientists to better diagnose disease and advance researchers’ capabilities to develop the next generation of diagnostics and therapeutics. BD has a presence in virtually every country and partners with organizations around the world to address some of the most challenging global health issues. By working in close collaboration with customers, BD can help enhance outcomes, lower costs, increase efficiencies, improve safety and expand access to health care. In 2017, BD welcomed C. R. Bard and its products into the BD family.</span></p><p></p>",
-    "website": "http://www.bd.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/zakygukOIOTxlcqwTH0As7W7ayLZ2VNgHkR6LJhk.jpg"
-  },
-  {
-    "name": "Turnitin",
-    "description": "<p></p><p><span>Turnitin is a global company dedicated to ensuring the integrity of education and meaningfully improving learning outcomes. For more than 20 years, Turnitin has partnered with educational institutions to promote honesty, consistency, and fairness across all subject areas and assessment types. Our products are used by educators to guide their students towards higher standards of integrity and by students, researchers and professionals to do their best, original work. </span></p><p><br></p><p><span>Turnitin has offices in Australia, India, Indonesia, Japan, Korea, Mexico, the Netherlands, the Philippines, Ukraine, the United Kingdom, and the United States. Over 15,000 academic institutions, publishers, and corporations use our services: Feedback Studio, Gradescope, iThenticate, Turnitin Originality, Turnitin Similarity and ExamSoft.  </span></p><p></p>",
-    "website": "http://www.turnitin.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/XiSmyymHYIBNHdZCeriJVYLiDpjQ12qHDqUbBm01.jpg"
-  },
-  {
-    "name": "Openly",
-    "description": "<p></p><p>Openly is proud to offer innovative, comprehensive homeowners insurance, wrapped in modern convenience.  We arm agents with the tools necessary to serve up a world class customer experience.</p><p><br></p><p></p>",
-    "website": "https://openly.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/fE0rpiTpAdtXmYzfDkWC6t8oNEsd2nqh58mx2s7n.jpeg"
-  },
-  {
-    "name": "WeTravel",
-    "description": "<p></p><p><span>WeTravel is proud to work with thousands of multi-day travel companies on all five continents, helping them convert their bookings faster and grow their business. With hundreds of millions in payments processed throughout our platform every year, let WeTravel be the right payment solution for your multi-day travel company.</span></p><p></p>",
-    "website": "http://www.wetravel.com/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/VPN50XXTiy9AOYJw05SRM3IzYtsPMcro5HhlKFYt.jpeg"
-  },
-  {
-    "name": "ioby",
-    "description": "<p></p><p><span>More than just crowdfunding. Community-led positive change.</span></p><p><br></p><p><span>ioby gives leaders the ability to organize all kinds of capital—cash, social networks, in-kind donations, volunteers, advocacy— to build real, lasting change from the ground up.  </span></p><p><br></p><p><span>Three ways we're different: </span></p><p><br></p><p><span>1. Fundraising support</span></p><p><span>ioby's high success rate for funded projects is rooted in a unique model of fundraising coaching. With ioby, you won't just put up a page, you'll work with our team to craft the most effective campaign, fundraising plan, timeline, and budget. We support and train leaders whether they are working on a $500, $5,000, or $50,000 goal.</span></p><p><br></p><p><span>2. Fiscal Sponsorship</span></p><p><span>Unlike other platforms, we support fully tax-deductible donations because we offer fiscal sponsorship to groups that are not established as a nonprofit. Our model encourages grassroots leadership regardless of incorporation status.</span></p><p><br></p><p><span>3. Community Building</span></p><p><span>ioby also believes in the power of offline connections. We can connect you with experts in subjects like urban planning, green infrastructure, and more for help implementing your project. And we hold regular in-person convenings and webinars so our community of changemakers can share knowledge, challenges and experiences.</span></p><p></p>",
-    "website": "http://ioby.org/",
-    "location": "US",
-    "logo": "https://cdn.remote.work/companies/iKeoM2SxPDqR4Not1Jbk79y6ct8a6Ao5KjAluzBL.png"
-  },
-  {
-    "name": "Qwilr",
-    "description": "<p></p><p><span>Create the perfect proposal, pitch, sales quote and more with Qwilr.  Our document design and automation tool brings outstanding visual polish, together with intelligent tracking, automation, and integrations. </span></p><p><br></p><p><span>Launched in 2014, Qwilr is loved by sales teams in over 50 markets around the world. It is backed by Point Nine Capital, Right Click Capital and Macdoch Ventures. Qwilr is headquartered in Sydney, Australia, but believes in finding the best talent globally and supports flexible and remote working.</span></p><p></p>",
-    "website": "http://qwilr.com/",
-    "location": "AU",
-    "logo": "https://cdn.remote.work/companies/BYIW2HnvLryV3AaeGbYC9L6nTwqz3EEsVqmvNuQo.jpeg"
+    "logo": "https://cdn.remote.work/companies/wd9wqqPH15XMingcMzBkA69wQZlkRtObqV5BUBxR.png"
   }
 ]
