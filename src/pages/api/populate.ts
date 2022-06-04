@@ -145,7 +145,7 @@ export default async function handler(
       await res.unstable_revalidate('/companies')
       await res.unstable_revalidate('/companies/*')
 
-      return res.status(200).json({ success: true })
+      return res.status(201).json({ success: true })
     } catch (err) {
       console.error(err)
       return res.status(500).json({ success: false })

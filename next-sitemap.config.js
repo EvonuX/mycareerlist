@@ -3,6 +3,7 @@ module.exports = {
   siteUrl: 'https://mycareerlist.com',
   generateRobotsTxt: true,
   changefreq: 'daily',
+  generateIndexSitemap: false,
   exclude: [
     '/account',
     '/account/*',
