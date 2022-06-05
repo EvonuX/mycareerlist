@@ -29,7 +29,8 @@ const userFeatures = [
       </Box>
     ),
     title: 'Your personal job feed',
-    description: 'Find positions that match your skills and interests'
+    description:
+      'Find positions that match your skills and interests in your account page'
   },
   {
     icon: (

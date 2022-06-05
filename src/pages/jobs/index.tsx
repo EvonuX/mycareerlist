@@ -31,10 +31,11 @@ const JobFilters = dynamic(() => import('~/components/JobFilters'), {
 
 interface IProps {
   jobs: Job[]
+  totalJobs: number
   cursor: string | undefined
 }
 
-const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
+const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
   const router = useRouter()
 
   const [query, setQuery] = useState('')
@@ -69,6 +70,10 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
   }, [observer])
 
   useEffect(() => {
+    if (!router.isReady) {
+      return
+    }
+
     const routerQuery = qs.stringify(router.query, {
       skipNull: true,
       skipEmptyString: true,
@@ -79,15 +84,23 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
     setQuery(routerQuery)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [router.isReady])
+
+  const jobsShown = data?.pages
+    .map(page => page.jobs.length)
+    .reduce((a, b) => a + b, 0)
 
   return (
     <Layout>
       <SEO title="All jobs" />
 
-      <Title order={1} mb="md">
+      <Title order={1} mb="xs">
         All jobs
       </Title>
+
+      <Text color="dimmed" size="sm" mb="md">
+        Showing {jobsShown} out of {totalJobs} jobs.
+      </Text>
 
       <Grid>
         <Grid.Col
@@ -121,6 +134,14 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
                   : null
               )}
           </Stack>
+
+          {data?.pages[0].jobs.length === 0 && (
+            <Stack align="center">
+              <Text weight="bold" size="lg">
+                No jobs found. Try changing the filters.
+              </Text>
+            </Stack>
+          )}
 
           <Stack align="center" my={20} ref={ref}>
             <Loader
@@ -174,6 +195,7 @@ const JobListing: NextPage<IProps> = ({ jobs, cursor }) => {
           position: 'fixed',
           bottom: 10,
           right: 10,
+          zIndex: 9,
           '@media (min-width: 768px)': { display: 'none' }
         }}
       >
@@ -215,9 +237,12 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
+  const totalJobs = await prisma.job.count()
+
   return {
     props: {
       jobs,
+      totalJobs,
       cursor: jobs.length > 0 ? jobs[jobs.length - 1].id : null
     }
   }

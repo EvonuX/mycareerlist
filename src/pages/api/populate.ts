@@ -9,9 +9,9 @@ export default async function handler(
   if (req.method === 'POST') {
     const { companies, jobs, reviews } = req.body
 
-    if (!companies || !jobs) {
-      return res.status(401).json({ success: false })
-    }
+    // if (!companies || !jobs) {
+    //   return res.status(401).json({ success: false })
+    // }
 
     try {
       // @ts-ignore
@@ -22,72 +22,72 @@ export default async function handler(
         select: { id: true }
       })
 
-      for (let i = 0; i < companies.length; i++) {
-        const company = companies[i]
+      // for (let i = 0; i < companies.length; i++) {
+      //   const company = companies[i]
 
-        const slug = slugify(company.name, {
-          lower: true,
-          strict: true,
-          trim: true,
-          replacement: '-'
-        })
+      //   const slug = slugify(company.name, {
+      //     lower: true,
+      //     strict: true,
+      //     trim: true,
+      //     replacement: '-'
+      //   })
 
-        await prisma.company.upsert({
-          where: {
-            name: company.name
-          },
-          create: {
-            name: company.name,
-            description: company.description.trim(),
-            website: company.website,
-            region: 'remote',
-            slug: slug,
-            city: company.location,
-            logo: company.logo,
-            userId: userId
-          },
-          update: {
-            name: company.name
-          }
-        })
+      //   await prisma.company.upsert({
+      //     where: {
+      //       name: company.name
+      //     },
+      //     create: {
+      //       name: company.name,
+      //       description: company.description.trim(),
+      //       website: company.website,
+      //       region: 'remote',
+      //       slug: slug,
+      //       city: company.location,
+      //       logo: company.logo,
+      //       userId: userId
+      //     },
+      //     update: {
+      //       name: company.name
+      //     }
+      //   })
 
-        console.log(`Created company: ${company.name}`)
-      }
+      //   console.log(`Created company: ${company.name}`)
+      // }
 
-      for (let i = 0; i < jobs.length; i++) {
-        const job = jobs[i]
+      // for (let i = 0; i < jobs.length; i++) {
+      //   const job = jobs[i]
 
-        const slug = slugify(`${job.title}-at-${job.cName}`, {
-          lower: true,
-          strict: true,
-          trim: true,
-          replacement: '-'
-        })
+      //   const slug = slugify(`${job.title}-at-${job.cName}`, {
+      //     lower: true,
+      //     strict: true,
+      //     trim: true,
+      //     replacement: '-'
+      //   })
 
-        await prisma.job.create({
-          data: {
-            title: job.title,
-            description: job.description.trim(),
-            slug: slug,
-            type: job.type.toLowerCase(),
-            category: job.category,
-            location: 'remote',
-            city: job.location,
-            applyLink: job.apply,
-            userId: userId,
-            featured: Math.random() > 0.5,
-            draft: false,
-            createdAt: new Date().toISOString(),
-            company: {
-              connect: {
-                name: job.cName
-              }
-            }
-          }
-        })
+      //   await prisma.job.create({
+      //     data: {
+      //       title: job.title,
+      //       description: job.description.trim(),
+      //       slug: slug,
+      //       type: job.type.toLowerCase(),
+      //       category: job.category,
+      //       location: 'remote',
+      //       city: job.location,
+      //       applyLink: job.apply,
+      //       userId: userId,
+      //       featured: Math.random() > 0.5,
+      //       draft: false,
+      //       createdAt: new Date().toISOString(),
+      //       company: {
+      //         connect: {
+      //           name: job.cName
+      //         }
+      //       }
+      //     }
+      //   })
 
-        console.log(`Create job: ${job.title} at ${job.cName}`)
-      }
+      //   console.log(`Create job: ${job.title} at ${job.cName}`)
+      // }
 
       if (reviews) {
         for (let i = 0; i < reviews.length; i++) {

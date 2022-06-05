@@ -220,7 +220,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                   <Title order={2}>Company reviews</Title>
 
                   {stats.reviews.count > 0 && (
-                    <Text mt="xs">Average rating: {stats.reviews.average}</Text>
+                    <Text mt="xs">
+                      Average rating: {stats.reviews.average.toFixed(2)}
+                    </Text>
                   )}
                 </Grid.Col>
 
@@ -283,7 +285,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                 >
                   <Box sx={{ textAlign: 'center' }}>
                     <Text size="lg" weight="bold">
-                      {stats.interviews.averageRating}
+                      {stats.interviews.averageRating.toFixed(2)}
                     </Text>
                     <Text>Average interview rating</Text>
                   </Box>
