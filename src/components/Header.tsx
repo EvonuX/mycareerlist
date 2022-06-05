@@ -6,7 +6,8 @@ import {
   Header as MantineHeader,
   Divider,
   Box,
-  useMantineColorScheme
+  useMantineColorScheme,
+  Text
 } from '@mantine/core'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
@@ -51,9 +52,25 @@ const Header: FC = () => {
       mb="md"
       sx={theme => ({ boxShadow: theme.shadows.xs })}
     >
+      <Box
+        sx={theme => ({
+          background: theme.colors.blue[7],
+          color: theme.colors.gray[2],
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingBlock: 2
+        })}
+      >
+        <Text size="sm" weight="bold" mr={5}>
+          LIMITED OFFER
+        </Text>
+        <Text size="sm">Post a job for FREE</Text>
+      </Box>
+
       <Container size="xl">
-        <Grid columns={2} align="center" py="md" grow>
-          <Grid.Col span={1} py={0}>
+        <Grid columns={2} align="center" py={0} grow>
+          <Grid.Col span={1} py="md">
             <Button
               variant="subtle"
               component={NextLink}
@@ -65,7 +82,7 @@ const Header: FC = () => {
             </Button>
           </Grid.Col>
 
-          <Grid.Col span={1} py={0} sx={{ textAlign: 'right' }}>
+          <Grid.Col span={1} py="md" sx={{ textAlign: 'right' }}>
             <Box
               sx={{
                 '@media screen and (max-width: 768px)': {

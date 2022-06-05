@@ -27,7 +27,7 @@ interface IProps {
 const Tokens: NextPage<IProps> = ({ job }) => {
   const router = useRouter()
 
-  const [total, setTotal] = useState('150')
+  const [total, setTotal] = useState('0')
   const [checked, setChecked] = useState(false)
 
   return (
@@ -59,7 +59,13 @@ const Tokens: NextPage<IProps> = ({ job }) => {
               }
             }}
           >
-            <Text mb="xs">Make the job featured, for an extra $50!</Text>
+            <Text mb="xs">
+              Make the job featured{' '}
+              <Text component="span" sx={{ textDecoration: 'line-through' }}>
+                , for an extra $50
+              </Text>
+              !
+            </Text>
 
             <List>
               <List.Item>
@@ -81,9 +87,9 @@ const Tokens: NextPage<IProps> = ({ job }) => {
                 setChecked(event.currentTarget.checked)
 
                 if (event.currentTarget.checked) {
-                  setTotal('200')
+                  setTotal('0')
                 } else {
-                  setTotal('150')
+                  setTotal('0')
                 }
               }}
             />

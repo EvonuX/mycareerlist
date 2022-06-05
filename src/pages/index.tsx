@@ -63,7 +63,8 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
           <Group grow={matches}>
             <Button component={NextLink} href="/jobs/new" size="md">
-              Post a job for $150
+              {/* Post a job for $150 */}
+              Post a job
             </Button>
 
             <Button variant="light" component={NextLink} href="/jobs" size="md">
