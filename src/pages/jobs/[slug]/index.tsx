@@ -123,6 +123,8 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
     }
   }
 
+  const applicationLink = `${job.applyLink}?ref=mycareerlist`
+
   return (
     <Layout>
       <SEO
@@ -171,7 +173,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
 
           <Button
             component="a"
-            href={job.applyLink}
+            href={applicationLink}
             target="_blank"
             mb="xl"
             size="md"
@@ -266,7 +268,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
             <Group mt="md" grow>
               <Button
                 component="a"
-                href={job.applyLink}
+                href={applicationLink}
                 target="_blank"
                 onClick={(e: any) => {
                   e.preventDefault()

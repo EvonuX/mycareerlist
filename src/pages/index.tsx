@@ -53,7 +53,15 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
           }}
         >
           <Title order={1} mb="md" sx={{ maxWidth: 500 }}>
-            The top modern job board for careers all over the globe.
+            <Text
+              component="span"
+              variant="gradient"
+              gradient={{ from: 'indigo', to: 'pink', deg: 45 }}
+              sx={{ fontSize: 'inherit' }}
+            >
+              The top modern job board
+            </Text>{' '}
+            for careers all over the globe.
           </Title>
 
           <Text mb="lg">

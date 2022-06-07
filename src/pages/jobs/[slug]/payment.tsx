@@ -194,10 +194,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   if (!job) {
     return {
-      redirect: {
-        destination: '/account?notFound=true',
-        permanent: false
-      }
+      notFound: true
     }
   }
 

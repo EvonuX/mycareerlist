@@ -7,9 +7,7 @@ export default async function handler(
   try {
     await res.unstable_revalidate('/')
     await res.unstable_revalidate('/jobs')
-    await res.unstable_revalidate('/jobs/*')
     await res.unstable_revalidate('/companies')
-    await res.unstable_revalidate('/companies/*')
 
     res.status(200).json({ success: true })
   } catch (err) {

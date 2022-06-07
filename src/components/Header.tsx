@@ -31,16 +31,15 @@ const Header: FC = () => {
     if (router.query.noPermissions) {
       showNotification({
         title: "You don't have access to this page",
-        message:
-          'Only employers can post new jobs. Log in to start posting jobs.',
-        color: 'yellow'
-      })
-    }
-
-    if (router.query.notFound) {
-      showNotification({
-        title: 'This page was not found',
-        message: 'Make sure to check your URL',
+        message: (
+          <Text
+            size="sm"
+            onClick={() => setOpened(true)}
+            sx={{ cursor: 'pointer' }}
+          >
+            Only employers can post new jobs. Log in to begin.
+          </Text>
+        ),
         color: 'yellow'
       })
     }
@@ -54,7 +53,7 @@ const Header: FC = () => {
     >
       <Box
         sx={theme => ({
-          background: theme.colors.blue[7],
+          backgroundColor: theme.colors.blue[7],
           color: theme.colors.gray[2],
           display: 'flex',
           alignItems: 'center',
