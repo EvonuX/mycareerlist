@@ -89,7 +89,7 @@ const CompanyListing: NextPage<IProps> = ({ initialData }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const companies = await prisma.company.findMany({
     select: {
       id: true,

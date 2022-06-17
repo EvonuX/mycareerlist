@@ -11,7 +11,7 @@ import {
   Title
 } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import qs from 'query-string'
@@ -38,7 +38,14 @@ interface IProps {
 const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
   const router = useRouter()
 
-  const [query, setQuery] = useState('')
+  const initialQuery = qs.stringify(router.query, {
+    skipNull: true,
+    skipEmptyString: true,
+    arrayFormat: 'comma',
+    arrayFormatSeparator: ','
+  })
+
+  const [query, setQuery] = useState(initialQuery || '')
   const [opened, setOpened] = useState(false)
 
   const [ref, observer] = useIntersection({
@@ -68,23 +75,6 @@ const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observer])
-
-  useEffect(() => {
-    if (!router.isReady) {
-      return
-    }
-
-    const routerQuery = qs.stringify(router.query, {
-      skipNull: true,
-      skipEmptyString: true,
-      arrayFormat: 'comma',
-      arrayFormatSeparator: ','
-    })
-
-    setQuery(routerQuery)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.isReady])
 
   const jobsShown = data?.pages
     .map(page => page.jobs.length)
@@ -205,10 +195,37 @@ const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({
+  res,
+  query
+}) => {
+  const {
+    title,
+    location,
+    category,
+    type
+  }: {
+    title?: string
+    location?: string
+    category?: string
+    type?: string
+  } = query
+
   const jobs = await prisma.job.findMany({
     take: 13,
     where: {
+      title: {
+        contains: title || undefined
+      },
+      location: {
+        in: location?.split(',') || undefined
+      },
+      category: {
+        in: category?.split(',') || undefined
+      },
+      type: {
+        in: type?.split(',') || undefined
+      },
       expired: {
         not: true
       },
@@ -238,6 +255,8 @@ export const getStaticProps: GetStaticProps = async () => {
   })
 
   const totalJobs = await prisma.job.count()
+
+  res.setHeader('Cache-Control', `s-maxage=10000, stale-while-revalidate`)
 
   return {
     props: {

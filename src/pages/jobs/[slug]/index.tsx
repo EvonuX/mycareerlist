@@ -12,7 +12,7 @@ import {
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { usePlausible } from 'next-plausible'
 import dynamic from 'next/dynamic'
@@ -309,34 +309,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const jobs = await prisma.job.findMany({
-    select: {
-      slug: true
-    },
-    where: {
-      expired: {
-        not: true
-      },
-      slug: {
-        not: null
-      }
-    }
-  })
-
-  const paths = jobs.map(job => {
-    return {
-      params: { slug: job.slug as string }
-    }
-  })
-
-  return {
-    paths,
-    fallback: 'blocking'
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (!params || !params.slug) {
     return {
       notFound: true

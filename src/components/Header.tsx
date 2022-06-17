@@ -51,22 +51,6 @@ const Header: FC = () => {
       mb="md"
       sx={theme => ({ boxShadow: theme.shadows.xs })}
     >
-      <Box
-        sx={theme => ({
-          backgroundColor: theme.colors.blue[7],
-          color: theme.colors.gray[2],
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingBlock: 2
-        })}
-      >
-        <Text size="sm" weight="bold" mr={5}>
-          LIMITED OFFER
-        </Text>
-        <Text size="sm">Post a job for FREE</Text>
-      </Box>
-
       <Container size="xl">
         <Grid columns={2} align="center" py={0} grow>
           <Grid.Col span={1} py="md">

@@ -11,7 +11,7 @@ import {
   Title,
   TypographyStylesProvider
 } from '@mantine/core'
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -332,31 +332,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const companies = await prisma.company.findMany({
-    select: {
-      slug: true
-    },
-    where: {
-      slug: {
-        not: null
-      }
-    }
-  })
-
-  const paths = companies.map(company => {
-    return {
-      params: { slug: company.slug as string }
-    }
-  })
-
-  return {
-    paths,
-    fallback: 'blocking'
-  }
-}
-
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const company = await prisma.company.findUnique({
     where: {
       slug: context.params?.slug as string

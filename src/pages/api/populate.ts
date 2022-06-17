@@ -140,8 +140,6 @@ export default async function handler(
       }
 
       await res.unstable_revalidate('/')
-      await res.unstable_revalidate('/jobs')
-      await res.unstable_revalidate('/companies')
 
       return res.status(201).json({ success: true })
     } catch (err) {
