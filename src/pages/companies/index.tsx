@@ -1,6 +1,6 @@
 import { Box, Select, SimpleGrid, Text, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import qs from 'query-string'
 import { ChangeEvent, useState } from 'react'
 import { useQuery } from 'react-query'
@@ -89,7 +89,7 @@ const CompanyListing: NextPage<IProps> = ({ initialData }) => {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const companies = await prisma.company.findMany({
     select: {
       id: true,
@@ -110,6 +110,8 @@ export async function getServerSideProps() {
       }
     }
   })
+
+  res.setHeader('Cache-Control', `s-maxage=100000, stale-while-revalidate`)
 
   return {
     props: {

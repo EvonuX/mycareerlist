@@ -309,7 +309,10 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  res,
+  params
+}) => {
   if (!params || !params.slug) {
     return {
       notFound: true
@@ -391,6 +394,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       }
     }
   })
+
+  res.setHeader('Cache-Control', `s-maxage=1000000, stale-while-revalidate`)
 
   return {
     props: {

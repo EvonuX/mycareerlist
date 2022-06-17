@@ -452,6 +452,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
     _count: true
   })
 
+  context.res.setHeader(
+    'Cache-Control',
+    `s-maxage=100000, stale-while-revalidate`
+  )
+
   return {
     props: {
       company: {
