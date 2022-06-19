@@ -12,20 +12,21 @@ import {
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { usePlausible } from 'next-plausible'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 import ShareButtons from '~/components/ShareButtons'
 import type { Job } from '~/types/types'
 import { formatDate, getCategory, getLocation, getType } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
+
+const JobCard = dynamic(() => import('~/components/JobCard'))
 
 const Newsletter = dynamic(() => import('~/components/Newsletter'), {
   ssr: false
@@ -309,10 +310,35 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  res,
-  params
-}) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const jobs = await prisma.job.findMany({
+    select: {
+      slug: true,
+      expired: true
+    },
+    where: {
+      expired: {
+        not: true
+      },
+      slug: {
+        not: null
+      }
+    }
+  })
+
+  const paths = jobs.map(job => {
+    return {
+      params: { slug: job.slug as string }
+    }
+  })
+
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params || !params.slug) {
     return {
       notFound: true
@@ -394,8 +420,6 @@ export const getServerSideProps: GetServerSideProps = async ({
       }
     }
   })
-
-  res.setHeader('Cache-Control', `s-maxage=1000000, stale-while-revalidate`)
 
   return {
     props: {

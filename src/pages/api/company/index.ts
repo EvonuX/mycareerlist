@@ -1,5 +1,4 @@
 import type { Prisma } from '@prisma/client'
-import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import slugify from 'slugify'
@@ -9,8 +8,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession({ req })
-
   if (req.method === 'GET') {
     let orderBy: Prisma.Enumerable<Prisma.CompanyOrderByWithRelationInput>
 
@@ -48,6 +45,8 @@ export default async function handler(
   }
 
   if (req.method === 'POST') {
+    const session = await getSession({ req })
+
     if (!session) {
       return res.status(401).json({ message: 'Unauthorized' })
     }
@@ -103,5 +102,5 @@ export default async function handler(
     return res.status(201).json(newCompany)
   }
 
-  res.status(405)
+  res.status(405).send('Method not allowed')
 }

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import slugify from 'slugify'
@@ -8,8 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession({ req })
-
   if (req.method === 'GET') {
     const { jobs, cursor } = await fetchJobs(req.query)
 
@@ -20,6 +17,8 @@ export default async function handler(
   }
 
   if (req.method === 'POST') {
+    const session = await getSession({ req })
+
     if (!session) {
       return res.status(401).json({ message: 'Unauthorized' })
     }
@@ -34,6 +33,8 @@ export default async function handler(
   }
 
   if (req.method === 'PUT') {
+    const session = await getSession({ req })
+
     if (!session) {
       return res.status(401).json({ message: 'Unauthorized' })
     }
