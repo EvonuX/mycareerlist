@@ -47,7 +47,7 @@ const CompanyListing: NextPage<IProps> = ({ companies, cursor }) => {
   }
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isRefetching } =
-    useInfiniteQuery(['companyListing', query], fetchCompanies, {
+    useInfiniteQuery(['companyListing', parsedQuery], fetchCompanies, {
       getNextPageParam: lastPage => lastPage.cursor ?? undefined,
       keepPreviousData: true,
       initialData: {
