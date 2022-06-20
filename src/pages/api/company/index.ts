@@ -9,6 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'GET') {
+    const cursor = req.query.cursor as string
     let orderBy: Prisma.Enumerable<Prisma.CompanyOrderByWithRelationInput>
 
     if (req.query.sort === 'jobs') {
@@ -20,6 +21,9 @@ export default async function handler(
     }
 
     const companies = await prisma.company.findMany({
+      take: 32,
+      skip: cursor ? 1 : 0,
+      cursor: cursor ? { id: cursor } : undefined,
       select: {
         id: true,
         name: true,
@@ -41,7 +45,10 @@ export default async function handler(
       }
     })
 
-    return res.status(200).json(companies)
+    return res.status(200).json({
+      companies,
+      cursor: companies.length > 0 ? companies[companies.length - 1].id : null
+    })
   }
 
   if (req.method === 'POST') {

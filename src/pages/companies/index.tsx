@@ -1,9 +1,17 @@
-import { Box, Select, SimpleGrid, Text, TextInput, Title } from '@mantine/core'
-import { useDebouncedValue } from '@mantine/hooks'
+import {
+  Loader,
+  Select,
+  SimpleGrid,
+  Stack,
+  Text,
+  TextInput,
+  Title
+} from '@mantine/core'
+import { useDebouncedValue, useIntersection } from '@mantine/hooks'
 import type { GetServerSideProps, NextPage } from 'next'
 import qs from 'query-string'
-import { ChangeEvent, useState } from 'react'
-import { useQuery } from 'react-query'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { useInfiniteQuery } from 'react-query'
 import CompanyCard from '~/components/CompanyCard'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
@@ -12,10 +20,11 @@ import { fetcher } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 
 interface IProps {
-  initialData: Company[]
+  companies: Company[]
+  cursor: string | undefined
 }
 
-const CompanyListing: NextPage<IProps> = ({ initialData }) => {
+const CompanyListing: NextPage<IProps> = ({ companies, cursor }) => {
   const [query, setQuery] = useState({ sort: '', search: '' })
   const [debounced] = useDebouncedValue(query.search, 350)
 
@@ -27,27 +36,41 @@ const CompanyListing: NextPage<IProps> = ({ initialData }) => {
     }
   )
 
-  const fetchCompanies = () => fetcher(`/api/company?${parsedQuery}`)
+  const [ref, observer] = useIntersection({
+    rootMargin: '300px'
+  })
 
-  const { data } = useQuery<Company[], Error>(
-    ['companyListing', parsedQuery],
-    fetchCompanies,
-    {
-      initialData
+  const fetchCompanies = async ({ pageParam }: { pageParam?: string }) => {
+    return pageParam
+      ? await fetcher(`/api/company?cursor=${pageParam}&${parsedQuery}`)
+      : await fetcher(`/api/company?${parsedQuery}`)
+  }
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isRefetching } =
+    useInfiniteQuery(['companyListing', query], fetchCompanies, {
+      getNextPageParam: lastPage => lastPage.cursor ?? undefined,
+      keepPreviousData: true,
+      initialData: {
+        pages: [{ companies, cursor }],
+        pageParams: [null]
+      }
+    })
+
+  useEffect(() => {
+    if (observer?.isIntersecting && hasNextPage) {
+      fetchNextPage()
     }
-  )
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [observer])
 
   return (
     <Layout>
       <SEO title="All companies" />
 
-      <Box mb="lg">
-        <Title order={1} mb="xs">
-          Company listing
-        </Title>
-
-        {data && <Text size="sm">Showing {data.length} companies</Text>}
-      </Box>
+      <Title order={1} mb="lg">
+        Company listing
+      </Title>
 
       <SimpleGrid cols={2} mb="lg">
         <TextInput
@@ -70,27 +93,35 @@ const CompanyListing: NextPage<IProps> = ({ initialData }) => {
         />
       </SimpleGrid>
 
-      {data ? (
-        <>
-          <SimpleGrid
-            cols={4}
-            breakpoints={[{ maxWidth: 768, cols: 2 }]}
-            mb="md"
-          >
-            {data.map(company => (
-              <CompanyCard key={company.id} company={company} />
-            ))}
-          </SimpleGrid>
-        </>
-      ) : (
-        <Text>No companies to show</Text>
-      )}
+      <SimpleGrid cols={4} breakpoints={[{ maxWidth: 768, cols: 2 }]} mb="md">
+        {data &&
+          data.pages.map(page =>
+            page.companies
+              ? page.companies.map((company: Company) => (
+                  <CompanyCard key={company.id} company={company} />
+                ))
+              : null
+          )}
+      </SimpleGrid>
+
+      <Stack align="center" my={20} ref={ref}>
+        <Loader
+          variant="dots"
+          sx={{
+            display: isFetchingNextPage || isRefetching ? 'block' : 'none'
+          }}
+        />
+        {(isFetchingNextPage || isRefetching) && (
+          <Text>Loading companies...</Text>
+        )}
+      </Stack>
     </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const companies = await prisma.company.findMany({
+    take: 32,
     select: {
       id: true,
       name: true,
@@ -115,7 +146,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   return {
     props: {
-      initialData: companies
+      companies,
+      cursor: companies.length > 0 ? companies[companies.length - 1].id : null
     }
   }
 }
