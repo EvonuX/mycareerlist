@@ -7,7 +7,6 @@ import {
   Text,
   Title
 } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 import { NextLink } from '@mantine/next'
 import type { GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
@@ -32,8 +31,6 @@ interface IProps {
 }
 
 const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
-  const matches = useMediaQuery('(max-width: 768px)')
-
   return (
     <Layout>
       <SEO
@@ -69,13 +66,24 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
             easy steps.
           </Text>
 
-          <Group grow={matches}>
-            <Button component={NextLink} href="/jobs/new" size="md">
+          <Group>
+            <Button
+              component={NextLink}
+              href="/jobs/new"
+              size="md"
+              sx={{ '@media (max-width: 480px)': { flex: 1 } }}
+            >
               {/* Post a job for $150 */}
               Post a job
             </Button>
 
-            <Button variant="light" component={NextLink} href="/jobs" size="md">
+            <Button
+              variant="light"
+              component={NextLink}
+              href="/jobs"
+              size="md"
+              sx={{ '@media (max-width: 480px)': { flex: 1 } }}
+            >
               View all jobs
             </Button>
           </Group>

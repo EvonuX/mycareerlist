@@ -4,20 +4,21 @@ import {
   Global,
   MantineProvider
 } from '@mantine/core'
-import { useLocalStorage } from '@mantine/hooks'
 import { NotificationsProvider } from '@mantine/notifications'
+import { getCookie, setCookies } from 'cookies-next'
 import { SessionProvider } from 'next-auth/react'
 import PlausibleProvider from 'next-plausible'
-import type { AppProps } from 'next/app'
+import type { AppContext, AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
+import App from 'next/app'
 
 const NextProgress = dynamic(() => import('next-progress'), {
   ssr: false
 })
 
-export default function App(props: AppProps) {
+export default function MyApp(props: AppProps & { colorScheme: ColorScheme }) {
   const {
     Component,
     pageProps: { session, ...pageProps }
@@ -34,14 +35,18 @@ export default function App(props: AppProps) {
       })
   )
 
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'mcl-color-scheme',
-    defaultValue: 'light',
-    getInitialValueInEffect: true
-  })
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme)
 
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark')
+
+    setColorScheme(nextColorScheme)
+
+    setCookies('mcl-color-scheme', nextColorScheme, {
+      maxAge: 60 * 60 * 24 * 30,
+      sameSite: 'lax'
+    })
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -103,4 +108,15 @@ export default function App(props: AppProps) {
       </Hydrate>
     </QueryClientProvider>
   )
+}
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext)
+
+  const colorScheme = getCookie('mcl-color-scheme', appContext.ctx) || 'light'
+
+  return {
+    colorScheme,
+    ...appProps
+  }
 }
