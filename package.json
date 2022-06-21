@@ -1,6 +1,6 @@
 {
   "name": "mycareerlist",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3330",
@@ -28,7 +28,6 @@
     "@sendgrid/mail": "^7.7.0",
     "axios": "^0.27.2",
     "cloudinary": "^1.30.0",
-    "cookies-next": "^2.0.4",
     "formidable": "^2.0.1",
     "next": "12.1.4",
     "next-auth": "^4.5.0",
