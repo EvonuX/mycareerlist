@@ -12,11 +12,12 @@ import { showNotification } from '@mantine/notifications'
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
 import axios from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
-import { getSession } from 'next-auth/react'
+import { unstable_getServerSession } from 'next-auth'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
+import { authOptions } from '~/pages/api/auth/[...nextauth]'
 import type { Job } from '~/types/types'
 import prisma from '~/utils/prisma'
 
@@ -166,9 +167,10 @@ const Tokens: NextPage<IProps> = ({ job }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
-  req
+  req,
+  res
 }) => {
-  const session = await getSession({ req })
+  const session = await unstable_getServerSession(req, res, authOptions)
 
   if (!session || session.userRole !== 'EMPLOYER') {
     return {

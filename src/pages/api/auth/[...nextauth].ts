@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
@@ -6,7 +6,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import prisma from '~/utils/prisma'
 import sendVerificationRequest from '~/utils/verify-email'
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     EmailProvider({
       from: process.env.EMAIL_FROM,
@@ -48,4 +48,6 @@ export default NextAuth({
   },
 
   secret: process.env.NEXTAUTH_SECRET
-})
+}
+
+export default NextAuth(authOptions)

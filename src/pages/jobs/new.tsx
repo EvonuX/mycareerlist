@@ -14,7 +14,7 @@ import { useForm } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
 import axios from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
-import { getSession } from 'next-auth/react'
+import { unstable_getServerSession } from 'next-auth'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -25,6 +25,7 @@ import { categories, locations, types } from '~/constants/general'
 import regex from '~/constants/regex'
 import type { Company } from '~/types/types'
 import prisma from '~/utils/prisma'
+import { authOptions } from '../api/auth/[...nextauth]'
 
 const RichTextEditor = dynamic(() => import('@mantine/rte'), {
   ssr: false
@@ -294,8 +295,8 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req })
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await unstable_getServerSession(req, res, authOptions)
 
   if (!session || session.userRole !== 'EMPLOYER') {
     return {

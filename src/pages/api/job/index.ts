@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getSession } from 'next-auth/react'
+import { unstable_getServerSession } from 'next-auth'
 import slugify from 'slugify'
 import prisma from '~/utils/prisma'
+import { authOptions } from '../auth/[...nextauth]'
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,7 +18,7 @@ export default async function handler(
   }
 
   if (req.method === 'POST') {
-    const session = await getSession({ req })
+    const session = await unstable_getServerSession(req, res, authOptions)
 
     if (!session) {
       return res.status(401).json({ message: 'Unauthorized' })
@@ -33,7 +34,7 @@ export default async function handler(
   }
 
   if (req.method === 'PUT') {
-    const session = await getSession({ req })
+    const session = await unstable_getServerSession(req, res, authOptions)
 
     if (!session) {
       return res.status(401).json({ message: 'Unauthorized' })
