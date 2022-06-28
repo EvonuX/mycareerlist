@@ -155,7 +155,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
 
           {job.createdAt && (
             <Text color="dimmed" size="xs">
-              Posted on: {job.createdAt}
+              <>Posted on: {job.createdAt}</>
             </Text>
           )}
 

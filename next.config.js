@@ -43,6 +43,10 @@ const nextConfig = {
 
   swcMinify: true,
 
+  experimental: {
+    runtime: 'experimental-edge'
+  },
+
   images: {
     domains: ['res.cloudinary.com', 'cdn.remote.work'],
     formats: ['image/avif', 'image/webp'],

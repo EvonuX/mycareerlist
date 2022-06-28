@@ -60,7 +60,7 @@ export default async function handler(
         )
       }
 
-      await res.unstable_revalidate('/')
+      await res.revalidate('/')
 
       return res.status(200).json({ success: true })
     }
