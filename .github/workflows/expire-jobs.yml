@@ -1,4 +1,4 @@
-name: Daily cron job
+name: Expire Jobs
 on:
   schedule:
     - cron: '0 0 * * *'
@@ -6,7 +6,7 @@ jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Daily cron job
+      - name: Expire Jobs
         run: |
           curl --request GET \
           --url 'https://mycareerlist.com/api/expire'
