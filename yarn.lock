@@ -2406,10 +2406,10 @@ netmask@^2.0.1:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-2.0.2.tgz#8b01a07644065d536383835823bc52004ebac5e7"
   integrity sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==
 
-next-auth@^4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.6.1.tgz#b5b55d9cd2ecde2887c331d3bbe3ff42a180adf1"
-  integrity sha512-Fq0+NUZ0Kp7LhT0UZzZkSBcRb0W6DYlhgTUZragSqW5HXTJ7ShgFqOhH5aFoGSpXIxsZQmfFBbt9Oun09mf+aA==
+next-auth@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.7.0.tgz#2d42b44729fde77d9e98a88612daf0ee853b9641"
+  integrity sha512-boXSIzHvCyNq1Jthi24LLnx12iKBsqsMxUKm5qq9alkfhVMeIRUR/wKP0FPSGc1s9WcGXMS3NmKQfADCEb0wow==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
@@ -2479,10 +2479,10 @@ node-addon-api@^5.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-5.0.0.tgz#7d7e6f9ef89043befdb20c1989c905ebde18c501"
   integrity sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==
 
-nodemailer@^6.7.5:
-  version "6.7.5"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.5.tgz#b30b1566f5fa2249f7bd49ced4c58bec6b25915e"
-  integrity sha512-6VtMpwhsrixq1HDYSBBHvW0GwiWawE75dS3oal48VqRhUvKJNnKnJo2RI/bCVQubj1vgrgscMNW4DHaD6xtMCg==
+nodemailer@^6.7.6:
+  version "6.7.6"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.6.tgz#d3de8f644eaa0dad784d1be1375c596de492f3fc"
+  integrity sha512-/6KF/umU7r7X21Y648/yiRLrgkfz0dmpyuo4BfgYWIpnT/jCbkPTvegMfxCsDAu+O810p2L1BGXieMTPp3nJVA==
 
 nprogress@^0.2.0:
   version "0.2.0"
@@ -3481,10 +3481,10 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-twitter-api-v2@^1.12.2:
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/twitter-api-v2/-/twitter-api-v2-1.12.2.tgz#c2118ee2439c28400186f965b5ae9256369f7cc0"
-  integrity sha512-vgv4ndG7BcjSzcm/Owf+tN4DVSZxWlN61hpulFkmUdf+hBjWvr/0edHoy+IUm1g2pJ7c+6706ZgkjZPdp0GHQA==
+twitter-api-v2@^1.12.3:
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/twitter-api-v2/-/twitter-api-v2-1.12.3.tgz#9f05321ea83afd9de96ac18aa721aae339110302"
+  integrity sha512-FM+RmHdVbCKw/KZ99+if4JQyl2Nx5eF/Jl8CNDeV5J/NSnuFgk3bFw1cZHcNusXitxTWIQ0TQFHr1BkgWDz0wQ==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

@@ -6,16 +6,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   let date = new Date()
-  date.setDate(date.getDate() - 2)
-
-  const dateString = date.toISOString().split('T')[0]
-  const expDate = new Date(dateString)
+  date.setMonth(date.getMonth() - 1)
 
   const expiredJobs = await prisma.job.updateMany({
     where: {
       expired: false,
-      updatedAt: {
-        lte: expDate
+      createdAt: {
+        lte: date.toISOString()
       }
     },
     data: {
@@ -23,6 +20,6 @@ export default async function handler(
     }
   })
 
-  await res.revalidate('/')
+  // await res.revalidate('/')
   res.status(200).json(expiredJobs)
 }

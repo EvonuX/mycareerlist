@@ -254,7 +254,16 @@ export const getServerSideProps: GetServerSideProps = async ({
     }
   })
 
-  const totalJobs = await prisma.job.count()
+  const totalJobs = await prisma.job.count({
+    where: {
+      expired: {
+        not: true
+      },
+      draft: {
+        not: true
+      }
+    }
+  })
 
   res.setHeader('Cache-Control', `s-maxage=10000, stale-while-revalidate`)
 

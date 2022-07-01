@@ -8,7 +8,7 @@ import {
   Title
 } from '@mantine/core'
 import { NextLink } from '@mantine/next'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import JobCard from '~/components/JobCard'
 import SEO from '~/components/SEO'
@@ -654,7 +654,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const jobs = await prisma.job.findMany({
     take: 8,
     select: {
@@ -734,7 +734,7 @@ export const getStaticProps: GetStaticProps = async () => {
   })
 
   return {
-    revalidate: 43200,
+    // revalidate: 43200,
     props: {
       jobs,
       companies,

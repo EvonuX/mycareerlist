@@ -102,11 +102,11 @@ export default async function handler(
         }
       })
 
-      await res.revalidate('/')
+      // await res.revalidate('/')
       return res.status(201).json(updatedNewCompany)
     }
 
-    await res.revalidate('/')
+    // await res.revalidate('/')
     return res.status(201).json(newCompany)
   }
 

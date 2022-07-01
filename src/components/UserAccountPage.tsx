@@ -19,7 +19,6 @@ import Layout from './Layout'
 import SEO from './SEO'
 import qs from 'query-string'
 import axios from 'axios'
-import Link from 'next/link'
 import { NextLink } from '@mantine/next'
 
 const JobCard = dynamic(() => import('./JobCard'), {
