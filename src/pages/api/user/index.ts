@@ -3,6 +3,8 @@ import { unstable_getServerSession } from 'next-auth'
 import prisma from '~/utils/prisma'
 import { authOptions } from '../auth/[...nextauth]'
 
+const PAGE_SIZE = 16
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -57,12 +59,22 @@ export default async function handler(
     return res.status(200).json(user)
   }
 
-  const userData = await prisma.user.findUnique({
+  const page = Number(req.query.page) || 1
+  const search = req.query.search as string
+
+  const companies = await prisma.user.findUnique({
     where: {
       id: session.userId
     },
     select: {
       companies: {
+        where: {
+          name: {
+            contains: search || undefined
+          }
+        },
+        take: search ? undefined : PAGE_SIZE,
+        skip: !search && page ? page * PAGE_SIZE : 0,
         select: {
           name: true,
           logo: true,
@@ -93,5 +105,30 @@ export default async function handler(
     }
   })
 
-  res.status(200).json(userData)
+  const count = await prisma.company.count({
+    where: {
+      userId: session.userId,
+      OR: [
+        {
+          name: {
+            contains: search || undefined
+          }
+        },
+        {
+          jobs: {
+            some: {
+              title: {
+                contains: search || undefined
+              }
+            }
+          }
+        }
+      ]
+    }
+  })
+
+  res.status(200).json({
+    user: companies,
+    total: (count / PAGE_SIZE).toFixed()
+  })
 }

@@ -22,7 +22,6 @@ export default async function handler(
       }
     })
 
-    // await res.revalidate('/')
     return res.status(201).json(newReview)
   }
 

@@ -59,10 +59,18 @@ export default async function handler(
       return res.status(401).json({ message: 'Unauthorized' })
     }
 
+    const slug = slugify(req.body.name, {
+      lower: true,
+      strict: true,
+      trim: true,
+      replacement: '-'
+    })
+
     const newCompany = await prisma.company.create({
       data: {
         userId: session.userId,
         createdAt: new Date().toISOString(),
+        slug,
         ...req.body
       },
       select: {
@@ -72,41 +80,6 @@ export default async function handler(
       }
     })
 
-    const slug = slugify(newCompany.name, {
-      lower: true,
-      strict: true,
-      trim: true,
-      replacement: '-'
-    })
-
-    prisma.$use(async (params, next) => {
-      if (params.model == 'Company' && params.action == 'create') {
-        params.args.data.slug = slug
-      }
-
-      return await next(params)
-    })
-
-    if (!newCompany.slug) {
-      const updatedNewCompany = await prisma.company.update({
-        where: {
-          id: newCompany.id
-        },
-        data: {
-          slug
-        },
-        select: {
-          id: true,
-          slug: true,
-          name: true
-        }
-      })
-
-      // await res.revalidate('/')
-      return res.status(201).json(updatedNewCompany)
-    }
-
-    // await res.revalidate('/')
     return res.status(201).json(newCompany)
   }
 

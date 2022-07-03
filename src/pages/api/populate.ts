@@ -139,8 +139,6 @@ export default async function handler(
         }
       }
 
-      // await res.revalidate('/')
-
       return res.status(201).json({ success: true })
     } catch (err) {
       console.error(err)
