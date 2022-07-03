@@ -188,14 +188,16 @@ const UserAccountPage: FC = () => {
             ))}
           </SimpleGrid>
 
-          <Center>
-            <Pagination
-              total={jobFeed.total}
-              page={page}
-              onChange={setPage}
-              siblings={2}
-            />
-          </Center>
+          {jobFeed.total > 16 && (
+            <Center>
+              <Pagination
+                total={jobFeed.total}
+                page={page}
+                onChange={setPage}
+                siblings={2}
+              />
+            </Center>
+          )}
         </>
       ) : (
         <Text>Set preferences to start seeing job that interest you.</Text>
