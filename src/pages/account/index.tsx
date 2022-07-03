@@ -1,8 +1,12 @@
 import { Center, Loader } from '@mantine/core'
 import { useSession } from 'next-auth/react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import EmployerAccountPage from '~/components/EmployerAccountPage'
-import UserAccountPage from '~/components/UserAccountPage'
+
+const EmployerAccountPage = dynamic(
+  () => import('~/components/EmployerAccountPage')
+)
+const UserAccountPage = dynamic(() => import('~/components/UserAccountPage'))
 
 const AccountPage = () => {
   const router = useRouter()
@@ -16,7 +20,7 @@ const AccountPage = () => {
 
   if (status === 'loading') {
     return (
-      <Center>
+      <Center mt="xl">
         <Loader variant="bars" />
       </Center>
     )

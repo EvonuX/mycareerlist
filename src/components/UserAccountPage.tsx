@@ -4,6 +4,7 @@ import {
   Button,
   Center,
   Loader,
+  Pagination,
   SimpleGrid,
   Text,
   Title
@@ -21,20 +22,22 @@ import qs from 'query-string'
 import axios from 'axios'
 import { NextLink } from '@mantine/next'
 
-const JobCard = dynamic(() => import('./JobCard'), {
-  ssr: false
-})
+const JobCard = dynamic(() => import('./JobCard'))
 
-const JobFeedForm = dynamic(() => import('./JobFeedForm'), {
-  ssr: false
-})
+const JobFeedForm = dynamic(() => import('./JobFeedForm'))
 
 interface UserQuery {
   savedJobs: Job[]
   preferences: string
 }
 
+interface FeedQuery {
+  feed: Job[]
+  total: number
+}
+
 const UserAccountPage: FC = () => {
+  const [page, setPage] = useState(1)
   const [preferences, setPreferences] = useState('')
   const [opened, setOpened] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -55,11 +58,15 @@ const UserAccountPage: FC = () => {
       arrayFormatSeparator: ','
     })
 
-  const { data: jobFeed } = useQuery<Job[]>(
-    ['jobFeed', preferences],
-    () => fetcher(`/api/user/feed?${preferences}`),
+  const fetchFeed = (page: number) =>
+    fetcher(`/api/user/feed?page=${page}&${preferences}`)
+
+  const { data: jobFeed } = useQuery<FeedQuery>(
+    ['jobFeed', preferences, page],
+    () => fetchFeed(page),
     {
-      enabled: preferences !== ''
+      enabled: preferences !== '',
+      keepPreviousData: true
     }
   )
 
@@ -170,15 +177,28 @@ const UserAccountPage: FC = () => {
           <Loader variant="bars" />
         </Center>
       ) : jobFeed ? (
-        <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]} mb="xl">
-          {jobFeed.map(job => (
-            <JobCard key={job.id} job={job} />
-          ))}
-        </SimpleGrid>
+        <>
+          <SimpleGrid
+            cols={2}
+            breakpoints={[{ maxWidth: 768, cols: 1 }]}
+            mb="xl"
+          >
+            {jobFeed.feed.map(job => (
+              <JobCard key={job.id} job={job} />
+            ))}
+          </SimpleGrid>
+
+          <Center>
+            <Pagination
+              total={jobFeed.total}
+              page={page}
+              onChange={setPage}
+              siblings={2}
+            />
+          </Center>
+        </>
       ) : (
-        <Text>
-          Set preferences to start seeing only jobs that interest you.
-        </Text>
+        <Text>Set preferences to start seeing job that interest you.</Text>
       )}
 
       <JobFeedForm

@@ -3,11 +3,15 @@ import { unstable_getServerSession } from 'next-auth'
 import prisma from '~/utils/prisma'
 import { authOptions } from '../auth/[...nextauth]'
 
+const PAGE_SIZE = 16
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const session = await unstable_getServerSession(req, res, authOptions)
+
+  const page = Number(req.query.page) || 1
 
   if (!session) {
     return res.status(401).json({ message: 'Unauthorized' })
@@ -44,6 +48,8 @@ export default async function handler(
       : undefined
 
     const feed = await prisma.job.findMany({
+      take: PAGE_SIZE,
+      skip: page ? page * PAGE_SIZE : 0,
       where: {
         expired: {
           not: true
@@ -76,6 +82,23 @@ export default async function handler(
       }
     })
 
-    return res.status(200).json(feed)
+    const count = await prisma.job.count({
+      where: {
+        expired: {
+          not: true
+        },
+        draft: {
+          not: true
+        },
+        category,
+        type,
+        location
+      }
+    })
+
+    return res.status(200).json({
+      feed,
+      total: count / PAGE_SIZE
+    })
   }
 }

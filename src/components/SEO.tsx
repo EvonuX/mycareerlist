@@ -1,5 +1,5 @@
-import { useMantineColorScheme } from '@mantine/core'
 import Head from 'next/head'
+import { useMantineColorScheme } from '@mantine/core'
 import { stripHtml } from '~/utils/helpers'
 
 interface IProps {
@@ -14,13 +14,13 @@ const structuredDataWebSite = {
   '@context': 'http://schema.org',
   '@type': 'WebSite',
   name: 'My Career List - The Global Job Posting Platform',
-  url: process.env.NEXT_PUBLIC_BASE_URL
+  url: `${process.env.NEXT_PUBLIC_BASE_URL}/`
 }
 
 const SEO = ({
   title = 'My Career List - The Global Job Posting Platform',
   description = 'Save jobs to your account, get alerted for new jobs. Work for famous brands, from home! Software engineer, designer, project manager, customer success, and much much more!',
-  url = process.env.NEXT_PUBLIC_BASE_URL,
+  url = `${process.env.NEXT_PUBLIC_BASE_URL}/`,
   image = '/logo-regular.png',
   noindex
 }: IProps) => {
