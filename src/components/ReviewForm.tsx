@@ -14,7 +14,7 @@ import axios from 'axios'
 import { FC, useState } from 'react'
 import StarPicker from 'react-star-picker'
 import { showNotification } from '@mantine/notifications'
-import { useQueryClient } from 'react-query'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface IProps {
   open: boolean
@@ -51,7 +51,7 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId, companySlug }) => {
         color: 'green'
       })
 
-      queryClient.invalidateQueries('company')
+      queryClient.invalidateQueries(['company'])
 
       setOpen(false)
     } catch (err) {

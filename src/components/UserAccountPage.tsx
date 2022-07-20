@@ -13,7 +13,7 @@ import { useLocalStorage } from '@mantine/hooks'
 import { showNotification } from '@mantine/notifications'
 import dynamic from 'next/dynamic'
 import { FC, useState } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import type { Job } from '~/types/types'
 import { fetcher } from '~/utils/helpers'
 import Layout from './Layout'
@@ -43,7 +43,7 @@ const UserAccountPage: FC = () => {
   const [loading, setLoading] = useState(false)
 
   const { data, isFetching, isRefetching } = useQuery<UserQuery>(
-    'accountPage',
+    ['accountPage'],
     () => fetcher('/api/user'),
     {
       onSuccess: data => {
