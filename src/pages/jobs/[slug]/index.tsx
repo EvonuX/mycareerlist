@@ -317,6 +317,13 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking'
+    }
+  }
+
   const jobs = await prisma.job.findMany({
     select: {
       slug: true,
