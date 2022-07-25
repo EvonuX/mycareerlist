@@ -6,6 +6,7 @@ import {
   Group,
   Paper,
   SimpleGrid,
+  Stack,
   Text,
   Title,
   TypographyStylesProvider
@@ -243,16 +244,16 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                 {job.company.name}
               </Title>
 
-              <Group align="center" direction="column" mb="md">
+              <Stack align="center" mb="md">
                 <Badge radius="xs" variant="outline">
                   {job.company._count.jobs} active jobs
                 </Badge>
                 <Badge radius="xs" variant="outline">
                   {job.company._count.reviews} reviews
                 </Badge>
-              </Group>
+              </Stack>
 
-              <Group direction="column" grow mx="xl">
+              <Stack mx="xl">
                 <Link href={`/companies/${job.company.slug}`} passHref>
                   <Button variant="light">View Company Profile</Button>
                 </Link>
@@ -268,7 +269,7 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                     View Website
                   </Button>
                 )}
-              </Group>
+              </Stack>
             </Paper>
 
             <Group mt="md" grow>

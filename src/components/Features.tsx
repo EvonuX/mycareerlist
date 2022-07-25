@@ -209,8 +209,13 @@ const Features = () => {
         Why choose My Career List?
       </Title>
 
-      <Tabs variant="pills" position="center">
-        <Tabs.Tab label="Job seekers">
+      <Tabs defaultValue="seekers" variant="pills">
+        <Tabs.List position="center">
+          <Tabs.Tab value="seekers">Job Seekers</Tabs.Tab>
+          <Tabs.Tab value="employers">Employers</Tabs.Tab>
+        </Tabs.List>
+
+        <Tabs.Panel value="seekers">
           <SimpleGrid
             my="xl"
             cols={3}
@@ -236,9 +241,9 @@ const Features = () => {
               )
             })}
           </SimpleGrid>
-        </Tabs.Tab>
+        </Tabs.Panel>
 
-        <Tabs.Tab label="Employers">
+        <Tabs.Panel value="employers">
           <SimpleGrid
             my="xl"
             cols={3}
@@ -264,7 +269,7 @@ const Features = () => {
               )
             })}
           </SimpleGrid>
-        </Tabs.Tab>
+        </Tabs.Panel>
       </Tabs>
     </Container>
   )

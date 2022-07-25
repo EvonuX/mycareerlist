@@ -2,24 +2,20 @@ import {
   ColorScheme,
   ColorSchemeProvider,
   Global,
-  MantineProvider
+  MantineProvider,
+  MantineTheme
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { NotificationsProvider } from '@mantine/notifications'
 import { SessionProvider } from 'next-auth/react'
 import PlausibleProvider from 'next-plausible'
 import type { AppProps } from 'next/app'
-import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'
-
-const NextProgress = dynamic(() => import('next-progress'), {
-  ssr: false
-})
 
 export default function App(props: AppProps) {
   const {
@@ -65,18 +61,48 @@ export default function App(props: AppProps) {
                   facebook: ['#4267B2'],
                   twitter: ['#1DA1F2'],
                   linkedin: ['#0077B5']
-                }
-              }}
-              styles={{
-                AppShell: () => ({
-                  body: {
-                    minHeight: 'calc(100vh - 138px)'
+                },
+                components: {
+                  AppShell: {
+                    styles: () => ({
+                      body: {
+                        minHeight: 'calc(100vh - 138px)'
+                      }
+                    })
+                  },
+                  Select: {
+                    styles: {
+                      label: {
+                        marginBottom: 5
+                      }
+                    }
+                  },
+                  MultiSelect: {
+                    styles: {
+                      label: {
+                        marginBottom: 5
+                      }
+                    }
+                  },
+                  Textarea: {
+                    styles: {
+                      label: {
+                        marginBottom: 5
+                      }
+                    }
+                  },
+                  InputWrapper: {
+                    styles: {
+                      label: {
+                        marginBottom: 5
+                      }
+                    }
                   }
-                })
+                }
               }}
             >
               <Global
-                styles={theme => ({
+                styles={(theme: MantineTheme) => ({
                   body: {
                     overflowY: 'scroll',
                     backgroundColor:
@@ -97,7 +123,6 @@ export default function App(props: AppProps) {
                   enabled={process.env.NODE_ENV === 'production'}
                   trackLocalhost={false}
                 >
-                  <NextProgress options={{ showSpinner: false }} />
                   <Component {...pageProps} />
                 </PlausibleProvider>
               </NotificationsProvider>

@@ -15,6 +15,11 @@ import dynamic from 'next/dynamic'
 import { signOut, useSession } from 'next-auth/react'
 import { showNotification } from '@mantine/notifications'
 import { NextLink } from '@mantine/next'
+import {
+  NavigationProgress,
+  resetNavigationProgress,
+  startNavigationProgress
+} from '@mantine/nprogress'
 
 const AuthModal = dynamic(() => import('./AuthModal'), {
   ssr: false
@@ -45,12 +50,32 @@ const Header: FC = () => {
     }
   }, [router.query])
 
+  useEffect(() => {
+    const handleStart = (url: string) =>
+      url !== router.asPath && startNavigationProgress()
+    const handleComplete = () => resetNavigationProgress()
+
+    router.events.on('routeChangeStart', handleStart)
+    router.events.on('routeChangeComplete', handleComplete)
+    router.events.on('routeChangeError', handleComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', handleStart)
+      router.events.off('routeChangeComplete', handleComplete)
+      router.events.off('routeChangeError', handleComplete)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.asPath])
+
   return (
     <MantineHeader
       height="auto"
       mb="md"
       sx={theme => ({ boxShadow: theme.shadows.xs })}
     >
+      <NavigationProgress />
+
       <Container size="xl">
         <Grid columns={2} align="center" py={0} grow>
           <Grid.Col span={1} py="md">
@@ -93,40 +118,41 @@ const Header: FC = () => {
               </Button>
 
               {data ? (
-                <Menu
-                  title="menu"
-                  menuButtonLabel="menu"
-                  placement="end"
-                  control={<Button variant="default">Menu</Button>}
-                  ml="sm"
-                >
-                  <Menu.Item component={NextLink} href="/account">
-                    Your account
-                  </Menu.Item>
+                // @ts-ignore
+                <Menu ml="sm" position="bottom-end">
+                  <Menu.Target>
+                    <Button variant="default">Menu</Button>
+                  </Menu.Target>
 
-                  {data.userRole === 'EMPLOYER' && (
-                    <>
-                      <Menu.Item component={NextLink} href="/jobs/new">
-                        Create new job post
-                      </Menu.Item>
+                  <Menu.Dropdown>
+                    <Menu.Item component={NextLink} href="/account">
+                      Your account
+                    </Menu.Item>
 
-                      <Menu.Item component={NextLink} href="/companies/new">
-                        Create new company
-                      </Menu.Item>
-                    </>
-                  )}
+                    {data.userRole === 'EMPLOYER' && (
+                      <>
+                        <Menu.Item component={NextLink} href="/jobs/new">
+                          Create new job post
+                        </Menu.Item>
 
-                  <Divider />
+                        <Menu.Item component={NextLink} href="/companies/new">
+                          Create new company
+                        </Menu.Item>
+                      </>
+                    )}
 
-                  <Menu.Item
-                    onClick={() =>
-                      signOut({
-                        callbackUrl: '/'
-                      })
-                    }
-                  >
-                    Logout
-                  </Menu.Item>
+                    <Menu.Divider />
+
+                    <Menu.Item
+                      onClick={() =>
+                        signOut({
+                          callbackUrl: '/'
+                        })
+                      }
+                    >
+                      Logout
+                    </Menu.Item>
+                  </Menu.Dropdown>
                 </Menu>
               ) : (
                 <Button
@@ -140,59 +166,62 @@ const Header: FC = () => {
             </Box>
 
             <Menu
-              title="menu"
-              menuButtonLabel="menu"
-              placement="end"
-              control={<Button variant="default">Menu</Button>}
+              // @ts-ignore
               sx={{
                 '@media screen and (min-width: 768px)': {
                   display: 'none'
                 }
               }}
             >
-              <Menu.Item component={NextLink} href="/jobs">
-                View all jobs
-              </Menu.Item>
+              <Menu.Target>
+                <Button variant="default">Menu</Button>
+              </Menu.Target>
 
-              <Menu.Item component={NextLink} href="/companies">
-                View all companies
-              </Menu.Item>
+              <Menu.Dropdown>
+                <Menu.Item component={NextLink} href="/jobs">
+                  View all jobs
+                </Menu.Item>
 
-              <Divider />
+                <Menu.Item component={NextLink} href="/companies">
+                  View all companies
+                </Menu.Item>
 
-              {data ? (
-                <>
-                  <Menu.Item component={NextLink} href="/account">
-                    Your account
-                  </Menu.Item>
+                <Menu.Divider />
 
-                  {data.userRole === 'EMPLOYER' && (
-                    <>
-                      <Menu.Item component={NextLink} href="/jobs/new">
-                        Create new job post
-                      </Menu.Item>
+                {data ? (
+                  <>
+                    <Menu.Item component={NextLink} href="/account">
+                      Your account
+                    </Menu.Item>
 
-                      <Menu.Item component={NextLink} href="/companies/new">
-                        Create new company
-                      </Menu.Item>
-                    </>
-                  )}
+                    {data.userRole === 'EMPLOYER' && (
+                      <>
+                        <Menu.Item component={NextLink} href="/jobs/new">
+                          Create new job post
+                        </Menu.Item>
 
-                  <Divider />
+                        <Menu.Item component={NextLink} href="/companies/new">
+                          Create new company
+                        </Menu.Item>
+                      </>
+                    )}
 
-                  <Menu.Item
-                    onClick={() =>
-                      signOut({
-                        callbackUrl: '/'
-                      })
-                    }
-                  >
-                    Logout
-                  </Menu.Item>
-                </>
-              ) : (
-                <Menu.Item onClick={() => setOpened(true)}>Log in</Menu.Item>
-              )}
+                    <Menu.Divider />
+
+                    <Menu.Item
+                      onClick={() =>
+                        signOut({
+                          callbackUrl: '/'
+                        })
+                      }
+                    >
+                      Logout
+                    </Menu.Item>
+                  </>
+                ) : (
+                  <Menu.Item onClick={() => setOpened(true)}>Log in</Menu.Item>
+                )}
+              </Menu.Dropdown>
             </Menu>
           </Grid.Col>
         </Grid>

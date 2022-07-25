@@ -56,15 +56,15 @@ const EmployerAccountPage = () => {
               Your account
             </Title>
 
-            <Group grow direction="column">
-              <Button component={NextLink} href="/jobs/new">
+            <Stack>
+              <Button fullWidth component={NextLink} href="/jobs/new">
                 Create a job
               </Button>
 
-              <Button component={NextLink} href="/companies/new">
+              <Button fullWidth component={NextLink} href="/companies/new">
                 Create a company
               </Button>
-            </Group>
+            </Stack>
           </Box>
         </Grid.Col>
 

@@ -5,9 +5,9 @@ import {
   Textarea,
   SimpleGrid,
   Select,
-  InputWrapper,
   Button,
-  Alert
+  Alert,
+  Input
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import axios from 'axios'
@@ -114,7 +114,7 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId, companySlug }) => {
             data={['Employed', 'Previously employed']}
           />
 
-          <InputWrapper label="Rating" required mb="md">
+          <Input.Wrapper label="Rating" required mb="md">
             {/* @ts-ignore */}
             <StarPicker
               value={form.values.rating}
@@ -122,7 +122,7 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId, companySlug }) => {
               onChange={value => form.setFieldValue('rating', value)}
               name="rating"
             />
-          </InputWrapper>
+          </Input.Wrapper>
         </SimpleGrid>
 
         <Button type="submit" loading={loading}>

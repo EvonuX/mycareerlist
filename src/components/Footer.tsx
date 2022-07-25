@@ -16,7 +16,7 @@ const Footer = () => {
     <MantineFooter height="auto" p="sm" mt="md">
       <SimpleGrid cols={2} sx={{ alignItems: 'center' }}>
         <ActionIcon
-          variant="hover"
+          variant="transparent"
           onClick={() => toggleColorScheme()}
           title="Toggle color scheme"
         >

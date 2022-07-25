@@ -1,6 +1,6 @@
 import { Box, Button, Group, Modal, MultiSelect } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import type { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { categories, locations, types } from '~/constants/general'
 
 interface IProps {
@@ -24,22 +24,27 @@ const JobFeedForm: FC<IProps> = ({
 }) => {
   const form = useForm({
     initialValues: {
-      location: preferences.location || '',
-      category: preferences.category || '',
-      type: preferences.type || ''
+      location: [''],
+      category: [''],
+      type: ['']
     }
   })
 
-  const defaultLocation =
-    typeof preferences.location === 'object'
-      ? preferences.location
-      : [preferences.location]
-  const defaultCategory =
-    typeof preferences.category === 'object'
-      ? preferences.category
-      : [preferences.category]
-  const defaultType =
-    typeof preferences.type === 'object' ? preferences.type : [preferences.type]
+  useEffect(() => {
+    form.setValues({
+      location: Array.isArray(preferences.location)
+        ? preferences.location
+        : [preferences.location] || [''],
+      category: Array.isArray(preferences.category)
+        ? preferences.category
+        : [preferences.category] || [''],
+      type: Array.isArray(preferences.type)
+        ? preferences.type
+        : [preferences.type] || ['']
+    })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preferences])
 
   return (
     <Modal
@@ -56,7 +61,6 @@ const JobFeedForm: FC<IProps> = ({
           mb="md"
           label="Location"
           data={locations}
-          defaultValue={defaultLocation}
           clearButtonLabel="Clear selection"
           searchable
           {...form.getInputProps('location')}
@@ -66,7 +70,6 @@ const JobFeedForm: FC<IProps> = ({
           mb="md"
           label="Category"
           data={categories}
-          defaultValue={defaultCategory}
           clearButtonLabel="Clear selection"
           searchable
           {...form.getInputProps('category')}
@@ -76,7 +79,6 @@ const JobFeedForm: FC<IProps> = ({
           mb="xl"
           label="Type"
           data={types}
-          defaultValue={defaultType}
           clearButtonLabel="Clear selection"
           searchable
           {...form.getInputProps('type')}

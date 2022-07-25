@@ -120,7 +120,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                 {data.company.name}
               </Title>
 
-              <Group position="center" direction="column">
+              <Stack align="center">
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Box
                     component="svg"
@@ -177,14 +177,26 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                     Website
                   </Button>
                 )}
-              </Group>
+              </Stack>
             </Box>
           </Paper>
         </Grid.Col>
 
         <Grid.Col span={12} md={9}>
-          <Tabs>
-            <Tabs.Tab label="Description & Jobs">
+          <Tabs defaultValue="description">
+            <Tabs.List mb="sm">
+              <Tabs.Tab value="description">Description & Jobs</Tabs.Tab>
+
+              <Tabs.Tab value="reviews">
+                Reviews ({stats.reviews.count})
+              </Tabs.Tab>
+
+              <Tabs.Tab value="interviews">
+                Interviews ({stats.interviews.count})
+              </Tabs.Tab>
+            </Tabs.List>
+
+            <Tabs.Panel value="description">
               <Title order={2} mb="md">
                 Company description
               </Title>
@@ -212,9 +224,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                   <JobCard key={job.id} job={job} />
                 ))}
               </SimpleGrid>
-            </Tabs.Tab>
+            </Tabs.Panel>
 
-            <Tabs.Tab label={`Reviews (${stats.reviews.count})`}>
+            <Tabs.Panel value="reviews">
               <Grid justify="space-between" align="center" mb="sm">
                 <Grid.Col md={6}>
                   <Title order={2}>Company reviews</Title>
@@ -251,9 +263,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                   ))}
                 </Stack>
               )}
-            </Tabs.Tab>
+            </Tabs.Panel>
 
-            <Tabs.Tab label={`Interviews (${stats.interviews.count})`}>
+            <Tabs.Panel value="interviews">
               <Grid justify="space-between" align="center" mb="sm">
                 <Grid.Col md={6}>
                   <Title order={2}>Interview experiences</Title>
@@ -306,7 +318,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                   ))}
                 </Stack>
               )}
-            </Tabs.Tab>
+            </Tabs.Panel>
           </Tabs>
         </Grid.Col>
       </Grid>

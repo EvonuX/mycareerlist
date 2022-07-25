@@ -9,7 +9,7 @@ interface IProps {
 
 const Layout: FC<IProps> = ({ children }) => {
   return (
-    <AppShell header={<Header />} footer={<Footer />} padding={0}>
+    <AppShell fixed={false} header={<Header />} footer={<Footer />} padding={0}>
       <Container size="xl">{children}</Container>
     </AppShell>
   )

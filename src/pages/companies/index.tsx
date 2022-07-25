@@ -36,7 +36,8 @@ const CompanyListing: NextPage<IProps> = ({ companies, cursor }) => {
     }
   )
 
-  const [ref, observer] = useIntersection({
+  const { ref, entry } = useIntersection({
+    threshold: 1,
     rootMargin: '300px'
   })
 
@@ -57,12 +58,12 @@ const CompanyListing: NextPage<IProps> = ({ companies, cursor }) => {
     })
 
   useEffect(() => {
-    if (observer?.isIntersecting && hasNextPage) {
+    if (entry?.isIntersecting && hasNextPage) {
       fetchNextPage()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observer])
+  }, [entry])
 
   return (
     <Layout>

@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Input,
-  InputWrapper,
   Select,
   SimpleGrid,
   Text,
@@ -136,7 +135,7 @@ const NewCompany = () => {
             {...form.getInputProps('name')}
           />
 
-          <InputWrapper required id="description" label="Description" mb="md">
+          <Input.Wrapper required id="description" label="Description" mb="md">
             <RichTextEditor
               value={description}
               onChange={handleDescriptionChange}
@@ -148,16 +147,16 @@ const NewCompany = () => {
                 ['alignLeft', 'alignCenter', 'alignRight']
               ]}
             />
-          </InputWrapper>
+          </Input.Wrapper>
 
-          <InputWrapper label="Company Logo" mb="md" sx={{ display: 'none' }}>
+          <Input.Wrapper label="Company Logo" mb="md" sx={{ display: 'none' }}>
             <Input
               type="file"
               accept="image/*"
               onChange={handleFileChange}
               ref={logoRef}
             />
-          </InputWrapper>
+          </Input.Wrapper>
 
           <Button
             mb="md"

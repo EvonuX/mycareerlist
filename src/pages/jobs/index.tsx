@@ -15,7 +15,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import qs from 'query-string'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
@@ -48,7 +48,8 @@ const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
   const [query, setQuery] = useState(initialQuery || '')
   const [opened, setOpened] = useState(false)
 
-  const [ref, observer] = useIntersection({
+  const { ref, entry } = useIntersection({
+    threshold: 1,
     rootMargin: '300px'
   })
 
@@ -69,12 +70,12 @@ const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
     })
 
   useEffect(() => {
-    if (observer?.isIntersecting && hasNextPage) {
+    if (entry?.isIntersecting && hasNextPage) {
       fetchNextPage()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observer])
+  }, [entry])
 
   const jobsShown = data?.pages
     .map(page => page.jobs.length)
@@ -89,7 +90,7 @@ const JobListing: NextPage<IProps> = ({ jobs, totalJobs, cursor }) => {
       </Title>
 
       <Text color="dimmed" size="sm" mb="md">
-        Showing {jobsShown} out of {totalJobs} jobs.
+        Showing {jobsShown} out of {totalJobs} active job posts.
       </Text>
 
       <Grid>

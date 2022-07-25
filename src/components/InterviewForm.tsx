@@ -5,10 +5,9 @@ import {
   Textarea,
   SimpleGrid,
   Select,
-  InputWrapper,
   Button,
-  RadioGroup,
-  Radio
+  Radio,
+  Input
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import axios from 'axios'
@@ -142,7 +141,7 @@ const InterviewForm: FC<IProps> = ({
         </SimpleGrid>
 
         <SimpleGrid cols={2} breakpoints={[{ maxWidth: 768, cols: 1 }]} mb="md">
-          <RadioGroup
+          <Radio.Group
             label="How difficult was the inteview?"
             required
             {...form.getInputProps('difficulty')}
@@ -150,19 +149,19 @@ const InterviewForm: FC<IProps> = ({
             <Radio value="1" label="Easy" />
             <Radio value="2" label="Medium" />
             <Radio value="3" label="Hard" />
-          </RadioGroup>
+          </Radio.Group>
 
-          <InputWrapper label="Rating" required error={form.errors.rating}>
+          <Input.Wrapper label="Rating" required error={form.errors.rating}>
             {/* @ts-ignore */}
             <StarPicker
               value={form.values.rating}
               onChange={value => form.setFieldValue('rating', value as number)}
               name="rating"
             />
-          </InputWrapper>
+          </Input.Wrapper>
         </SimpleGrid>
 
-        <RadioGroup
+        <Radio.Group
           label="Did you receive an offer?"
           required
           mb="lg"
@@ -171,7 +170,7 @@ const InterviewForm: FC<IProps> = ({
           <Radio value="accepted" label="Yes, I accepted it" />
           <Radio value="declined" label="Yes, I declined it" />
           <Radio value="no" label="Didn't receive an offer" />
-        </RadioGroup>
+        </Radio.Group>
 
         <Button type="submit" loading={loading}>
           Post interview experience

@@ -2,7 +2,7 @@ import {
   Alert,
   Box,
   Button,
-  InputWrapper,
+  Input,
   NumberInput,
   Select,
   SimpleGrid,
@@ -139,7 +139,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               {...form.getInputProps('title')}
             />
 
-            <InputWrapper
+            <Input.Wrapper
               required
               id="description"
               label="Job Description"
@@ -157,7 +157,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
                   ['alignLeft', 'alignCenter', 'alignRight']
                 ]}
               />
-            </InputWrapper>
+            </Input.Wrapper>
 
             <SimpleGrid
               cols={2}
@@ -228,11 +228,11 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               breakpoints={[{ maxWidth: 768, cols: 1 }]}
               mb="md"
             >
-              <InputWrapper
+              <Input.Wrapper
                 label="Salary Range"
                 description="Adding a salary range can increase your reach"
               >
-                <SimpleGrid cols={2} mb="md">
+                <SimpleGrid cols={2} mb="md" mt="xs">
                   <NumberInput
                     aria-label="Min"
                     placeholder="Min"
@@ -282,7 +282,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
                     }
                   />
                 </SimpleGrid>
-              </InputWrapper>
+              </Input.Wrapper>
             </SimpleGrid>
 
             <Button type="submit" mt="sm" loading={loading}>

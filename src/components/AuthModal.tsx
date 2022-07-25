@@ -6,8 +6,8 @@ import {
   TextInput,
   Text,
   Stack,
-  Divider,
-  Tooltip
+  Divider
+  // Tooltip
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { signIn } from 'next-auth/react'
@@ -115,9 +115,8 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
               <Text ml="sm">Google</Text>
             </Button>
 
-            <Tooltip label="Currently disabled" radius="xs" withArrow>
+            {/* <Tooltip label="Currently disabled" withArrow>
               <Button
-                disabled
                 fullWidth
                 loading={loading}
                 variant="default"
@@ -142,7 +141,7 @@ const AuthModal: FC<IProps> = ({ opened, setOpened }) => {
 
                 <Text ml="sm">Facebook</Text>
               </Button>
-            </Tooltip>
+            </Tooltip> */}
           </Group>
 
           <Text align="center" size="xs">
