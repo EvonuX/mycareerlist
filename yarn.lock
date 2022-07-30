@@ -260,88 +260,88 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mantine/core@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-5.0.0.tgz#a1602bb59f0652532c6856ac31d594c55a1219a2"
-  integrity sha512-bhtoegMPp+7IDsuouDRjdde8pA5z+Z8cBcRhpoWXdfpA97jldHXDe2XhRpzwMzSN5f2mTQUj3ZtJG5jm4TXTUA==
+"@mantine/core@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-5.0.2.tgz#d5b866295bfd046d0d234ed53dc4909374a82e74"
+  integrity sha512-E4yXTVcoQByIeAp9Mlvh91jcR1UuzgwtvRC5CC5X7gkqyRWwdRQTwgGpZoYDE188SR4oIgfL2jXlC0vo0lhGrQ==
   dependencies:
     "@floating-ui/react-dom-interactions" "0.6.6"
-    "@mantine/styles" "5.0.0"
-    "@mantine/utils" "5.0.0"
+    "@mantine/styles" "5.0.2"
+    "@mantine/utils" "5.0.2"
     "@radix-ui/react-scroll-area" "1.0.0"
     react-textarea-autosize "8.3.4"
 
-"@mantine/form@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-5.0.0.tgz#90028e74e4671ee4c6e4c1959b1930508e5bc12a"
-  integrity sha512-mr67bZVY7FUsRY62T/c6cMWz84y8yTL6F1c3cRb0WcFcR2KkK9XSiLlS8KQSxpDtXCdDOEFXOcZEF2zRV0WU/g==
+"@mantine/form@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-5.0.2.tgz#9d13fcdddd9f7bdd6c164cc78b53d29cd86d2db3"
+  integrity sha512-VkW16orcIeOpQAdpSuXD2rIv/EVnMUCy00VV7zMhibFcT5j/qO4T0kW2gO4V5lp9xVCZuw1y1WthAdBA/GcQZA==
   dependencies:
-    lodash.clonedeep "4.5.0"
+    klona "^2.0.5"
 
-"@mantine/hooks@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-5.0.0.tgz#24fe9f945810d02ad7d933b8aecc646cf10f96dc"
-  integrity sha512-IKqqnukPPyBMYRKz4VIhz7hNRe3p8B7RUyvFLaWc9l69ZO/b5atNuesE1ThuMQYc7tBobQbU4myHuhQc/csyLA==
+"@mantine/hooks@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-5.0.2.tgz#78fc9e2289fa5f176c23ec6a3a00012e55a0e2ae"
+  integrity sha512-TZsHUmsuPnl+hX6Jt5z8aPU0TWCUC2kuvr1CUBMUbQ2ff0UldcYeuOYmgb7pHlX79BXsGaRKIThLTcLHToYxbA==
 
-"@mantine/modals@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/modals/-/modals-5.0.0.tgz#8a96a789bf9bdd4a08c6a9d4e10d0070520052fe"
-  integrity sha512-Adzn0ALKSonOLXmHleDliOMTv5U22FgmNBCJK8aTw6ld6HoCTrccrj/VBOsGZVm+c+/AO6NcQ6hmDkqLyRW0og==
+"@mantine/modals@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/modals/-/modals-5.0.2.tgz#8b311fbc44377d6cd1d34a6f6797144d4adaf5b8"
+  integrity sha512-us5gXXiBCjixQKZ9/StH8ybE9+XG/O4aB21lPECNkFwwvV6CjXuH3+XQ0vgbQLXrxMoJHfW5R3GRg5ZpNSYQIQ==
   dependencies:
-    "@mantine/utils" "5.0.0"
+    "@mantine/utils" "5.0.2"
 
-"@mantine/next@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-5.0.0.tgz#81edae18d3b9424d5ab84a915d0a5eba1c71cf49"
-  integrity sha512-aykdUeGB4QCa9ppYwsnHfXXCsuVcag4oBDc/bMe0GNFc++1tC1HTfD4PESuCTvKkXns3ZGzdNujs5XoeXXcD/A==
+"@mantine/next@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-5.0.2.tgz#62396506819f8776ae7be5dd2c0191206003d893"
+  integrity sha512-mWB4qPPrWLI4n/JC8f1oUf0Vxi2TFb/6lpnSAf7dGu1FUyICBph0UmYAF2QV59mpnAtfQIpCGsAtdBN2PGBInQ==
   dependencies:
-    "@mantine/ssr" "5.0.0"
-    "@mantine/styles" "5.0.0"
+    "@mantine/ssr" "5.0.2"
+    "@mantine/styles" "5.0.2"
 
-"@mantine/notifications@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-5.0.0.tgz#27d5dcb60ffccd305974105fa949b1d7278a4a61"
-  integrity sha512-uM/VJBrU2WGx0ji1z/y0Ov6qOMwB5+OJuRfujHpwaRv9hnDxIiesgZlkOS4MS67R4TWZRPuAUNdkccVTFNoRCA==
+"@mantine/notifications@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-5.0.2.tgz#4fec5629cc95bebcc44816e0dc33184dfa281aca"
+  integrity sha512-EicBoabJAV2G9y/g+/id76ERfz9ap+veN5rd3gkuYJssYnm98kfbgO73pLLm7ZaacNEGNlqWIIN2OYLcaoQ4Dw==
   dependencies:
-    "@mantine/utils" "5.0.0"
+    "@mantine/utils" "5.0.2"
     react-transition-group "4.4.2"
 
-"@mantine/nprogress@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/nprogress/-/nprogress-5.0.0.tgz#aa212ea19284dbf8258bf4178d584ea92ee6c0a0"
-  integrity sha512-T+bXYfNJOZoDKXWl+Hum8OrNyysDaAlFrDOUQnjoRaFCir6LNPHZJeYvKDA/gj/UgC35WmU79Bc2iToC1LXHbg==
+"@mantine/nprogress@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/nprogress/-/nprogress-5.0.2.tgz#41835caa2f241d01ae709cac9b84877705b30ae8"
+  integrity sha512-LNUlwhvbxabj9ZAsa27ipGsydMtbky66KDxchETTKAeW9dQAo6Zio0wnJBXg3I4U9+UXeJr/p4dpmUuX4Jafeg==
   dependencies:
-    "@mantine/utils" "5.0.0"
+    "@mantine/utils" "5.0.2"
 
-"@mantine/rte@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/rte/-/rte-5.0.0.tgz#3bde05213fa5291a22acc6f79a8313a26ed9db56"
-  integrity sha512-z4tBJcbivM9Z/0MVighszeuhGdKacyuONpddMQx8qIc3YGJtglHn1PJVxASlViNE1JHoCmPTYeo3hnbLRdOUdQ==
+"@mantine/rte@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/rte/-/rte-5.0.2.tgz#b853adf14a0f8c99a411915222e31046dba7e275"
+  integrity sha512-vUe2fP7rUaDJuzylz4FWV3rlGSzQU89lDVOyFoYr8kMw1BHcKC9l5O4qlQ+14PMTA6w4j8rgsrcTnKerlnmfyQ==
   dependencies:
     "@tabler/icons" "^1.68.0"
     quill-mention "^3.0.8"
     react-quill "2.0.0-beta.4"
 
-"@mantine/ssr@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-5.0.0.tgz#3d0e66bf73a414731e51f476bc415a26b6a2e1a3"
-  integrity sha512-TugXhLhUYGfPPSKKNgVaf98y2GWlCuHUFlFgfJ68/dLT5edQB28QnzM6WBwYKCs/LMGEdAbvnqJ3TehRf2ygtg==
+"@mantine/ssr@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-5.0.2.tgz#fd4458c3421352ab5fdcf17510d8272791b1446b"
+  integrity sha512-gFdEvx6NSEt4TR3+ooVQvWu9r866W2xtOgz0+EG9Be+rOuMLBdksmBUMnlXOQ/8z0H1kAle/9lws84Y9hZAbZQ==
   dependencies:
-    "@mantine/styles" "5.0.0"
+    "@mantine/styles" "5.0.2"
     html-react-parser "1.4.12"
 
-"@mantine/styles@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-5.0.0.tgz#526fb8fea1be280b18f852d790a6b8d05c9c97e5"
-  integrity sha512-Yh7ykrrEJyIFOUVcfHOUyESmut8D482oidG2XVtwpWGuqi4olf1vuGsjdcn2GNdGJHQmFxtEYjkzWEXmXCoouQ==
+"@mantine/styles@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-5.0.2.tgz#9c5e0afc046c77bc1390582b3ced640b3b6dcc66"
+  integrity sha512-0brNmE+skz7CEOXnTzW6mVH7fLn40oDvqGxh72LfQj0RS0sQOav4ZFq8sulhOcpM3nYjcF+930DMY+GKKxIsCw==
   dependencies:
     clsx "1.1.1"
     csstype "3.0.9"
 
-"@mantine/utils@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.0.0.tgz#576ebab6b0980b996ecb70b277f4ea378dcfb474"
-  integrity sha512-Fy9BdxWvrXkplWua8ZKmsBQODo24QB8OPn6BEmvXUt4O+3qoP27VaAWQVea4opWZsy+L5dtEe/kOXY/Q/kC2qg==
+"@mantine/utils@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.0.2.tgz#311746843158a9fefd6945ad3e8c43f0df736ea0"
+  integrity sha512-WCuUL+mJ0+8n3anMYb5no93ohyuMilIG49ZJ7XNZUN3g/ZxoKnKF3dEUpXqIUxKgUIwzAsiS9AFFpZSStgAPvw==
 
 "@next-auth/prisma-adapter@^1.0.4":
   version "1.0.4"
@@ -473,10 +473,10 @@
   dependencies:
     hi-base32 "^0.5.0"
 
-"@prisma/client@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.1.0.tgz#7c5341b2276c083821e432536ff97d8cc8f8b936"
-  integrity sha512-MvfPGAd42vHTiCYxwS6N+2U3F+ukoJ48D2QRnX1zSPJHBkh1CBtshl75daKzvVfgQwSouzSQeugKDej5di+E/g==
+"@prisma/client@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.1.1.tgz#dcb1118397deb8247fbe39a1f3eee5606648adf8"
+  integrity sha512-2pXuIUYxHv5H9o6QTa1VIsl4yMgsAjKQOitlo8WVTB+vo73rmMJITBPavdGUZSWUc7adMkFzEV3y5rVTUQr77Q==
   dependencies:
     "@prisma/engines-version" "4.1.0-48.8d8414deb360336e4698a65aa45a1fbaf1ce13d8"
 
@@ -485,10 +485,10 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.1.0-48.8d8414deb360336e4698a65aa45a1fbaf1ce13d8.tgz#ce00e6377126e491a8b1e0e2039c97e2924bd6d9"
   integrity sha512-cRRJwpHFGFJZvtHbY3GZjMffNBEjjZk68ztn+S2hDgPCGB4H66IK26roK94GJxBodSehwRJ0wGyebC2GoIH1JQ==
 
-"@prisma/engines@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.1.0.tgz#da8002d4b75c92e3fd564ba5b0bd04847ffb3c4c"
-  integrity sha512-quqHXD3P83NBLVtRlts4SgKHmqgA8GMiyDTJ7af03Wg0gl6F5t65mBYvIuwmD+52vHm42JtIsp/fAO9YIV0JBA==
+"@prisma/engines@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.1.1.tgz#a6a75870618bbd19ff734c51af7dbe9f362c3265"
+  integrity sha512-DCw8L/SS0IXqmj5IW/fMxOXiifnsfjBzDfRhf0j3NFWqvMCh9OtfjmXQZxVgI2mwvJLc/5jzXhkiWT39qS09dA==
 
 "@radix-ui/number@1.0.0":
   version "1.0.0"
@@ -710,10 +710,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.27.tgz#f4df3981ae8268c066e8f49995639f855469081e"
   integrity sha512-4/Ke7bbWOasuT3kceBZFGakP1dYN2XFd8v2l9bqF2LNWrmeU07JLpp56aEeG6+Q3olqO5TvXpW0yaiYnZJ5CXg==
 
-"@types/node@18.6.1":
-  version "18.6.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.1.tgz#828e4785ccca13f44e2fb6852ae0ef11e3e20ba5"
-  integrity sha512-z+2vB6yDt1fNwKOeGbckpmirO+VBDuQqecXkgeIqDlaOtmKn6hPR/viQ8cxCfqLU4fTlvM3+YjM367TukWdxpg==
+"@types/node@18.6.2":
+  version "18.6.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.2.tgz#ffc5f0f099d27887c8d9067b54e55090fcd54126"
+  integrity sha512-KcfkBq9H4PI6Vpu5B/KoPeuVDAbmi+2mDBqGPGUgoL7yXQtcWGu2vJWmmRkneWK3Rh0nIAX192Aa87AqKHYChQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2418,6 +2418,11 @@ jsonfile@^4.0.0:
     array-includes "^3.1.3"
     object.assign "^4.1.2"
 
+klona@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
+  integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
+
 language-subtag-registry@~0.3.2:
   version "0.3.21"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.21.tgz#04ac218bea46f04cb039084602c6da9e788dd45a"
@@ -2458,11 +2463,6 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
-
-lodash.clonedeep@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
-  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
 
 lodash.merge@^4.6.2:
   version "4.6.2"
@@ -2610,10 +2610,10 @@ next-plausible@^3.2.0:
   resolved "https://registry.yarnpkg.com/next-plausible/-/next-plausible-3.2.0.tgz#d801346253e0c1cf64a02b9fc3a42050455cbc47"
   integrity sha512-OlYcLXBG3kKd/fKMpm8SZ5IkUKSFm1/8t7cv6e5bewIqlpdZpdWuSrjbdJpbmutb2KPLXHzilKp09zmDGjy9KQ==
 
-next-sitemap@^3.1.13:
-  version "3.1.13"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-3.1.13.tgz#dd72712ff710caa31580999fca631fece109e324"
-  integrity sha512-wMA8WFbFUPwT4uXKlHSjm7a3Gu6NI74E08enN/CYHRh+5HQrGoL4TWOz7JkGBR6k/Pg5trGusIIGMrPkhOhkTQ==
+next-sitemap@^3.1.15:
+  version "3.1.15"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-3.1.15.tgz#abb68abeffc5aa5d3a88bd7441092fba0c69c481"
+  integrity sha512-zLLbSRQjArBlwQp3SUG1nt9TDdJGvLzRj/sQaV4ZovIl4VlocKuFxlX5aWbVQ7iLhTxr8uGU7v8cFENiZCGRjA==
   dependencies:
     "@corex/deepmerge" "^4.0.29"
     minimist "^1.2.6"
@@ -2944,12 +2944,12 @@ pretty-format@^3.8.0:
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
   integrity sha1-v77VbV6ad2ZF9LH/eqGjrE+jw4U=
 
-prisma@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.1.0.tgz#5d43597f0f2603a4a75d9586346c74110d8e221f"
-  integrity sha512-iwqpAT6In1uvMSwQAM3PqmaBdhh2OaQ/2t+n3RjpW4vAKP3R7E1T34FZUU4zGOWtMWm5dt0sPThQkT/h87r6gw==
+prisma@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.1.1.tgz#41c2e19896357f484ef21567165d762908376fca"
+  integrity sha512-yw50J8If2dKP4wYIi695zthsCASQFHiogGvUHHWd3falx/rpsD6Sb1LMLRV9nO3iGG3lozxNJ2PSINxK7xwdpg==
   dependencies:
-    "@prisma/engines" "4.1.0"
+    "@prisma/engines" "4.1.1"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
