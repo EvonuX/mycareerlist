@@ -10,17 +10,17 @@ import {
   Title
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { NextLink } from '@mantine/next'
 import { showNotification } from '@mantine/notifications'
-import dynamic from 'next/dynamic'
-import { FC, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import dynamic from 'next/dynamic'
+import qs from 'query-string'
+import { FC, useState } from 'react'
 import type { Job } from '~/types/types'
 import { fetcher } from '~/utils/helpers'
 import Layout from './Layout'
 import SEO from './SEO'
-import qs from 'query-string'
-import axios from 'axios'
-import { NextLink } from '@mantine/next'
 
 const JobCard = dynamic(() => import('./JobCard'))
 
@@ -188,7 +188,7 @@ const UserAccountPage: FC = () => {
             ))}
           </SimpleGrid>
 
-          {jobFeed.total > 16 && (
+          {jobFeed.total > 1 && (
             <Center>
               <Pagination
                 total={jobFeed.total}

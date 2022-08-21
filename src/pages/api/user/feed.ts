@@ -98,7 +98,7 @@ export default async function handler(
 
     return res.status(200).json({
       feed,
-      total: count / PAGE_SIZE
+      total: Math.floor(count / PAGE_SIZE)
     })
   }
 }

@@ -1,25 +1,25 @@
 import {
-  Title,
-  Group,
-  Button,
-  Center,
-  Loader,
-  Stack,
-  Paper,
-  Box,
   Anchor,
   Badge,
-  Text,
+  Box,
+  Button,
+  Center,
   Grid,
+  Group,
+  Loader,
   Pagination,
-  TextInput
+  Paper,
+  Stack,
+  Text,
+  TextInput,
+  Title
 } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { NextLink } from '@mantine/next'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import type { Company } from '~/types/types'
 import { fetcher } from '~/utils/helpers'
 import Layout from './Layout'
@@ -227,7 +227,7 @@ const EmployerAccountPage = () => {
                     )
                   })}
 
-                  {data.total > 16 && (
+                  {data.total > 1 && (
                     <Center>
                       <Pagination
                         total={data.total}
