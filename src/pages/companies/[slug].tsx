@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Grid,
-  Group,
   Paper,
   SimpleGrid,
   Stack,
@@ -11,18 +10,18 @@ import {
   Title,
   TypographyStylesProvider
 } from '@mantine/core'
+import { useQuery } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import InterviewItem from '~/components/InterviewItem'
 import JobCard from '~/components/JobCard'
 import Layout from '~/components/Layout'
 import ReviewItem from '~/components/ReviewItem'
 import SEO from '~/components/SEO'
-import type { Company } from '~/types/types'
+import type { Company, Interview, Job, Review } from '~/types/types'
 import { fetcher, formatDate, getLocation } from '~/utils/helpers'
 import prisma from '~/utils/prisma'
 import NotFoundPage from '../404'
@@ -220,7 +219,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
               </Title>
 
               <SimpleGrid cols={1} breakpoints={[{ minWidth: 480, cols: 2 }]}>
-                {data.company.jobs.map(job => (
+                {data.company.jobs.map((job: Job) => (
                   <JobCard key={job.id} job={job} />
                 ))}
               </SimpleGrid>
@@ -258,7 +257,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
 
               {data.company.reviews && (
                 <Stack>
-                  {data.company.reviews.map(review => (
+                  {data.company.reviews.map((review: Review) => (
                     <ReviewItem key={review.id} review={review} />
                   ))}
                 </Stack>
@@ -313,7 +312,7 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
 
               {data.company.interviews && (
                 <Stack>
-                  {data.company.interviews.map(interview => (
+                  {data.company.interviews.map((interview: Interview) => (
                     <InterviewItem key={interview.id} interview={interview} />
                   ))}
                 </Stack>
