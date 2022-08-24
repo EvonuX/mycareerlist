@@ -4,10 +4,14 @@ module.exports = {
   generateRobotsTxt: true,
   changefreq: 'daily',
   exclude: [
+    '/server-sitemap-index.xml',
     '/account',
     '/account/*',
-    '/jobs/new',
-    '/companies/new',
+    '/companies/*',
+    '/jobs/*',
     '/jobs/*/payment'
-  ]
+  ],
+  robotsTxtOptions: {
+    additionalSitemaps: ['https://mycareerlist.com/server-sitemap-index.xml']
+  }
 }
