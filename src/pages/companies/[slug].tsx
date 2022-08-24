@@ -184,7 +184,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
         <Grid.Col span={12} md={9}>
           <Tabs defaultValue="description">
             <Tabs.List mb="sm">
-              <Tabs.Tab value="description">Description & Jobs</Tabs.Tab>
+              <Tabs.Tab value="description">
+                Description & Jobs ({company.jobs.length})
+              </Tabs.Tab>
 
               <Tabs.Tab value="reviews">
                 Reviews ({stats.reviews.count})

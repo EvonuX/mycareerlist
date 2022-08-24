@@ -12,7 +12,6 @@ export const stripHtml = (html: string) => {
   return html
     .replace(/<[^>]+>/gm, '')
     .replace(/([\r\n]+ +)+/gm, '')
-    .replace(/([A-Z])/g, ' $1')
     .trim()
 }
 

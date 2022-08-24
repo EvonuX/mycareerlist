@@ -104,7 +104,7 @@ const createJob = async (body: any, userId: string) => {
       city: body.city,
       applyLink: body.applyLink,
       companyId: body.companyId,
-      draft: true,
+      draft: false,
       createdAt: new Date().toISOString(),
       salaryRange,
       userId

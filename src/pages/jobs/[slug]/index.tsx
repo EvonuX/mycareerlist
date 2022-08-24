@@ -132,11 +132,9 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
       <SEO
         title={`${job.title} at ${job.company.name}`}
         description={`
-          Apply for a
-          ${getCategory(job.category)} job as a
-          ${job.title} at ${job.company.name}
-          - ${getType(job.type)}
-          - ${getLocation(job.city, job.location)}
+          Apply for a ${getCategory(job.category)} job as a ${job.title}
+          at ${job.company.name} - ${getType(job.type)} -
+          ${getLocation(job.city, job.location)}
         `}
         image={job.company.logo ?? '/no-image.png'}
       />

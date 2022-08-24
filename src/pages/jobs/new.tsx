@@ -80,7 +80,8 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
     try {
       const { data } = await axios.post('/api/job', formData)
 
-      router.push(`/jobs/${data.slug}/payment`)
+      // router.push(`/jobs/${data.slug}/payment`)
+      router.push(`/jobs/${data.slug}`)
     } catch (err) {
       showNotification({
         title: 'An error occured',
@@ -168,8 +169,6 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
                 required
                 label="Job Location"
                 data={locations}
-                searchable
-                nothingFound="No options"
                 {...form.getInputProps('location')}
               />
 
@@ -185,8 +184,6 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
                 required
                 label="Job Category"
                 data={categories}
-                searchable
-                nothingFound="No options"
                 {...form.getInputProps('category')}
               />
 
@@ -194,8 +191,6 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
                 required
                 label="Job Type"
                 data={types}
-                searchable
-                nothingFound="No options"
                 {...form.getInputProps('type')}
               />
             </SimpleGrid>
@@ -286,7 +281,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
             </SimpleGrid>
 
             <Button type="submit" mt="sm" loading={loading}>
-              Next step
+              Create job post
             </Button>
           </form>
         )}
