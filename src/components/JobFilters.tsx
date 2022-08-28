@@ -1,9 +1,10 @@
-import { TextInput, MultiSelect, Group, Button, Box } from '@mantine/core'
+import { Box, Button, Group, MultiSelect, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
+import { usePlausible } from 'next-plausible'
 import { useRouter } from 'next/router'
-import { locations, categories, types } from '~/constants/general'
 import qs from 'query-string'
 import type { FC } from 'react'
+import { categories, locations, types } from '~/constants/general'
 
 interface IProps {
   setQuery: (query: string) => void
@@ -11,6 +12,7 @@ interface IProps {
 
 const JobFilters: FC<IProps> = ({ setQuery }) => {
   const router = useRouter()
+  const plausible = usePlausible()
 
   const { title, location, category, type } = router.query
 
@@ -32,6 +34,12 @@ const JobFilters: FC<IProps> = ({ setQuery }) => {
     })
 
     if (queryString) {
+      plausible('job-search', {
+        props: {
+          query: queryString
+        }
+      })
+
       setQuery(queryString)
       router.push(`/jobs?${queryString}`, undefined, { shallow: true })
     } else {

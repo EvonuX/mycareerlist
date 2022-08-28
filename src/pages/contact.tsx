@@ -312,6 +312,11 @@ const Contact = () => {
               'Other'
             ]}
             placeholder="What can we assist you with?"
+            description={
+              form.values.subject === 'Upgrade account (Employer)'
+                ? "Please mention the email address of the account you'd like to upgrade"
+                : ''
+            }
             required
             {...form.getInputProps('subject')}
           />

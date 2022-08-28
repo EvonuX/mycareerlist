@@ -9,7 +9,7 @@ export default async function handler(
 
   try {
     await emailClient.send({
-      to: 'djordje42@gmail.com',
+      to: 'info@mycareerlist.com',
       from: email,
       subject: `MCL - ${subject}`,
       text: body,
