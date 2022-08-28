@@ -15,6 +15,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
+    // @ts-ignore
     const { files, companyId } = await new Promise((resolve, reject) => {
       const form = formidable({
         uploadDir: os.tmpdir(),

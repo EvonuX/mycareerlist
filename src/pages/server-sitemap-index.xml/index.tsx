@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     fields.push({
       loc: job.url,
       lastmod: job.updatedAt,
-      changefreq: 'daily',
+      changefreq: 'monthly',
       priority: 0.7
     })
   }
