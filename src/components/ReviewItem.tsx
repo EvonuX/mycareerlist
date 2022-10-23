@@ -12,7 +12,7 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
   return (
     <Paper p="sm" shadow="sm">
       <Box>
-        <Rating value={review.rating} name="rating" readOnly />
+        <Rating value={review.rating} name="rating" mb={3} readOnly />
 
         <Text size="lg" weight={600}>
           {review.title}
