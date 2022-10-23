@@ -7,12 +7,12 @@ import {
   Select,
   Button,
   Radio,
-  Input
+  Input,
+  Rating
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import axios from 'axios'
 import { FC, useState } from 'react'
-import StarPicker from 'react-star-picker'
 import { showNotification } from '@mantine/notifications'
 import { useQueryClient } from '@tanstack/react-query'
 
@@ -152,11 +152,11 @@ const InterviewForm: FC<IProps> = ({
           </Radio.Group>
 
           <Input.Wrapper label="Rating" required error={form.errors.rating}>
-            {/* @ts-ignore */}
-            <StarPicker
-              value={form.values.rating}
-              onChange={value => form.setFieldValue('rating', value as number)}
+            <Rating
+              defaultValue={form.values.rating}
+              onChange={value => form.setFieldValue('rating', value)}
               name="rating"
+              size="xl"
             />
           </Input.Wrapper>
         </SimpleGrid>

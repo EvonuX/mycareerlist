@@ -1,12 +1,7 @@
-import { Box, Paper, Text, Title } from '@mantine/core'
-import dynamic from 'next/dynamic'
+import { Box, Paper, Rating, Text, Title } from '@mantine/core'
 import type { FC } from 'react'
 import type { Interview } from '~/types/types'
 import { getInterviewDifficulty, getInterviewOffer } from '~/utils/helpers'
-
-const StarPicker = dynamic(() => import('react-star-picker'), {
-  ssr: false
-})
 
 interface IProps {
   interview: Interview
@@ -27,13 +22,7 @@ const InterviewItem: FC<IProps> = ({ interview }) => {
         </Text>
 
         <Box sx={{ pointerEvents: 'none', lineHeight: 1 }}>
-          {/* @ts-ignore */}
-          <StarPicker
-            value={interview.rating}
-            disabled={true}
-            name="rating"
-            size={18}
-          />
+          <Rating value={interview.rating} name="rating" size="xl" readOnly />
         </Box>
       </Box>
 

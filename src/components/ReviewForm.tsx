@@ -7,12 +7,12 @@ import {
   Select,
   Button,
   Alert,
-  Input
+  Input,
+  Rating
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import axios from 'axios'
 import { FC, useState } from 'react'
-import StarPicker from 'react-star-picker'
 import { showNotification } from '@mantine/notifications'
 import { useQueryClient } from '@tanstack/react-query'
 
@@ -115,12 +115,11 @@ const ReviewForm: FC<IProps> = ({ open, setOpen, companyId, companySlug }) => {
           />
 
           <Input.Wrapper label="Rating" required mb="md">
-            {/* @ts-ignore */}
-            <StarPicker
+            <Rating
               value={form.values.rating}
-              // @ts-ignore
               onChange={value => form.setFieldValue('rating', value)}
               name="rating"
+              size="xl"
             />
           </Input.Wrapper>
         </SimpleGrid>

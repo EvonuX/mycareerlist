@@ -1,12 +1,7 @@
-import { Anchor, Badge, Box, Paper, Text } from '@mantine/core'
-import dynamic from 'next/dynamic'
+import { Anchor, Badge, Box, Paper, Rating, Text } from '@mantine/core'
 import Link from 'next/link'
 import type { FC } from 'react'
 import type { Review } from '~/types/types'
-
-const StarPicker = dynamic(() => import('react-star-picker'), {
-  ssr: false
-})
 
 interface IProps {
   review: Review
@@ -17,15 +12,7 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
   return (
     <Paper p="sm" shadow="sm">
       <Box>
-        <Box sx={{ pointerEvents: 'none' }}>
-          {/* @ts-ignore */}
-          <StarPicker
-            value={review.rating}
-            disabled={true}
-            name="rating"
-            size={22}
-          />
-        </Box>
+        <Rating value={review.rating} name="rating" readOnly />
 
         <Text size="lg" weight={600}>
           {review.title}
