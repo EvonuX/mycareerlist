@@ -20,7 +20,6 @@ import {
 export default function App(props: AppProps) {
   const {
     Component,
-    // @ts-ignore
     pageProps: { session, ...pageProps }
   } = props
 
@@ -46,7 +45,6 @@ export default function App(props: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* @ts-ignore */}
       <Hydrate state={pageProps.dehydratedState}>
         <SessionProvider session={session}>
           <ColorSchemeProvider

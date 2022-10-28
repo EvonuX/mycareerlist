@@ -6,7 +6,7 @@ import {
   SimpleGrid,
   useMantineColorScheme
 } from '@mantine/core'
-import { NextLink } from '@mantine/next'
+import Link from 'next/link'
 
 const Footer = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
@@ -52,7 +52,7 @@ const Footer = () => {
         </ActionIcon>
 
         <Box sx={{ justifySelf: 'flex-end' }}>
-          <Button component={NextLink} href="/contact" variant="subtle" compact>
+          <Button component={Link} href="/contact" variant="subtle" compact>
             Contact
           </Button>
         </Box>

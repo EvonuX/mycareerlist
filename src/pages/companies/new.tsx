@@ -201,8 +201,8 @@ const NewCompany = () => {
                 <Image
                   src={logoPreview}
                   alt="logo preview"
-                  layout="fill"
-                  objectFit="contain"
+                  width={40}
+                  height={40}
                 />
               </Box>
 

@@ -10,11 +10,11 @@ import {
   Title
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
-import { NextLink } from '@mantine/next'
 import { showNotification } from '@mantine/notifications'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import qs from 'query-string'
 import { FC, useState } from 'react'
 import type { Job } from '~/types/types'
@@ -123,7 +123,7 @@ const UserAccountPage: FC = () => {
         >
           <Text>
             Employers can create companies and post jobs to expand their reach.{' '}
-            <Anchor component={NextLink} href="/contact">
+            <Anchor component={Link} href="/contact">
               Become one by reaching out to us.
             </Anchor>
           </Text>

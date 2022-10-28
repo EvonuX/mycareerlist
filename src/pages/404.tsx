@@ -1,5 +1,5 @@
 import { Box, Button, Center, Title } from '@mantine/core'
-import { NextLink } from '@mantine/next'
+import Link from 'next/link'
 import Layout from '~/components/Layout'
 import SEO from '~/components/SEO'
 
@@ -16,7 +16,7 @@ const NotFoundPage = () => {
             </Title>
 
             <Center>
-              <Button component={NextLink} href="/" mb="xl">
+              <Button component={Link} href="/" mb="xl">
                 Go to home page
               </Button>
             </Center>

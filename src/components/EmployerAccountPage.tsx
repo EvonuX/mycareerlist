@@ -15,7 +15,6 @@ import {
   Title
 } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { NextLink } from '@mantine/next'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -57,11 +56,11 @@ const EmployerAccountPage = () => {
             </Title>
 
             <Stack>
-              <Button fullWidth component={NextLink} href="/jobs/new">
+              <Button fullWidth component={Link} href="/jobs/new">
                 Create a job
               </Button>
 
-              <Button fullWidth component={NextLink} href="/companies/new">
+              <Button fullWidth component={Link} href="/companies/new">
                 Create a company
               </Button>
             </Stack>
@@ -110,7 +109,6 @@ const EmployerAccountPage = () => {
                               alt={company.name}
                               width={40}
                               height={40}
-                              objectFit="contain"
                             />
                           </Box>
 
@@ -142,7 +140,11 @@ const EmployerAccountPage = () => {
                                 >
                                   <Box>
                                     {!job.expired || !job.draft ? (
-                                      <Link href={`/jobs/${job.slug}`} passHref>
+                                      <Link
+                                        href={`/jobs/${job.slug}`}
+                                        passHref
+                                        legacyBehavior
+                                      >
                                         <Anchor sx={{ color: 'inherit' }}>
                                           <Title
                                             order={4}
@@ -203,7 +205,7 @@ const EmployerAccountPage = () => {
                                     )}
 
                                     <Button
-                                      component={NextLink}
+                                      component={Link}
                                       href={`/jobs/${job.slug}/analytics`}
                                       size="xs"
                                       variant="subtle"

@@ -22,7 +22,11 @@ const ReviewItem: FC<IProps> = ({ review, showCompanyInfo = false }) => {
           <Text size="sm">
             <span>for </span>
 
-            <Link href={`/companies/${review.company.slug}`} passHref>
+            <Link
+              href={`/companies/${review.company.slug}`}
+              passHref
+              legacyBehavior
+            >
               <Anchor>{review.company.name}</Anchor>
             </Link>
           </Text>

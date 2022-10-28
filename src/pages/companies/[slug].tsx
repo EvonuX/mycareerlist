@@ -101,9 +101,9 @@ const CompanyPage: NextPage<IProps> = ({ company, stats }) => {
                 <Image
                   src={data.company.logo || '/no-image.png'}
                   alt={data.company.name}
-                  layout="fill"
-                  objectFit="contain"
                   priority={true}
+                  width={40}
+                  height={40}
                 />
               </Box>
             </Box>

@@ -12,7 +12,7 @@ interface IProps {
 const JobCard: FC<IProps> = ({ job }) => {
   return (
     <Paper p="xs" shadow="xs" sx={{ position: 'relative' }}>
-      <Link href={`/jobs/${job.slug}`} passHref>
+      <Link href={`/jobs/${job.slug}`} passHref legacyBehavior>
         <Box
           component="a"
           sx={{
@@ -41,9 +41,9 @@ const JobCard: FC<IProps> = ({ job }) => {
             <Image
               src={job.company.logo || '/no-image.png'}
               alt={job.company.name}
-              layout="fill"
-              objectFit="contain"
               quality={100}
+              width={81}
+              height={81}
             />
           </Box>
 

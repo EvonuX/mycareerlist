@@ -127,7 +127,7 @@ const NewJob: NextPage<IProps> = ({ companies }) => {
               below.
             </Text>
 
-            <Link href="/companies/new" passHref>
+            <Link href="/companies/new" passHref legacyBehavior>
               <Button size="xs">Create a company</Button>
             </Link>
           </Alert>

@@ -231,10 +231,8 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
                 <Image
                   src={job.company.logo || '/no-image.png'}
                   alt={job.title}
-                  layout="fixed"
                   width={100}
                   height={100}
-                  objectFit="contain"
                 />
               </Box>
 
@@ -252,7 +250,11 @@ const JobPage: NextPage<IProps> = ({ job, relatedJobs }) => {
               </Stack>
 
               <Stack mx="xl">
-                <Link href={`/companies/${job.company.slug}`} passHref>
+                <Link
+                  href={`/companies/${job.company.slug}`}
+                  passHref
+                  legacyBehavior
+                >
                   <Button variant="light">View Company Profile</Button>
                 </Link>
 

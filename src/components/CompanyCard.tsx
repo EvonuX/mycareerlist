@@ -10,7 +10,7 @@ interface IProps {
 
 const CompanyCard: FC<IProps> = ({ company }) => {
   return (
-    <Link href={`/companies/${company.slug}`} passHref>
+    <Link href={`/companies/${company.slug}`} passHref legacyBehavior>
       <Paper component="a" sx={{ textAlign: 'center' }} shadow="xs" p="md">
         <Box
           sx={{
@@ -26,10 +26,8 @@ const CompanyCard: FC<IProps> = ({ company }) => {
           <Image
             src={company.logo || '/no-image.png'}
             alt={company.name}
-            layout="fixed"
             width={80}
             height={80}
-            objectFit="contain"
           />
         </Box>
 

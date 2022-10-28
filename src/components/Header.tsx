@@ -14,12 +14,12 @@ import { FC, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { signOut, useSession } from 'next-auth/react'
 import { showNotification } from '@mantine/notifications'
-import { NextLink } from '@mantine/next'
 import {
   NavigationProgress,
   resetNavigationProgress,
   startNavigationProgress
 } from '@mantine/nprogress'
+import Link from 'next/link'
 
 const AuthModal = dynamic(() => import('./AuthModal'), {
   ssr: false
@@ -81,7 +81,7 @@ const Header: FC = () => {
           <Grid.Col span={1} py="md">
             <Button
               variant="subtle"
-              component={NextLink}
+              component={Link}
               href="/"
               color={colorScheme === 'dark' ? 'gray' : 'dark'}
               title="Home"
@@ -101,7 +101,7 @@ const Header: FC = () => {
               <Button
                 color="white"
                 variant={router.pathname === '/jobs' ? 'light' : 'subtle'}
-                component={NextLink}
+                component={Link}
                 href="/jobs"
               >
                 View all jobs
@@ -110,7 +110,7 @@ const Header: FC = () => {
               <Button
                 color="white"
                 variant={router.pathname === '/companies' ? 'light' : 'subtle'}
-                component={NextLink}
+                component={Link}
                 href="/companies"
                 ml="sm"
               >
@@ -125,17 +125,17 @@ const Header: FC = () => {
                   </Menu.Target>
 
                   <Menu.Dropdown>
-                    <Menu.Item component={NextLink} href="/account">
+                    <Menu.Item component={Link} href="/account">
                       Your account
                     </Menu.Item>
 
                     {data.userRole === 'EMPLOYER' && (
                       <>
-                        <Menu.Item component={NextLink} href="/jobs/new">
+                        <Menu.Item component={Link} href="/jobs/new">
                           Create new job post
                         </Menu.Item>
 
-                        <Menu.Item component={NextLink} href="/companies/new">
+                        <Menu.Item component={Link} href="/companies/new">
                           Create new company
                         </Menu.Item>
                       </>
@@ -178,11 +178,11 @@ const Header: FC = () => {
               </Menu.Target>
 
               <Menu.Dropdown>
-                <Menu.Item component={NextLink} href="/jobs">
+                <Menu.Item component={Link} href="/jobs">
                   View all jobs
                 </Menu.Item>
 
-                <Menu.Item component={NextLink} href="/companies">
+                <Menu.Item component={Link} href="/companies">
                   View all companies
                 </Menu.Item>
 
@@ -190,17 +190,17 @@ const Header: FC = () => {
 
                 {data ? (
                   <>
-                    <Menu.Item component={NextLink} href="/account">
+                    <Menu.Item component={Link} href="/account">
                       Your account
                     </Menu.Item>
 
                     {data.userRole === 'EMPLOYER' && (
                       <>
-                        <Menu.Item component={NextLink} href="/jobs/new">
+                        <Menu.Item component={Link} href="/jobs/new">
                           Create new job post
                         </Menu.Item>
 
-                        <Menu.Item component={NextLink} href="/companies/new">
+                        <Menu.Item component={Link} href="/companies/new">
                           Create new company
                         </Menu.Item>
                       </>

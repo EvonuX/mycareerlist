@@ -7,7 +7,6 @@ import {
   Text,
   Title
 } from '@mantine/core'
-import { NextLink } from '@mantine/next'
 import type { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import JobCard from '~/components/JobCard'
@@ -15,6 +14,7 @@ import SEO from '~/components/SEO'
 import type { Company, Job, Review } from '~/types/types'
 import prisma from '~/utils/prisma'
 import Layout from '~/components/Layout'
+import Link from 'next/link'
 
 const ReviewItem = dynamic(() => import('~/components/ReviewItem'))
 const CompanyCard = dynamic(() => import('~/components/CompanyCard'))
@@ -68,7 +68,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
           <Group>
             <Button
-              component={NextLink}
+              component={Link}
               href="/jobs/new"
               size="md"
               sx={{ '@media (max-width: 480px)': { flex: 1 } }}
@@ -79,7 +79,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
 
             <Button
               variant="light"
-              component={NextLink}
+              component={Link}
               href="/jobs"
               size="md"
               sx={{ '@media (max-width: 480px)': { flex: 1 } }}
@@ -564,7 +564,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         <Title order={2}>Latest featured jobs</Title>
 
         <Button
-          component={NextLink}
+          component={Link}
           href="/jobs"
           variant="default"
           sx={{
@@ -603,7 +603,7 @@ const Home: NextPage<IProps> = ({ jobs, companies, reviews }) => {
         <Title order={2}>Latest companies</Title>
 
         <Button
-          component={NextLink}
+          component={Link}
           href="/companies"
           variant="default"
           sx={{
